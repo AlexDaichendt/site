@@ -98,6 +98,11 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
+"@stitches/core@1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@stitches/core/-/core-1.2.8.tgz#dce3b8fdc764fbc6dbea30c83b73bfb52cf96173"
+  integrity sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==
+
 "@sveltejs/adapter-auto@next":
   version "1.0.0-next.50"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-auto/-/adapter-auto-1.0.0-next.50.tgz#b072dd95210d1e6a0cef54106a3efc138a147362"
@@ -154,6 +159,18 @@
     kleur "^4.1.4"
     magic-string "^0.26.2"
     svelte-hmr "^0.14.12"
+
+"@svelteuidev/composables@0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@svelteuidev/composables/-/composables-0.6.5.tgz#993f1cc2c888137c2ba8c48d68fe64c58b32ceee"
+  integrity sha512-aFhNLGkf4067nK7522LIEUbzfKDHJUxFjNX4JMOPkPyuv7iNyMeWvMAqZgqvyUKZ+EKi1qMZJUFevIB4IsQzEw==
+
+"@svelteuidev/core@0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@svelteuidev/core/-/core-0.6.5.tgz#1503251b71b6748c4ebf8d6c18cb945e3938b6e6"
+  integrity sha512-H3PnmYmfYaQEowQsE3J2UULlStcIrAaiht2eO1QDNrZ7H2PIXKkBBZdpdoNYrGZg0AP/t5ovU/+q4lOOCTNVWA==
+  dependencies:
+    "@stitches/core" "1.2.8"
 
 "@types/json-schema@^7.0.9":
   version "7.0.11"
