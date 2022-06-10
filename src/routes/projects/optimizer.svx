@@ -1,0 +1,12 @@
+---
+title: 'Gear Optimizer'
+description: >-
+  The Gear Optimizer helps players of the MMORPG Guild Wars 2 to find the most optimal builds for their favourit content while respecting input parameters.
+concluded: false
+timeActive: 2021-now
+usersPerDay: 500
+layout: project
+---
+
+
+The gear optimizer helps players of the MMORP [Guild Wars 2](https://www.guildwars2.com/en/) finding the most optimal gear meeting arbitrary constraints. Players may use templates to select the most common builds or adjust the settings manually - which requires some understanding of the available options. An easy-mode hides more advanced features.

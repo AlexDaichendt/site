@@ -1,22 +1,28 @@
-<script context="module">
-	export const prerender = true;
-</script>
+<script>
+	import {
+		Button,
+		Switch,
+		Container,
+		createStyles,
+		SvelteUIProvider,
+		createTheme,
+	} from '@svelteuidev/core';
+	// import type { SvelteUIProviderProps } from '@svelteuidev/core';
+	import '@fontsource/syne';
 
-<script lang="ts">
-	import { Button, Switch, Container, createStyles, SvelteUIProvider } from '@svelteuidev/core';
-	import type { SvelteUIProviderProps } from '@svelteuidev/core';
+	const theme = createTheme('themeOverride', { fonts: { standard: 'Syne' } });
 
-	const config: SvelteUIProviderProps['config'] = {
+	const config = {
 		light: { bg: 'White', color: 'Black' },
-		dark: { bg: '#373737', color: '#C1C2C5' }
+		dark: { bg: '#373737', color: '#C1C2C5' },
 	};
 
 	const MENU_ITEMS = [
 		{ label: 'Blog', href: '/blog' },
-		{ label: 'Projects', href: '/projects' }
+		{ label: 'Projects', href: '/projects' },
 	];
 	// current y coordinate of the scroll bar
-	let y: number;
+	let y = 0;
 	let isDark = false;
 	function toggleTheme() {
 		isDark = !isDark;
@@ -30,27 +36,28 @@
 				alignItems: 'center',
 				position: 'sticky',
 				top: 0,
+				marginBottom: theme.space[12],
 				padding: theme.space[4],
 				'&.scrolled': {
 					[`${theme.dark} &`]: {
 						// using of SvelteUI utilities
 						// bc === backgroundColor
-						bc: theme.colors['dark500'].value
+						//bc: theme.colors['dark500'].value,
 					},
-					bc: theme.colors['gray700'].value,
+					bc: '#242424',
 					color: 'rgb(223 223 223);',
-					boxShadow: theme.shadows.lg
-				}
+					boxShadow: theme.shadows.lg,
+				},
 			},
 			list: {
 				listStyle: 'none',
 				display: 'flex',
 				marginBlock: '0px',
-				gap: theme.space[2]
+				gap: theme.space[2],
 			},
 			menuItem: {
-				fontWeight: theme.fontWeights.bold
-			}
+				fontWeight: theme.fontWeights.bold,
+			},
 		};
 	});
 	$: ({ classes, getStyles, cx } = useStyles());
@@ -60,19 +67,20 @@
 
 <SvelteUIProvider
 	{config}
+	class={theme}
 	themeObserver={isDark ? 'dark' : 'light'}
 	withNormalizeCSS
 	withGlobalStyles
 	ssr
 >
 	<div class={cx(getStyles(), { scrolled: y > 0 })}>
-		<h1>Alex' Website</h1>
+		<h1><a href="/">Yard of Stuffs</a></h1>
 		<nav>
 			<ul class={classes.list}>
 				{#each MENU_ITEMS as menuItem}
-					<li>
-						<Button variant="subtle" color="cyan" radius="xl" uppercase ripple>
-							<a class={classes.menuItem} href={menuItem.href}>{menuItem.label}</a>
+					<li class={classes.menuItem}>
+						<Button href={menuItem.href} variant="subtle" color="cyan" radius="xl" uppercase ripple>
+							{menuItem.label}
 						</Button>
 					</li>
 				{/each}
@@ -80,13 +88,17 @@
 		</nav>
 		<Switch offLabel="Dark" size="lg" color="yellow" on:change={toggleTheme} />
 	</div>
-	<Container>
+	<Container class={classes.main}>
 		<slot />
 	</Container>
 </SvelteUIProvider>
 
 <style>
-	a {
+	:global(body) {
+		font-family: 'Syne', sans-serif;
+	}
+
+	:global(a) {
 		text-decoration: none;
 		color: inherit;
 	}

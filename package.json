@@ -1,6 +1,7 @@
 {
 	"name": "daichendt.one",
 	"version": "0.0.1",
+	"license": "AGPL-3.0-or-later",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -20,6 +21,7 @@
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"mdsvex": "^0.10.6",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
 		"svelte": "^3.44.0",
@@ -30,7 +32,12 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@svelteuidev/composables": "0.6.5",
-		"@svelteuidev/core": "0.6.5"
+		"@fontsource/syne": "^4.5.9",
+		"@fontsource/voces": "^4.5.9",
+		"@mdi/js": "^6.7.96",
+		"@svelteuidev/composables": "^0.6.8",
+		"@svelteuidev/core": "^0.6.8",
+		"jetbrains-mono": "^1.0.6",
+		"mdi-svelte": "^1.1.2"
 	}
 }
