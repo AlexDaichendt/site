@@ -2,17 +2,16 @@ import { defineMDSveXConfig as defineConfig } from 'mdsvex';
 
 const config = defineConfig({
 	layout: {
-		project: './src/routes/projects/project.layout.svelte',
+		blog: './src/layouts/blog.svelte'
 	},
-
 	extensions: ['.svelte.md', '.md', '.svx'],
 
 	smartypants: {
-		dashes: 'oldschool',
+		dashes: 'oldschool'
 	},
 
 	remarkPlugins: [],
-	rehypePlugins: [],
+	rehypePlugins: []
 });
 
 export default config;
