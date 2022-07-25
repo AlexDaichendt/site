@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "mkdir .svelte-kit/cloudflare/ && cp _headers .svelte-kit/cloudflare/ && vite build",
+		"build": "vite build",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync",
