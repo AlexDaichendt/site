@@ -82,11 +82,13 @@
 </ul>
 
 <h2>Highlighted Projects</h2>
-{#each PROJECTS as project}
-	<ListItem>
-		<Link href={project.href}>{project.name}</Link> - {project.description}
-	</ListItem>
-{/each}
+<ul>
+	{#each PROJECTS as project}
+		<ListItem>
+			<Link href={project.href}>{project.name}</Link> - {project.description}
+		</ListItem>
+	{/each}
+</ul>
 
 <style>
 </style>

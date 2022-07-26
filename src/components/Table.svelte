@@ -13,6 +13,7 @@
 		padding: 1rem;
 		box-shadow: 0px 0px 2px var(--shadow-color);
 		border: 1px solid var(--outline-color);
+		overflow-x: auto;
 	}
 	table {
 		border-collapse: collapse;
@@ -21,6 +22,8 @@
 
 	:global(#table thead th) {
 		padding-bottom: 0.25rem;
+		padding-left: 1rem;
+		padding-right: 1rem;
 		border: solid;
 		width: 350px;
 		margin: auto;
