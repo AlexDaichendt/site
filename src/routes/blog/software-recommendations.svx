@@ -4,7 +4,7 @@ title: 'Software recommendations for a privacy conscious digital life'
 description: ''
 keywords:
   - privacy
-hidden: false
+hidden: true
 ---
 
 <script context="module" lang="ts">
