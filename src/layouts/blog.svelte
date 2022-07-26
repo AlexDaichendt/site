@@ -13,13 +13,8 @@
 	export let description;
 	// svelte-ignore unused-export-let
 	export let date;
+	// svelte-ignore unused-export-let
 	export let keywords;
 </script>
-
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-	<meta name="keywords" content={keywords.join(', ')} />
-</svelte:head>
 
 <slot />
