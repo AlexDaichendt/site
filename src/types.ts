@@ -1,6 +1,9 @@
 export interface BlogPostFrontmatter {
 	date: string;
 	title: string;
+	description: string;
+	keywords: string[];
+	hidden: boolean;
 }
 
 export interface BlogPostMeta extends BlogPostFrontmatter {

@@ -1,0 +1,26 @@
+---
+date: '2022-07-26'
+title: 'Software recommendations for a privacy conscious digital life'
+description: ''
+keywords:
+  - privacy
+hidden: true
+---
+
+<script context="module" lang="ts">
+	export async function load() {
+		return {
+			stuff: {
+				title,
+				description,
+        keywords,
+			},
+		};
+	}
+</script>
+
+# Useful software I like
+
+Moving away from BigTech is not an easy task. However, in these days, there are plenty polished
+alternatives out there. Over the years I tried out many different services and software. I will
+formulate some of my opinions here.

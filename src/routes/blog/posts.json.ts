@@ -10,10 +10,12 @@ export async function GET() {
 
 	resolved.forEach(({ metadata }, index) => {
 		const path = Object.keys(modules)[index].replace('.svx', '');
-		posts.push({ ...metadata, href: `blog/${path}` });
+		if (!metadata.hidden) posts.push({ ...metadata, href: `blog/${path}` });
 	});
 
+	posts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+
 	return {
-		body: { posts }
+		body: { posts },
 	};
 }

@@ -2,7 +2,7 @@
 	const year = new Date().getFullYear();
 </script>
 
-<script>
+<script lang="ts">
 	import ThemeSwitcher from '../components/ThemeSwitcher.svelte';
 	import { page } from '$app/stores';
 	import { mdiCopyright } from '@mdi/js';
@@ -12,6 +12,7 @@
 	import MoveUpButton from '../components/MoveUpButton.svelte';
 
 	const NAV_ITEMS = [
+		{ href: '/', label: 'Home' },
 		{ href: '/blog', label: 'Blog' },
 		{ href: '/contact', label: 'Contact' },
 	];
@@ -19,8 +20,13 @@
 
 <svelte:head
 	><title>{$page.stuff.title} - AlexDaichendt</title>
-	<meta name="description" content={$page.stuff.description} />
+	{#if $page.stuff.description}
+		<meta name="description" content={$page.stuff.description} />
+	{/if}
 	<meta name="author" content="Alexander Daichendt" />
+	{#if $page.stuff.keywords}
+		<meta name="keywords" content={$page.stuff.keywords.join(',')} />
+	{/if}
 </svelte:head>
 
 <div class="container upper">
@@ -35,7 +41,12 @@
 		<nav>
 			<ol>
 				{#each NAV_ITEMS as navItem}
-					<li class="navItem {$page.url.pathname.includes(navItem.href) ? 'active' : ''}">
+					<li
+						class="navItem {$page.url.pathname === navItem.href ||
+						(navItem.href === '/blog' && $page.url.pathname.includes('/blog'))
+							? 'active'
+							: ''}"
+					>
 						<a href={navItem.href}>{navItem.label}</a>
 					</li>
 				{/each}
