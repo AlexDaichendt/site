@@ -16,16 +16,21 @@
 		{ href: '/blog', label: 'Blog' },
 		{ href: '/contact', label: 'Contact' },
 	];
+	$: wrappedTitle = $page.stuff.title
+		? `${$page.stuff.title} - Alex Daichendt`
+		: "Alex Daichendt's website";
+	$: description = $page.stuff.description;
+	$: keywords = $page.stuff.keywords;
 </script>
 
 <svelte:head
-	><title>{$page.stuff.title} - AlexDaichendt</title>
-	{#if $page.stuff.description}
-		<meta name="description" content={$page.stuff.description} />
+	><title>{wrappedTitle}</title>
+	{#if description}
+		<meta name="description" content={description} />
 	{/if}
 	<meta name="author" content="Alexander Daichendt" />
-	{#if $page.stuff.keywords}
-		<meta name="keywords" content={$page.stuff.keywords.join(',')} />
+	{#if keywords}
+		<meta name="keywords" content={keywords.join(',')} />
 	{/if}
 </svelte:head>
 
