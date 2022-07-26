@@ -11,6 +11,7 @@
 </script>
 
 <script lang="ts">
+	import ListItem from '../components/ListItem.svelte';
 	import Link from '../components/Link.svelte';
 	import type { Skill } from '../types';
 
@@ -28,6 +29,31 @@
 		return { ...skill, years };
 	});
 	SKILLS.sort((a, b) => b.years - a.years);
+
+	const PROJECTS = [
+		{
+			name: 'Gear Optimizer',
+			href: 'https://optimizer.discretize.eu',
+			description:
+				'Helps finding the optimal gear given numerous input paramaters for the MMO Guild Wars 2',
+		},
+		{
+			name: 'Discretize.eu',
+			href: 'https://discretize.eu',
+			description: 'Guiding players of the MMO Guild Wars 2',
+		},
+		{
+			name: 'discretize-ui',
+			href: 'https://github.com/discretize/discretize-ui',
+			description: 'UI library for mirroring tooltips of the MMO Guild Wars 2',
+		},
+
+		{
+			name: 'LandLord',
+			href: 'https://www.spigotmc.org/resources/landlord-2.44398/',
+			description: 'Minecraft plugin for protecting and managing areas',
+		},
+	];
 </script>
 
 <h1>Hi, my name is Alex!</h1>
@@ -44,11 +70,18 @@
 
 <ul>
 	{#each SKILLS as skill}
-		<li>
+		<ListItem>
 			{skill.name} - {skill.years} year{skill.started > 1 ? 's' : ''}
-		</li>
+		</ListItem>
 	{/each}
 </ul>
+
+<h2>Highlighted Projects</h2>
+{#each PROJECTS as project}
+	<ListItem>
+		<Link href={project.href}>{project.name}</Link> - {project.description}
+	</ListItem>
+{/each}
 
 <style>
 </style>

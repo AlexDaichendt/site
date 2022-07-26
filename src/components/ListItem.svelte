@@ -2,6 +2,6 @@
 
 <style>
 	li {
-		margin: 0.7rem 0;
+		margin: 0.4rem 0;
 	}
 </style>
