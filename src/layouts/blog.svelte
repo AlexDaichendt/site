@@ -1,8 +1,8 @@
 <script context="module">
 	// @ts-ignore
-	import components from '../components';
-	const a = components.a;
-	export { a };
+	import components from './components';
+	const { a, table } = components;
+	export { a, table };
 </script>
 
 <script>
@@ -15,6 +15,8 @@
 	export let date;
 	// svelte-ignore unused-export-let
 	export let keywords;
+	// svelte-ignore unused-export-let
+	export let hidden;
 </script>
 
 <slot />

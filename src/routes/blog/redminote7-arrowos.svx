@@ -8,6 +8,7 @@ keywords:
   - Lavender
   - root
   - microG
+  - Magisk
 ---
 
 <script context="module" lang="ts">
