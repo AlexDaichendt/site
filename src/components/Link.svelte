@@ -9,11 +9,22 @@
 
 	const internal = !href.startsWith('http');
 	let spin = false;
+
+	// external props
+	let props: Record<string,string|boolean> = {
+			rel: "nofollow noreferrer noopener",
+			target: "_blank"
+		}
+	if(internal) {
+		// internal props
+		props = {
+			"sveltekit:prefetch": true
+		}
+	}
 </script>
 
 <a
-	rel={!internal ? 'nofollow noreferrer noopener' : ''}
-	target={!internal ? '_blank' : ''}
+	{...props}
 	{href}
 	on:mouseover={() => (spin = true)}
 	on:focus={() => (spin = true)}
@@ -23,16 +34,14 @@
 		<Icon path={internal ? mdiChevronRight : mdiLinkVariant} size="1rem" {spin} />
 	{/if}
 	<span class="text"><slot /></span>
-</a>
-
-<style>
+</a><style>
 	a {
 		color: var(--special-color);
 		text-decoration: none;
 		font-weight: 550;
 	}
 	a:hover {
-		color: var(--dark-color);
+		color: var(--outline-color);
 	}
 	.text {
 		text-decoration: underline;

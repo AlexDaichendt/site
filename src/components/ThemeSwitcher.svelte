@@ -1,8 +1,6 @@
 <script lang="js">
 	// @ts-nocheck
-	import { mdiAccount } from '@mdi/js';
 	import { onMount } from 'svelte';
-	import Icon from 'mdi-svelte';
 
 	onMount(() => {
 		const ROOT = document.querySelector(':root');
@@ -45,7 +43,7 @@
 			characterData: false,
 			attributes: true,
 			childList: false,
-			subtree: false
+			subtree: false,
 		});
 		setScheme();
 		setContrast();
@@ -68,7 +66,7 @@
 </script>
 
 <label class="switch">
-	<input type="checkbox" on:change={toggleTheme} />
+	<input aria-label="Nightmode" type="checkbox" on:change={toggleTheme} />
 	<span class="slider round" />
 </label>
 
@@ -106,6 +104,7 @@
 		bottom: 4px;
 		background-color: gold;
 		transition: 0.4s;
+		background: radial-gradient(yellow, orange 63%, transparent calc(63% + 3px) 100%);
 	}
 
 	input:checked + .slider {

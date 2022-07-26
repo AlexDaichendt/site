@@ -8,8 +8,13 @@
 		return {
 			status: response.status,
 			props: {
-				posts: response.ok && asJson.posts
-			}
+				posts: response.ok && asJson.posts,
+			},
+			stuff: {
+				title: 'Blog',
+				description:
+					'My blogposts, where I occasionally document things, that I think are not accessible or badly documented.',
+			},
 		};
 	}
 </script>

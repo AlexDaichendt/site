@@ -1,3 +1,15 @@
+<script context="module" lang="ts">
+	export async function load() {
+		return {
+			stuff: {
+				title: 'Home',
+				description:
+					'Alex Daichendt"s website, blog, and yard of stuffs and things of modern tech.',
+			},
+		};
+	}
+</script>
+
 <script lang="ts">
 	import Link from '../components/Link.svelte';
 	import type { Skill } from '../types';
@@ -9,7 +21,7 @@
 		{ name: 'LXC / Docker', started: 2021 },
 		{ name: 'FaaS', started: 2021 },
 		{ name: 'git', started: 2016 },
-		{ name: 'Linux administration (Debian)', started: 2017 }
+		{ name: 'Linux administration (Debian)', started: 2017 },
 	];
 	const SKILLS: Skill[] = _SKILLS.map((skill) => {
 		const years = new Date().getFullYear() - skill.started;
@@ -25,7 +37,7 @@
 	Programming has been a hobby of mine since my teens. Been working on countless projects for
 	various games. Recently, I started to dabble my feet in DevOps. My formal education I received at <Link
 		href="https://www.tum.de/">TUM</Link
-	>; currently I am persuing my Masters.
+	>, currently I am persuing my Masters.
 </p>
 
 <h2>Skills</h2>

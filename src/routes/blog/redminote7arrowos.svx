@@ -1,6 +1,13 @@
 ---
 date: '22-05-08'
 title: 'Arrow OS on Redmi Note 7'
+description: 'Learn how to install ArrowOS, based on Android 12 on your Redmi Note 7 (lavender) phone! Also installs root and microG for a BigTech free phone.'
+keywords: 
+  - ArrowOS
+  - Redmi Note 7
+  - Lavender
+  - root
+  - microG
 ---
 
 # How to: Redmi Note 7 with ArrowOs (Android 12), root, microG

@@ -12,9 +12,15 @@
 
 	const NAV_ITEMS = [
 		{ href: '/blog', label: 'Blog' },
-		{ href: '/contact', label: 'Contact' }
+		{ href: '/contact', label: 'Contact' },
 	];
 </script>
+
+<svelte:head
+	><title>{$page.stuff.title} - AlexDaichendt</title>
+	<meta name="description" content={$page.stuff.description} />
+	<meta name="author" content="Alexander Daichendt" />
+</svelte:head>
 
 <div class="container upper">
 	<header>
@@ -88,19 +94,19 @@
 	.navItem a:after {
 		content: '';
 		position: absolute;
-		bottom: 0;
+		bottom: -2px;
 		right: 50%;
 		width: 0%;
-		border-bottom: 2px solid var(--outline-color);
+		border-bottom: 3px solid var(--outline-color);
 		transition: 0.3s;
 	}
 	.navItem a:before {
 		content: '';
 		position: absolute;
-		bottom: 0;
+		bottom: -2px;
 		left: 50%;
 		width: 0%;
-		border-bottom: 2px solid var(--outline-color);
+		border-bottom: 3px solid var(--outline-color);
 		transition: 0.3s;
 	}
 	.navItem a:hover:after {

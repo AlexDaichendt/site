@@ -1,3 +1,14 @@
+<script context="module" lang="ts">
+	export async function load() {
+		return {
+			stuff: {
+				title: 'Impressum',
+				description: 'The impressum I have to include for Germany.',
+			},
+		};
+	}
+</script>
+
 <h1>Impressum</h1>
 
 <p>Information according to §5 TMG:</p>
