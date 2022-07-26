@@ -13,9 +13,9 @@
 	import { mdiEmailEditOutline } from '@mdi/js';
 	import { mdiGithub } from '@mdi/js';
 	import Icon from 'mdi-svelte';
-	import Element from '../components/element.svelte';
-	import Link from '../components/Link.svelte';
-	import ListItem from '../components/ListItem.svelte';
+	import Element from '$components/element.svelte';
+	import Link from '$components/Link.svelte';
+	import ListItem from '$components/ListItem.svelte';
 </script>
 
 <h1>Contact Information</h1>

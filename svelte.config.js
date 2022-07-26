@@ -13,15 +13,16 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		preprocess({ postcss: { plugins: [autoprefixer, cssNormalizer()] } }),
-		mdsvex(mdsvexconfig)
+		mdsvex(mdsvexconfig),
 	],
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: { $components: 'src/components' },
 	},
 	prerender: {
-		default: true
-	}
+		default: true,
+	},
 };
 
 export default config;

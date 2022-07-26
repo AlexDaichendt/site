@@ -21,8 +21,8 @@
 
 <script lang="ts">
 	import type { BlogPostMeta } from '../../types';
-	import Link from '../../components/Link.svelte';
-	import ListItem from '../../components/ListItem.svelte';
+	import Link from '$components/Link.svelte';
+	import ListItem from '$components/ListItem.svelte';
 
 	export let posts: BlogPostMeta[];
 </script>

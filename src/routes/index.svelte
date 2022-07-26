@@ -11,8 +11,8 @@
 </script>
 
 <script lang="ts">
-	import ListItem from '../components/ListItem.svelte';
-	import Link from '../components/Link.svelte';
+	import ListItem from '$components/ListItem.svelte';
+	import Link from '$components/Link.svelte';
 	import type { Skill } from '../types';
 
 	let _SKILLS = [

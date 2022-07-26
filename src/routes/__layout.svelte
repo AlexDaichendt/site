@@ -3,13 +3,13 @@
 </script>
 
 <script lang="ts">
-	import ThemeSwitcher from '../components/ThemeSwitcher.svelte';
+	import ThemeSwitcher from '$components/ThemeSwitcher.svelte';
 	import { page } from '$app/stores';
 	import { mdiCopyright } from '@mdi/js';
 	import Icon from 'mdi-svelte';
 	import '@fontsource/ubuntu-mono/400.css';
-	import Link from '../components/Link.svelte';
-	import MoveUpButton from '../components/MoveUpButton.svelte';
+	import Link from '$components/Link.svelte';
+	import MoveUpButton from '$components/MoveUpButton.svelte';
 
 	const NAV_ITEMS = [
 		{ href: '/', label: 'Home' },
