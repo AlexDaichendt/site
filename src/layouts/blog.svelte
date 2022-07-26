@@ -16,7 +16,7 @@
 	// svelte-ignore unused-export-let
 	export let keywords;
 	// svelte-ignore unused-export-let
-	export let hidden;
+	export let hidden = false;
 </script>
 
 <slot />
