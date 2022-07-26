@@ -1,6 +1,7 @@
 <script lang="js">
 	// @ts-nocheck
 	import { onMount } from 'svelte';
+	let checked = false;
 
 	onMount(() => {
 		const ROOT = document.querySelector(':root');
@@ -46,6 +47,9 @@
 			subtree: false,
 		});
 		setScheme();
+		// adjust the theme selector
+		checked = globalScheme === DARK;
+
 		setContrast();
 		// Switch to dark scheme
 		// ROOT.dataset.nuContrast = 'more';
@@ -66,7 +70,7 @@
 </script>
 
 <label class="switch">
-	<input aria-label="Nightmode" type="checkbox" on:change={toggleTheme} />
+	<input aria-label="Nightmode" type="checkbox" bind:checked on:change={toggleTheme} />
 	<span class="slider round" />
 </label>
 
