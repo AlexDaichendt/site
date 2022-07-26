@@ -53,6 +53,7 @@
 		box-shadow: 0 0 5px var(--shadow-color);
 		padding: 2px;
 		border: 1px solid var(--border-color);
+		line-break: anywhere;
 	}
 	:global([data-nu-scheme-is='dark'] body code) {
 		color: var(--bg-color);

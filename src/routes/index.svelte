@@ -32,6 +32,11 @@
 
 	const PROJECTS = [
 		{
+			name: 'This site',
+			href: 'https://github.com/AlexDaichendt/site',
+			description: 'Complete source code for this website',
+		},
+		{
 			name: 'Gear Optimizer',
 			href: 'https://optimizer.discretize.eu',
 			description:
