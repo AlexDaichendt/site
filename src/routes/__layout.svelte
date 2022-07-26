@@ -9,6 +9,7 @@
 	import Icon from 'mdi-svelte';
 	import '@fontsource/ubuntu-mono/400.css';
 	import Link from '../components/Link.svelte';
+	import MoveUpButton from '../components/MoveUpButton.svelte';
 
 	const NAV_ITEMS = [
 		{ href: '/blog', label: 'Blog' },
@@ -46,6 +47,7 @@
 		<slot />
 	</div>
 </div>
+<MoveUpButton />
 <footer>
 	<div class="container">
 		<p>Copyright <Icon path={mdiCopyright} size="1rem" /> {year} Alexander Daichendt</p>
