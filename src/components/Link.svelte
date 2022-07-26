@@ -39,7 +39,6 @@
 		color: var(--special-color);
 		text-decoration: none;
 		font-weight: 550;
-		white-space: nowrap;
 	}
 	a:hover {
 		color: var(--outline-color);
