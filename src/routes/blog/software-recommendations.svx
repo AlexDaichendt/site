@@ -4,7 +4,7 @@ title: 'Software recommendations for a privacy conscious digital life'
 description: ''
 keywords:
   - privacy
-hidden: true
+hidden: false
 ---
 
 <script context="module" lang="ts">
@@ -23,16 +23,42 @@ hidden: true
 
 Moving away from BigTech is not an easy task. However, in these days, there are plenty polished
 alternatives out there. Over the years I tried out many different services and software. I will
-formulate some of my opinions here.
+present what worked best for me here.
 
-A very encompassing resource I recommend is [PrivacyGuides](https://www.privacyguides.org/).
+A very encompassing resource I am recommending is [PrivacyGuides](https://www.privacyguides.org/).
+However, their recommendations are at times rather purist. Everyone should use whatever works best for them.
+Privacy is not a black-and-white game.
 
-| Name                                   | Description      | Cost              | Selfhostable |
-| -------------------------------------- | ---------------- | ----------------- | ------------ |
-| [Bitwarden](https://bitwarden.com/)    | Password manager | free              | yes          |
-| [SimpleLogin](https://simplelogin.io/) | Email aliases    | free for students | yes          |
-| [Mailbox.org](https://mailbox.org/en/) | Email hosting    | 1 € / m           | no           |
+## Utilities
 
-<table>
+| Name                                                      | Description                                  | Cost              | Selfhostable |
+| --------------------------------------------------------- | -------------------------------------------- | ----------------- | ------------ |
+| [Bitwarden](https://bitwarden.com/)                       | Password manager                             | free              | yes          |
+| [SimpleLogin](https://simplelogin.io/)                    | Email aliases                                | free for students | yes          |
+| [Mailbox.org](https://mailbox.org/en/)                    | Email hosting                                | 1 € / m           | no           |
+| [Element](https://element.io/)                            | Instant messenging                           | free              | yes          |
+| [OpenStreetMap](https://www.openstreetmap.org/)           | Global map                                   | free              | no           |
+| [Baïkal](https://sabre.io/baikal/)                        | Lightweight calendar synchronisation         | free              | yes          |
+| [Filebrowser](https://github.com/filebrowser/filebrowser) | Lightweight file organisation in the browser | free              | yes          |
+| [xBrowserSync](https://www.xbrowsersync.org/)             | Bookmark sync                                | free              | yes          |
 
-</table>
+## PC Software
+
+| Name                                                                           | Description                 | Cost | Selfhostable |
+| ------------------------------------------------------------------------------ | --------------------------- | ---- | ------------ |
+| [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) | Browser                     | free | NaN          |
+| [KDE Software Suite](https://kde.org/)                                         | Desktop environment         | free | NaN          |
+| [i3wm](https://i3wm.org/)                                                      | Desktop environment         | free | NaN          |
+| [VSCodium](https://vscodium.com/)                                              | No telemetry VSCode         | free | NaN          |
+| [Xournal++](https://xournalpp.github.io/)                                      | PDF annotation and creation | free | NaN          |
+
+## Android Apps
+
+| Name                                                                             | Description                | Cost | Selfhostable |
+| -------------------------------------------------------------------------------- | -------------------------- | ---- | ------------ |
+| [Infinity](https://f-droid.org/packages/ml.docilealligator.infinityforreddit/)   | Reddit client              | free | NaN          |
+| [Aegis](https://f-droid.org/en/packages/com.beemdevelopment.aegis)               | 2FA Manager                | free | NaN          |
+| [FindMyDevice](https://f-droid.org/en/packages/de.nulide.findmydevice/)          | Remote phone control       | free | yes          |
+| [AdAway](https://f-droid.org/en/packages/org.adaway/)                            | Adblocking with hosts file | free | NaN          |
+| [OsmAnd+](https://f-droid.org/en/packages/net.osmand.plus/)                      | Global map                 | free | no           |
+| [StreetComplete](https://f-droid.org/en/packages/de.westnordost.streetcomplete/) | Improve OpenStreetMap      | free | NaN          |

@@ -1,8 +1,8 @@
 <script context="module">
 	// @ts-ignore
 	import components from './components';
-	const { a, table } = components;
-	export { a, table };
+	const { a, table, code, li } = components;
+	export { a, table, code, li };
 </script>
 
 <script>

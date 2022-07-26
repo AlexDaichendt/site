@@ -22,6 +22,7 @@
 <script lang="ts">
 	import type { BlogPostMeta } from '../../types';
 	import Link from '../../components/Link.svelte';
+	import ListItem from '../../components/ListItem.svelte';
 
 	export let posts: BlogPostMeta[];
 </script>
@@ -32,8 +33,8 @@
 
 <ul>
 	{#each posts as post}
-		<li>
+		<ListItem>
 			<Link href={post.href}>{post.date} - {post.title}</Link>
-		</li>
+		</ListItem>
 	{/each}
 </ul>

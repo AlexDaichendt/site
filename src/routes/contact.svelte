@@ -15,23 +15,24 @@
 	import Icon from 'mdi-svelte';
 	import Element from '../components/element.svelte';
 	import Link from '../components/Link.svelte';
+	import ListItem from '../components/ListItem.svelte';
 </script>
 
 <h1>Contact Information</h1>
 
 <ul>
-	<li>
+	<ListItem>
 		<Icon path={mdiEmailEditOutline} />
 		E-Mail: <Link disableIcon href="mailto:me@daichendt.one">me@daichendt.one</Link>
-	</li>
-	<li>
+	</ListItem>
+	<ListItem>
 		<Icon path={mdiGithub} />
 		Github: <Link disableIcon href="https://github.com/AlexDaichendt">AlexDaichendt</Link>
-	</li>
-	<li>
+	</ListItem>
+	<ListItem>
 		<span style="font-size:1rem"><Element /></span>
 		Element: @alexdaichendt:matrix.org
-	</li>
+	</ListItem>
 </ul>
 
 I usually reply within a couple minutes - if it is important.
@@ -39,8 +40,5 @@ I usually reply within a couple minutes - if it is important.
 <style>
 	ul {
 		list-style-type: none;
-	}
-	li {
-		margin-bottom: 0.5rem;
 	}
 </style>

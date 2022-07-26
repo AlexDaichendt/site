@@ -163,6 +163,7 @@
 		color: var(--text-color);
 		transition: background-color 0.3s ease-in;
 		font-family: 'Ubuntu Mono', monospace;
+		line-height: 1.3;
 		overflow-y: scroll;
 		margin: 0;
 		margin-top: 8px;
