@@ -32,7 +32,7 @@ Privacy is not a black-and-white game.
 ## Utilities
 
 | Name                                                      | Description                                  | Cost              | Selfhostable |
-| --------------------------------------------------------- | -------------------------------------------- | ----------------- | ------------ |
+| --------------------------------------------------------- | -------------------------------------------- | :---------------: | :----------: |
 | [Bitwarden](https://bitwarden.com/)                       | Password manager                             | free              | yes          |
 | [SimpleLogin](https://simplelogin.io/)                    | Email aliases                                | free for students | yes          |
 | [Mailbox.org](https://mailbox.org/en/)                    | Email hosting                                | 1 € / m           | no           |
@@ -45,7 +45,7 @@ Privacy is not a black-and-white game.
 ## PC Software
 
 | Name                                                                           | Description                 | Cost | Selfhostable |
-| ------------------------------------------------------------------------------ | --------------------------- | ---- | ------------ |
+| --------------------------------------------------------- | -------------------------------------------- | :---------------: | :----------: |
 | [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) | Browser                     | free | NaN          |
 | [KDE Software Suite](https://kde.org/)                                         | Desktop environment         | free | NaN          |
 | [i3wm](https://i3wm.org/)                                                      | Desktop environment         | free | NaN          |
@@ -55,7 +55,7 @@ Privacy is not a black-and-white game.
 ## Android Apps
 
 | Name                                                                             | Description                | Cost | Selfhostable |
-| -------------------------------------------------------------------------------- | -------------------------- | ---- | ------------ |
+| --------------------------------------------------------- | -------------------------------------------- | :---------------: | :----------: |
 | [Infinity](https://f-droid.org/packages/ml.docilealligator.infinityforreddit/)   | Reddit client              | free | NaN          |
 | [Aegis](https://f-droid.org/en/packages/com.beemdevelopment.aegis)               | 2FA Manager                | free | NaN          |
 | [FindMyDevice](https://f-droid.org/en/packages/de.nulide.findmydevice/)          | Remote phone control       | free | yes          |
