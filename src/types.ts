@@ -1,5 +1,6 @@
 export interface BlogPostFrontmatter {
-	date: string;
+	created: string;
+	updated?: string;
 	title: string;
 	description: string;
 	keywords: string[];

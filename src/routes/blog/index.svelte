@@ -34,7 +34,9 @@
 <ul>
 	{#each posts as post}
 		<ListItem>
-			<Link href={post.href}>{post.date} - {post.title}</Link>
+			<Link href={post.href}
+				>{new Date(post.created).toLocaleDateString('en-GB')} - {post.title}</Link
+			>
 		</ListItem>
 	{/each}
 </ul>
