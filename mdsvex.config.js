@@ -1,5 +1,6 @@
 import { defineMDSveXConfig as defineConfig } from 'mdsvex';
 import remarkGFM from 'remark-gfm';
+import remarkEmoji from 'remark-emoji';
 
 const config = defineConfig({
 	layout: {
@@ -11,7 +12,7 @@ const config = defineConfig({
 		dashes: 'oldschool',
 	},
 
-	remarkPlugins: [remarkGFM],
+	remarkPlugins: [remarkGFM, remarkEmoji],
 	rehypePlugins: [],
 });
 

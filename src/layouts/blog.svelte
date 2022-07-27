@@ -16,7 +16,7 @@
 	// svelte-ignore unused-export-let
 	export let description;
 	export let created;
-	export let updated;
+	export let updated = '';
 	// svelte-ignore unused-export-let
 	export let keywords;
 	// svelte-ignore unused-export-let
