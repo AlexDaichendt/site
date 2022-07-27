@@ -66,9 +66,11 @@
 <p>I am a software engineer, Linux enthusiast and a friend of automation.</p>
 <p>
 	Programming has been a hobby of mine since my teens. Been working on countless projects for
-	various games. Recently, I started to dabble my feet in DevOps. My formal education I received at <Link
-		href="https://www.tum.de/">TUM</Link
-	>, currently I am persuing my Masters.
+	various games. For a few years now I am maintaining a small homelab, which got me into DevOps. I
+	am a privacy enthusiast and advocate for non-invasive software. Sometimes, I build slick websites
+	that do not load megabytes of data. Currently I complete my Bachelors degree in computer science
+	at
+	<Link href="https://www.tum.de/">TUM</Link> and will continue with my Masters.
 </p>
 
 <h2>Skills</h2>

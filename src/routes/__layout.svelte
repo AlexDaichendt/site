@@ -148,7 +148,7 @@
 	}
 	.header h1 {
 		margin: 0;
-		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-family: Arial, Helvetica, sans-serif;
 		color: var(--special-color);
 	}
 
