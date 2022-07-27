@@ -1,6 +1,8 @@
 import { defineMDSveXConfig as defineConfig } from 'mdsvex';
 import remarkGFM from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const config = defineConfig({
 	layout: {
@@ -13,7 +15,7 @@ const config = defineConfig({
 	},
 
 	remarkPlugins: [remarkGFM, remarkEmoji],
-	rehypePlugins: [],
+	rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 });
 
 export default config;
