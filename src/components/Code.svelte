@@ -55,7 +55,7 @@
 		border: 1px solid var(--border-color);
 		line-break: anywhere;
 	}
-	:global([data-nu-scheme-is='dark'] body code) {
+	:global([data-nu-scheme-is='dark'] body code:not([class*='language-'])) {
 		color: var(--bg-color);
 	}
 	:global(pre[class*='language-']) {
