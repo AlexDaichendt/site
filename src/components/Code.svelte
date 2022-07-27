@@ -58,4 +58,10 @@
 	:global([data-nu-scheme-is='dark'] body code) {
 		color: var(--bg-color);
 	}
+	:global(pre[class*='language-']) {
+		margin: 0.5em 1rem !important;
+	}
+	:global(code[class*='language-'], pre[class*='language-']) {
+		font-size: 0.9rem;
+	}
 </style>

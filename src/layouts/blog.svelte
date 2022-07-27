@@ -1,8 +1,8 @@
 <script context="module">
 	// @ts-ignore
 	import components from './components';
-	const { a, table, code, li, hr } = components;
-	export { a, table, code, li, hr };
+	const { a, table, code, li, hr, sup } = components;
+	export { a, table, code, li, hr, sup };
 </script>
 
 <script>
@@ -11,6 +11,7 @@
 	import { mdiPencil } from '@mdi/js';
 	import Icon from 'mdi-svelte';
 	import Divider from '$components/Divider.svelte';
+	import '../utils/one-dark.css';
 
 	export let title;
 	// svelte-ignore unused-export-let

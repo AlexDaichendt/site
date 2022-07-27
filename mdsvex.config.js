@@ -3,6 +3,7 @@ import remarkGFM from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkFootnotes from 'remark-footnotes';
 
 const config = defineConfig({
 	layout: {
@@ -14,7 +15,7 @@ const config = defineConfig({
 		dashes: 'oldschool',
 	},
 
-	remarkPlugins: [remarkGFM, remarkEmoji],
+	remarkPlugins: [remarkGFM, remarkEmoji, remarkFootnotes],
 	rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 });
 

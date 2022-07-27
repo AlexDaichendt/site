@@ -23,15 +23,16 @@
 	}
 </script>
 
-<a
+<a   
+    {...$$props}
 	{...props}
 	{href}
 	on:mouseover={() => (spin = true)}
 	on:focus={() => (spin = true)}
 	on:mouseleave={() => (spin = false)}
 >
-	{#if !disableIcon}
-		<Icon path={internal ? mdiChevronRight : mdiLinkVariant} size="1rem" {spin} />
+	{#if !disableIcon && !internal}
+		<Icon path={internal ? mdiChevronRight : mdiLinkVariant} size="1rem"  />
 	{/if}
 	<span class="text"><slot /></span>
 </a><style>

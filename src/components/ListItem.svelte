@@ -1,4 +1,8 @@
-<li><slot /></li>
+<script lang="ts">
+	export let id: string | undefined = undefined;
+</script>
+
+<li {id}><slot /></li>
 
 <style>
 	li {
