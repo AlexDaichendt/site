@@ -42,7 +42,8 @@
 		font-weight: 550;
 	}
 	a:hover {
-		color: var(--outline-color);
+		background-color: var(--outline-color);
+		color: var(--dark-color)
 	}
 	.text {
 		text-decoration: underline;
