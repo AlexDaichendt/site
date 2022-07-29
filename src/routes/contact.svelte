@@ -10,7 +10,7 @@
 </script>
 
 <script>
-	import { mdiEmailEditOutline } from '@mdi/js';
+	import { mdiEmailEditOutline, mdiKey } from '@mdi/js';
 	import { mdiGithub } from '@mdi/js';
 	import Icon from 'mdi-svelte';
 	import Element from '$components/element.svelte';
@@ -23,7 +23,12 @@
 <ul>
 	<ListItem>
 		<Icon path={mdiEmailEditOutline} />
-		E-Mail: <Link disableIcon href="mailto:me@daichendt.one">me@daichendt.one</Link>
+		E-Mail: <Link disableIcon disablePrefetch href="mailto:me@daichendt.one">me@daichendt.one</Link>
+
+		<span style="margin-left: 4px;">
+			<Icon path={mdiKey} size="1rem" />
+			<Link href="/pub.key" disablePrefetch>GPG public key</Link>
+		</span>
 	</ListItem>
 	<ListItem>
 		<Icon path={mdiGithub} />
