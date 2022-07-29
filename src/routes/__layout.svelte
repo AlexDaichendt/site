@@ -68,14 +68,22 @@
 	<div class="container">
 		<p>Copyright <Icon path={mdiCopyright} size="1rem" /> {year} Alexander Daichendt</p>
 
-		<Link href="/privacy">Privacy Policy</Link>
-		<Link href="/impressum">Impressum</Link>
+		<div class="footerLinks">
+			<Link href="/privacy">Privacy Policy</Link>
+			<Link href="/impressum">Impressum</Link>
+			<Link href="https://github.com/AlexDaichendt/site">Source</Link>
+		</div>
 	</div>
 </footer>
 
 <style>
 	@import 'normalize.css';
 	@import 'sanitize.css';
+
+	.footerLinks {
+		display: flex;
+		justify-content: space-between;
+	}
 	.upper {
 		min-height: calc(100vh - 4rem - 8px);
 	}
