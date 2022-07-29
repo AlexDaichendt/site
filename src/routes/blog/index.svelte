@@ -20,7 +20,7 @@
 </script>
 
 <script lang="ts">
-	import type { BlogPostMeta } from '../../types';
+	import type { BlogPostMeta } from '$lib/utils/types';
 	import Link from '$components/Link.svelte';
 	import ListItem from '$components/ListItem.svelte';
 

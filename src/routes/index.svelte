@@ -13,7 +13,7 @@
 <script lang="ts">
 	import ListItem from '$components/ListItem.svelte';
 	import Link from '$components/Link.svelte';
-	import type { Skill } from '../types';
+	import type { Skill } from '../lib/utils/types';
 
 	let _SKILLS = [
 		{ name: 'React / Svelte', started: 2019 },

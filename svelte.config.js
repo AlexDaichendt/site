@@ -18,7 +18,7 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		alias: { $components: 'src/components' },
+		alias: { $components: 'src/lib/components' },
 	},
 	prerender: {
 		default: true,

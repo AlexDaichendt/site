@@ -11,7 +11,7 @@
 	import { mdiPencil } from '@mdi/js';
 	import Icon from 'mdi-svelte';
 	import Divider from '$components/Divider.svelte';
-	import '../utils/one-dark.css';
+	import '$lib/utils/one-dark.css';
 
 	export let title;
 	// svelte-ignore unused-export-let

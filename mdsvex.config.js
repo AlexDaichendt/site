@@ -7,7 +7,7 @@ import remarkFootnotes from 'remark-footnotes';
 
 const config = defineConfig({
 	layout: {
-		blog: './src/layouts/blog.svelte',
+		blog: './src/lib/layouts/blog.svelte',
 	},
 	extensions: ['.svelte.md', '.md', '.svx'],
 

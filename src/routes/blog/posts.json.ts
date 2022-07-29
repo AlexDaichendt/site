@@ -1,4 +1,4 @@
-import type { BlogPostFrontmatter, BlogPostMeta } from '../../types';
+import type { BlogPostFrontmatter, BlogPostMeta } from '../../lib/utils/types';
 
 export async function GET() {
 	const modules = import.meta.glob('./*.svx');
