@@ -5,8 +5,13 @@
 		// @ts-ignore
 		const target = event.target?.innerText.split('\n')[0];
 		navigator.clipboard.writeText(target);
+
+		// select the double clicked node
 		let sel = document.getSelection();
+		let range = new Range();
+		range.selectNode(event.target?.firstChild);
 		sel?.removeAllRanges();
+		sel?.addRange(range);
 		if (!copied) {
 			copied = true;
 
@@ -16,7 +21,9 @@
 </script>
 
 <code on:dblclick={copyToClipboard}>
-	<slot />
+	<span class="text">
+		<slot />
+	</span>
 	<div class:copied class="copyWrapper">
 		{#if copied}
 			Copied
@@ -29,13 +36,16 @@
 <style>
 	.copied {
 		background-color: yellowgreen !important;
+		min-width: 3rem !important;
 	}
+
 	.copyWrapper {
 		background-color: var(--special-color);
 		margin-bottom: 0.2rem;
 		padding: 0.2rem;
 		border-radius: 3px;
 		position: absolute;
+		min-width: 10rem;
 		visibility: hidden;
 		z-index: 1;
 		bottom: 100%;
