@@ -46,6 +46,7 @@
 	}
 	.text {
 		text-decoration: underline;
-		line-break: anywhere;
+		word-wrap: break-word;
+
 	}
 </style>
