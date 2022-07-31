@@ -41,4 +41,22 @@
 		font-size: 0.8rem;
 		margin-bottom: 1rem;
 	}
+	:global(h1, h2, h3, h4) {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	:global(h1 a, h2 a, h3 a, h4 a) {
+		text-decoration: none;
+		font-size: 0.7em;
+		margin-left: 0.5rem;
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out 0.1s;
+	}
+	:global(h1:hover a, h2:hover a, h3:hover a, h4:hover a) {
+		opacity: 0.8;
+	}
+	:global(.icon-link::before) {
+		content: '🔗';
+	}
 </style>

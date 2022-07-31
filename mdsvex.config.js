@@ -16,7 +16,7 @@ const config = defineConfig({
 	},
 
 	remarkPlugins: [remarkGFM, remarkEmoji, remarkFootnotes],
-	rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+	rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behaviour: 'append' }]],
 });
 
 export default config;
