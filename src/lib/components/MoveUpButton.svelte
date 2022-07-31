@@ -27,12 +27,13 @@
 		position: fixed;
 		bottom: 32px;
 		right: 32px;
-		color: var(--text-soft-color);
-		border: 2px solid var(--border-color);
-		background-color: var(--light-color);
+		color: var(--light-color);
+		border: 1px solid var(--special-shadow-color);
+		background-color: var(--dark-color);
 	}
 	button:hover {
-		color: var(--special-color);
-		border: 4px solid var(--border-color);
+		border: 1px solid var(--shadow-color);
+		color: var(--dark-color);
+		background-color: var(--light-color);
 	}
 </style>
