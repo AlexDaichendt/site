@@ -16,10 +16,10 @@
 	import type { Skill } from '../lib/utils/types';
 
 	let _SKILLS = [
-		{ name: 'React / Svelte', started: 2019 },
+		{ name: 'React/Svelte', started: 2019 },
 		{ name: 'Scripting with Bash/Python', started: 2018 },
 		{ name: 'Java', started: 2013 },
-		{ name: 'LXC / Docker', started: 2021 },
+		{ name: 'LXC/Docker', started: 2021 },
 		{ name: 'FaaS', started: 2021 },
 		{ name: 'git', started: 2016 },
 		{ name: 'Linux administration (Debian)', started: 2017 },
