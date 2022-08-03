@@ -69,6 +69,7 @@
 		<p>Copyright <Icon path={mdiCopyright} size="1rem" /> {year} Alexander Daichendt</p>
 
 		<div class="footerLinks">
+			<Link href="/cat">Meeeeeow</Link>
 			<Link href="/privacy">Privacy Policy</Link>
 			<Link href="/impressum">Impressum</Link>
 			<Link href="https://github.com/AlexDaichendt/site">Source</Link>

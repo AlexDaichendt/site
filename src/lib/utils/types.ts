@@ -15,3 +15,15 @@ export interface Skill {
 	years: number;
 	started: number;
 }
+
+export interface ImageMetadata {
+	href: string;
+	mime: string;
+	width: number;
+}
+
+export interface Thumbnail {
+	value: string;
+	width: number;
+	height: number;
+}

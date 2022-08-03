@@ -6,15 +6,19 @@
 	function beamKitty() {
 		importing = true;
 
-		fetch(`https://cats.daichendt.one/import?key=${kittyLink}`, {
+		fetch(`https://cats.daichendt.one/import?url=${kittyLink}&optimize=true`, {
 			method: 'PUT',
 			headers: { 'X-Custom-Auth-Key': import.meta.env.VITE_CATAPI_PASSWD },
 		}).then((result) => {
+			importing = false;
+
 			if (result.status === 200) {
 				kittyLink = '';
-				importing = false;
 				showSuccess = true;
 				setTimeout(() => (showSuccess = false), 5000);
+			} else {
+				// display error
+				console.log(result);
 			}
 		});
 	}
