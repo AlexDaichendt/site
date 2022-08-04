@@ -13,7 +13,7 @@
 	import { mdiEmailEditOutline, mdiKey } from '@mdi/js';
 	import { mdiGithub } from '@mdi/js';
 	import Icon from 'mdi-svelte';
-	import Element from '$components/element.svelte';
+	import Element from '$lib/components/icons/element.svelte';
 	import Link from '$components/Link.svelte';
 	import ListItem from '$components/ListItem.svelte';
 </script>
