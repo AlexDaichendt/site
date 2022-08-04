@@ -14,7 +14,7 @@
 </script>
 
 <script lang="ts">
-	import Image from '$lib/components/Image.svelte';
+	import Image from '$lib/components/CatImage.svelte';
 	import type { ImageMetadata } from '$lib/utils/types';
 	import Link from '$lib/components/Link.svelte';
 
