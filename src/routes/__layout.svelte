@@ -1,21 +1,10 @@
-<script context="module">
-	const year = new Date().getFullYear();
-</script>
-
 <script lang="ts">
-	import ThemeSwitcher from '$components/ThemeSwitcher.svelte';
 	import { page } from '$app/stores';
-	import { mdiCopyright } from '@mdi/js';
-	import Icon from 'mdi-svelte';
-	import '@fontsource/ubuntu-mono/400.css';
-	import Link from '$components/Link.svelte';
 	import MoveUpButton from '$components/MoveUpButton.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Header from '$lib/components/Header.svelte';
+	import '@fontsource/ubuntu-mono/400.css';
 
-	const NAV_ITEMS = [
-		{ href: '/', label: 'Home' },
-		{ href: '/blog', label: 'Blog' },
-		{ href: '/contact', label: 'Contact' },
-	];
 	$: wrappedTitle = $page.stuff.title
 		? `${$page.stuff.title} - Alex Daichendt`
 		: "Alex Daichendt's website";
@@ -35,56 +24,18 @@
 </svelte:head>
 
 <div class="container upper">
-	<header>
-		<div class="header">
-			<a href="/">
-				<h1>Alex Daichendt</h1>
-			</a>
-
-			<ThemeSwitcher />
-		</div>
-		<nav>
-			<ol>
-				{#each NAV_ITEMS as navItem}
-					<li
-						class="navItem {$page.url.pathname === navItem.href ||
-						(navItem.href === '/blog' && $page.url.pathname.includes('/blog'))
-							? 'active'
-							: ''}"
-					>
-						<a href={navItem.href}>{navItem.label}</a>
-					</li>
-				{/each}
-			</ol>
-		</nav>
-	</header>
-
+	<Header />
 	<div class="content">
 		<slot />
 	</div>
 </div>
 <MoveUpButton />
-<footer>
-	<div class="container">
-		<p>Copyright <Icon path={mdiCopyright} size="1rem" /> {year} Alexander Daichendt</p>
-
-		<div class="footerLinks">
-			<Link href="/cat">Meeeeeow</Link>
-			<Link href="/privacy">Privacy Policy</Link>
-			<Link href="/impressum">Impressum</Link>
-			<Link href="https://github.com/AlexDaichendt/site">Source</Link>
-		</div>
-	</div>
-</footer>
+<Footer />
 
 <style>
 	@import 'normalize.css';
 	@import 'sanitize.css';
 
-	.footerLinks {
-		display: flex;
-		justify-content: space-between;
-	}
 	.upper {
 		min-height: calc(100vh - 4rem - 8px);
 	}
@@ -92,87 +43,14 @@
 		max-width: 60rem;
 		margin: 0 auto;
 	}
-	header {
-		margin-bottom: 3rem;
-	}
-	.active {
-		font-weight: 600;
-	}
-	a {
-		text-decoration: none;
-		color: inherit;
-		font-size: 1.2rem;
-		position: relative;
-	}
-	ol {
-		list-style-type: none;
-	}
-	.navItem {
-		display: inline;
-	}
-	.navItem:not(:last-child)::after {
-		content: '·';
-		margin-right: 0.5rem;
-	}
 
-	.navItem a:hover {
-		color: var(--text-strong-color);
-	}
-	.navItem a:after {
-		content: '';
-		position: absolute;
-		bottom: -2px;
-		right: 50%;
-		width: 0%;
-		border-bottom: 3px solid var(--outline-color);
-		transition: 0.3s;
-	}
-	.navItem a:before {
-		content: '';
-		position: absolute;
-		bottom: -2px;
-		left: 50%;
-		width: 0%;
-		border-bottom: 3px solid var(--outline-color);
-		transition: 0.3s;
-	}
-	.navItem a:hover:after {
-		width: 50%;
-	}
-	.navItem a:hover:before {
-		width: 50%;
-	}
-
-	.container {
+	:global(.container) {
 		max-width: 70rem;
 		margin: 0 auto;
 		padding: 0 1rem;
 		overflow-x: hidden;
 	}
 
-	.header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 1rem;
-	}
-	.header h1 {
-		margin: 0;
-		font-family: Arial, Helvetica, sans-serif;
-		color: var(--special-color);
-	}
-
-	footer {
-		background-color: var(--special-bg-color);
-		padding: 2rem;
-		margin-top: 4rem;
-	}
-	:global(footer div a) {
-		color: var(--text-soft-color) !important;
-	}
-	:global(footer div a:hover) {
-		color: var(--light-color) !important;
-	}
 	:global(body) {
 		background-color: var(--subtle-color);
 		color: var(--text-color);
