@@ -10,18 +10,6 @@ keywords:
 hidden: true
 ---
 
-<script context="module" lang="ts">
-	export async function load() {
-		return {
-			stuff: {
-				title,
-				description,
-        keywords,
-			},
-		};
-	}
-</script>
-
 <script>
 import architecture from "./_architecture.png?width=360;720;1280;1920&webp&metadata"
 import Image from "$components/Image.svelte"

@@ -1,14 +1,3 @@
-<script context="module" lang="ts">
-	export async function load() {
-		return {
-			stuff: {
-				title: 'Contact',
-				description: 'All the communication channels for contacting Alex Daichendt ',
-			},
-		};
-	}
-</script>
-
 <script>
 	import { mdiEmailEditOutline, mdiKey } from '@mdi/js';
 	import { mdiGithub } from '@mdi/js';

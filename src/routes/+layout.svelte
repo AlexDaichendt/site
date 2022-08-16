@@ -5,11 +5,20 @@
 	import Header from '$lib/components/Header.svelte';
 	import '@fontsource/ubuntu-mono/400.css';
 
-	$: wrappedTitle = $page.stuff.title
-		? `${$page.stuff.title} - Alex Daichendt`
-		: "Alex Daichendt's website";
-	$: description = $page.stuff.description;
-	$: keywords = $page.stuff.keywords;
+	// svelte-ignore unused-export-let
+	export let data;
+
+	let seo = $page.data?.seo;
+
+	let wrappedTitle = "Alex Daichendt's website";
+	let description = '';
+	let keywords: string[] = [];
+
+	if (seo) {
+		wrappedTitle = seo.title ? `${seo.title} - Alex Daichendt` : "Alex Daichendt's website";
+		description = seo.description;
+		keywords = seo.keywords;
+	}
 </script>
 
 <svelte:head

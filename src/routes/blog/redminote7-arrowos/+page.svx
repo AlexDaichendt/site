@@ -11,18 +11,6 @@ keywords:
   - Magisk
 ---
 
-<script context="module" lang="ts">
-	export async function load() {
-		return {
-			stuff: {
-				title,
-				description,
-        keywords,
-			},
-		};
-	}
-</script>
-
 This tutorial will show you how to flash ArrowOS, a nice android 12 rom, together with magisk to get root access to the phone and also microG, the google alternative to google play services. This tutorial is tailored for the Redmi Note 7, commonly referred to as lavender. Other phones might work differently due to not having a ramdisk, or being an A/B device, or ... something else. Proceed with caution. You can't blame me for bricked devices.
 
 Prerequisites:

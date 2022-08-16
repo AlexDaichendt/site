@@ -1,19 +1,11 @@
-<script context="module" lang="ts">
-	export async function load() {
-		return {
-			stuff: {
-				title: 'Home',
-				description:
-					'Alex Daichendt"s website, blog, and yard of stuffs and things of modern tech.',
-			},
-		};
-	}
-</script>
-
 <script lang="ts">
 	import ListItem from '$components/ListItem.svelte';
 	import Link from '$components/Link.svelte';
-	import type { Skill } from '../lib/utils/types';
+	import type { Skill } from '$lib/utils/types';
+	// svelte-ignore unused-export-let
+	export let data;
+	// svelte-ignore unused-export-let
+	export let errors;
 
 	let _SKILLS = [
 		{ name: 'React/Svelte', started: 2019 },

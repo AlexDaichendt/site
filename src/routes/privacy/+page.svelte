@@ -1,15 +1,3 @@
-<script context="module" lang="ts">
-	export async function load() {
-		return {
-			stuff: {
-				title: 'Privacy',
-				description:
-					'The privacy policy I have to include even though I don"t collect any data or use shady services.',
-			},
-		};
-	}
-</script>
-
 <h1>Privacy Policy for AlexDaichendt</h1>
 
 <p>

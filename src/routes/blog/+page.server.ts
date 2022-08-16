@@ -1,8 +1,9 @@
-import type { BlogPostFrontmatter, BlogPostMeta } from '../../lib/utils/types';
+import type { BlogPostFrontmatter, BlogPostMeta } from '$lib/utils/types';
+import type { PageServerLoad } from './$types';
 
-const removeExtension = (path: string) => path.replace(/\.[^.]*$/g, '').replace('/index', '');
+const removeExtension = (path: string) => path.replace(/\.[^.]*$/g, '').replace('/+page', '');
 
-export async function GET() {
+export const load: PageServerLoad = async () => {
 	const modulesSVX = import.meta.glob('./**/*.svx');
 	const modulesMD = import.meta.glob('./**/*.md');
 	const modules = { ...modulesMD, ...modulesSVX };
@@ -19,7 +20,5 @@ export async function GET() {
 
 	posts.sort((a, b) => new Date(b.created).valueOf() - new Date(a.created).valueOf());
 
-	return {
-		body: { posts },
-	};
-}
+	return { posts };
+};

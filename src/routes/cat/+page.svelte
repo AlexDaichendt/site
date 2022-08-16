@@ -1,19 +1,6 @@
-<script context="module" lang="ts">
-	import type { LoadEvent, LoadOutput } from '@sveltejs/kit';
-
-	export async function load({ fetch }: LoadEvent): LoadOutput {
-		const response = await fetch('https://cats.daichendt.one/list');
-		const asJson = await response.json();
-		return {
-			status: response.status,
-			props: {
-				cats: response.ok && asJson,
-			},
-		};
-	}
-</script>
-
 <script lang="ts">
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import Image from '$lib/components/CatImage.svelte';
 	import type { ImageMetadata } from '$lib/utils/types';
 	import Link from '$lib/components/Link.svelte';

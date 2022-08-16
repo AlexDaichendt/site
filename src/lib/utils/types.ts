@@ -27,3 +27,11 @@ export interface Thumbnail {
 	width: number;
 	height: number;
 }
+
+export interface PageData {
+	seo: {
+		title: string;
+		description: string;
+		keywords: string[];
+	};
+}

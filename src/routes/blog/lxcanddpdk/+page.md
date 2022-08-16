@@ -7,18 +7,6 @@ keywords:
   - DPDK
 ---
 
-<script context="module" lang="ts">
-	export async function load() {
-		return {
-			stuff: {
-				title,
-				description,
-        		keywords,
-			},
-		};
-	}
-</script>
-
 For my thesis, I evaluated if containers are viable for low-latency networking. I
 decided to pick LXC as my container implementation due to them being extremely
 lightweight compared to its peers and also related work indicating, that LXC beats

@@ -7,9 +7,9 @@ declare namespace App {
 	// interface Locals {}
 	// interface Platform {}
 	// interface Session {}
-	interface Stuff {
-		title?: string;
-		description?: string;
-		keywords?: string[];
-	}
+	// interface Stuff {
+	// 	title?: string;
+	// 	description?: string;
+	// 	keywords?: string[];
+	// }
 }
