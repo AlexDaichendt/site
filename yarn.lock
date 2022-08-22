@@ -159,13 +159,12 @@
     "@vercel/nft" "^0.20.0"
     esbuild "^0.14.48"
 
-"@sveltejs/kit@1.0.0-next.413":
-  version "1.0.0-next.413"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.413.tgz#f79e4a0d582621aaf9016e37826b180f9f3be0aa"
-  integrity sha512-6rboaf0LuMEOmW+wyyAmBJ7q8/TyRxJ3ESc8t/k9l0NGXoQ2l61IzHKuHxcxjriKczZFdGFuB97j8wQ/PlLyHA==
+"@sveltejs/kit@^1.0.0-next.428":
+  version "1.0.0-next.428"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.428.tgz#8ca0c4a96d67763e9b2d2e27a2c6eada41d62b6b"
+  integrity sha512-CVp7zltQ+3VOII1s7KuvgvGEFwD0PSqts9R3q4eaj0CNoC3gpdzcbEZayyQwXX/3lI1HdSNSF8gxbX0TRUoFuA==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^1.0.1"
-    chokidar "^3.5.3"
     cookie "^0.5.0"
     devalue "^2.0.1"
     kleur "^4.1.4"
@@ -528,7 +527,7 @@ character-entities@^2.0.0:
   resolved "https://registry.yarnpkg.com/character-entities/-/character-entities-2.0.2.tgz#2d09c2e72cd9523076ccb21157dff66ad43fcc22"
   integrity sha512-shx7oQ0Awen/BRIdkjkvz54PnEEI/EjwXDSIZp86/KKdbafHh1Df/RYGBhn4hbe2+uKC9FnT5UCEdyPz3ai9hQ==
 
-chokidar@^3.4.1, chokidar@^3.5.3:
+chokidar@^3.4.1:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
   integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==

@@ -12,6 +12,12 @@
 	import Icon from 'mdi-svelte';
 	import Divider from '$components/Divider.svelte';
 	import '$lib/utils/one-dark.css';
+	import SEO from '$components/SEO.svelte';
+
+	// svelte-ignore unused-export-let
+	export let data;
+	// svelte-ignore unused-export-let
+	export let errors;
 
 	export let title;
 	// svelte-ignore unused-export-let
@@ -23,6 +29,8 @@
 	// svelte-ignore unused-export-let
 	export let hidden = false;
 </script>
+
+<SEO {title} {description} {keywords} />
 
 <h1>{title}</h1>
 <aside role="note">

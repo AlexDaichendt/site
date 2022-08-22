@@ -1,13 +1,9 @@
-import type { LoadEvent, LoadOutput } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
 
-export async function load({ fetch }: LoadEvent): PageLoadOutput {
+export const load: PageLoad = async ({ fetch }) => {
 	const response = await fetch('https://cats.daichendt.one/list');
 	const asJson = await response.json();
-	throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292693)");
 	return {
-		status: response.status,
-		props: {
-			cats: response.ok && asJson,
-		},
+		cats: response.ok && asJson,
 	};
-}
+};

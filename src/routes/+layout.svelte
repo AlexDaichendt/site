@@ -1,36 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import MoveUpButton from '$components/MoveUpButton.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import '@fontsource/ubuntu-mono/400.css';
-
-	// svelte-ignore unused-export-let
-	export let data;
-
-	let seo = $page.data?.seo;
-
-	let wrappedTitle = "Alex Daichendt's website";
-	let description = '';
-	let keywords: string[] = [];
-
-	if (seo) {
-		wrappedTitle = seo.title ? `${seo.title} - Alex Daichendt` : "Alex Daichendt's website";
-		description = seo.description;
-		keywords = seo.keywords;
-	}
 </script>
-
-<svelte:head
-	><title>{wrappedTitle}</title>
-	{#if description}
-		<meta name="description" content={description} />
-	{/if}
-	<meta name="author" content="Alexander Daichendt" />
-	{#if keywords}
-		<meta name="keywords" content={keywords.join(',')} />
-	{/if}
-</svelte:head>
 
 <div class="container upper">
 	<Header />

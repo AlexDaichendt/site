@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SEO from '$components/SEO.svelte';
 	import ListItem from '$components/ListItem.svelte';
 	import Link from '$components/Link.svelte';
 	import type { Skill } from '$lib/utils/types';
@@ -52,6 +53,8 @@
 		},
 	];
 </script>
+
+<SEO />
 
 <h1>Hi, my name is Alex!</h1>
 

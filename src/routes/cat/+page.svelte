@@ -1,12 +1,15 @@
 <script lang="ts">
-	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
-
+	import type { PageData } from './$types';
 	import Image from '$lib/components/CatImage.svelte';
-	import type { ImageMetadata } from '$lib/utils/types';
 	import Link from '$lib/components/Link.svelte';
+	import SEO from '$components/SEO.svelte';
 
-	export let cats: { images: ImageMetadata[] }[];
+	export let data: PageData;
+
+	$: cats = data.cats;
 </script>
+
+<SEO />
 
 <section class="masonry">
 	{#each cats as cat}

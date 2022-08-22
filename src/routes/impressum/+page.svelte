@@ -1,3 +1,9 @@
+<script>
+	import SEO from '$components/SEO.svelte';
+</script>
+
+<SEO />
+
 <h1>Impressum</h1>
 
 <p>Information according to §5 TMG:</p>

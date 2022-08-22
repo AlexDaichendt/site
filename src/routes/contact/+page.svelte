@@ -1,4 +1,5 @@
 <script>
+	import SEO from '$components/SEO.svelte';
 	import { mdiEmailEditOutline, mdiKey } from '@mdi/js';
 	import { mdiGithub } from '@mdi/js';
 	import Icon from 'mdi-svelte';
@@ -6,6 +7,8 @@
 	import Link from '$components/Link.svelte';
 	import ListItem from '$components/ListItem.svelte';
 </script>
+
+<SEO />
 
 <h1>Contact Information</h1>
 

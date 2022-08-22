@@ -1,3 +1,9 @@
+<script>
+	import SEO from '$components/SEO.svelte';
+</script>
+
+<SEO />
+
 <h1>Privacy Policy for AlexDaichendt</h1>
 
 <p>

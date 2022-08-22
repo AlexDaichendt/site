@@ -1,11 +1,14 @@
 <script lang="ts">
-	import type { BlogPostMeta } from '$lib/utils/types';
+	import SEO from '$components/SEO.svelte';
 	import Link from '$components/Link.svelte';
 	import ListItem from '$components/ListItem.svelte';
+	import type { PageData } from './$types';
 
-	export let data;
-	const posts: BlogPostMeta[] = data.posts;
+	export let data: PageData;
+	$: posts = data.posts;
 </script>
+
+<SEO />
 
 <h1>Blog Posts</h1>
 
