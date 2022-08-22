@@ -23,7 +23,7 @@
 
 			<span style="margin-left: 4px;">
 				<Icon path={mdiKey} size="1rem" />
-				<Link href="/pub.key" disablePrefetch>GPG key</Link>
+				<Link href="/pub.key" disablePrefetch>PGP key</Link>
 			</span>
 		</span>
 	</ListItem>
