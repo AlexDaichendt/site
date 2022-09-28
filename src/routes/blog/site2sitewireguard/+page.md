@@ -4,7 +4,7 @@ title: 'Site 2 Site Wireguard VPN with a Mikrotik Router and a Cloud'
 description: ''
 keywords:
   - cloud
-  - mikrotik
+  - Mikrotik
   - site 2 site
   - wireguard
   - vpn
@@ -17,23 +17,29 @@ import peer from "./images/mikrotik_peer.png?width=360;720;1280;1920&webp&metada
 import Image from "$components/Image.svelte"
 </script>
 
-My network consists out of a server located in country A. Since the largest ISP in country
+My network consists of a server located in country A. Since the largest ISP in the country
 B does have terrible peering with the ISP in country A, I thought of setting up a small
 proxy server in country A. This way, I should be able to bypass bad peering, since the
 cloud provider probably organizes good routing to both sides. Since I meant to try out
 Oracles free tier anyway, it seemed like a good opportunity to learn ansible properly and
-develop with IaC scripts to setup a reverse proxy in the cloud.
+develop with IaC scripts to set up a reverse proxy in the cloud.
 
 <Image meta={architecture} />
 
-1. Create a Wireguard keys. If the CLI is not an option [this website](https://www.wireguardconfig.com/) is cool too (keys are clientsided generated)
-2. Since I want to have dedicated monitoring for what traffic is flowing between the proxy and my server, I create a new wireguard interface in my mikrotik router. Remember to use the previously generated keypairs.
-3. Create a new peer as follows. Important is the entry to allow the IP address of the cloud wg endpoint, otherwise the cloud cant ping back home.
+1. Create Wireguard keys. If the CLI is not an option [this
+   website](https://www.wireguardconfig.com/) is cool too (keys are client-sided generated)
+2. Since I want to have dedicated monitoring for what traffic is flowing between the proxy
+   and my server, I create a new Wireguard interface in my Mikrotik router. Remember to
+   use the previously generated keypairs.
+3. Create a new peer as follows. Important is the entry to allow the IP address of the
+cloud wg endpoint, otherwise the cloud cant ping back home.
 <div style="max-width:600px">
     <Image meta={peer} />
 </div>
 4. I had to adjust the firewall rules to allow communication with the tunnel network.
-5. On the proxy server we use similiar settings. Interestingly enough, the Mikrotik wg endpoint grabs the network address of the 10.222.0.0/30 network. Meaning, 10.222.0.1 is unallocated.
+5. On the proxy server we use similar settings. Interestingly enough, the Mikrotik wg
+   endpoint grabs the network address of the 10.222.0.0/30 network. Meaning, 10.222.0.1 is
+   unallocated.
 
 ```
 [Interface]
