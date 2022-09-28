@@ -152,10 +152,10 @@
 		<source
 			{sizes}
 			type="image/{format}"
-			srcset={meta.map((m) => `${m.src} ${m.width}w`).join(', ')}
+			srcset={meta.map((m) => `/${m.src} ${m.width}w`).join(', ')}
 		/>
 	{/each}
-	<img src={image.src} {alt} {loading} />
+	<img src={'/' + image.src} {alt} {loading} />
 </picture>
 
 <style>
