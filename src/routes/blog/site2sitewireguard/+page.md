@@ -1,6 +1,6 @@
 ---
 created: '2022-09-27'
-title: 'Site 2 Site Wireguard VPN with a Mikrotik Router and a Cloud'
+title: 'Site 2 Site Wireguard VPN with a Mikrotik Router and a Cloud VM'
 description: ''
 keywords:
   - cloud
