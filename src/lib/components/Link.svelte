@@ -19,7 +19,7 @@
 		// internal props
 		if (!disablePrefetch ){
 			props = {
-				"sveltekit:prefetch": true
+				"data-sveltekit-prefetch": ""
 			}
 		}
 	}

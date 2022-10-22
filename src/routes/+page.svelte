@@ -9,12 +9,13 @@
 	export let errors;
 
 	let _SKILLS = [
-		{ name: 'React/Svelte', started: 2019 },
-		{ name: 'Scripting with Bash/Python', started: 2018 },
-		{ name: 'Java', started: 2013 },
-		{ name: 'LXC/Docker', started: 2021 },
-		{ name: 'FaaS', started: 2021 },
-		{ name: 'git', started: 2016 },
+		{ name: 'Web development (React/Svelte)', started: 2019 },
+		{ name: 'Scripting and automation (Bash/Python)', started: 2018 },
+		{ name: 'Object oriented programming (Java)', started: 2013 },
+		{ name: 'Lightweight virtualisation (LXC/Docker)', started: 2021 },
+		{ name: 'Container orchestration at scale (K8s)', started: 2022 },
+		{ name: 'Cloud Computing (AWS, Cloudflare)', started: 2021 },
+		{ name: 'git & GitOps', started: 2016 },
 		{ name: 'Linux administration (Debian)', started: 2017 },
 	];
 	const SKILLS: Skill[] = _SKILLS.map((skill) => {
@@ -38,7 +39,7 @@
 		{
 			name: 'Discretize.eu',
 			href: 'https://discretize.eu',
-			description: 'Guiding players of the MMO Guild Wars 2',
+			description: 'Advanced player guide for the MMO Guild Wars 2',
 		},
 		{
 			name: 'discretize-ui',
