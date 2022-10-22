@@ -11,7 +11,7 @@ hidden: true
 ---
 
 <script>
-import architecture from "./_architecture.png?width=360;720;1280;1920&webp&metadata"
+import architecture from "./_architecture.png?default"
 import Image from "$components/Image.svelte"
 </script>
 

@@ -11,8 +11,8 @@ keywords:
 ---
 
 <script>
-import architecture from "./images/_architecture.drawio.png?width=360;720;1280;1920&webp&metadata"
-import peer from "./images/mikrotik_peer.png?width=360;720;1280;1920&webp&metadata"
+import architecture from "./images/_architecture.drawio.png?default"
+import peer from "./images/mikrotik_peer.png?default"
 
 import Image from "$components/Image.svelte"
 </script>

@@ -8,7 +8,7 @@ keywords:
 ---
 
 <script>
-import overview from "./lldap_overview.png?width=360;720;1280;1920&webp&metadata"
+import overview from "./lldap_overview.png?default"
 import Image from "$components/Image.svelte"
 </script>
 
