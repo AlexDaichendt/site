@@ -22,6 +22,11 @@
 
 	const PROJECTS = [
 		{
+			name: 'Lightweight low-latency virtual networking',
+			href: '/blog/tumthesis',
+			description: 'Evaluate the performance of containers in low-latency networking',
+		},
+		{
 			name: 'This site',
 			href: 'https://github.com/AlexDaichendt/site',
 			description: 'Complete source code for this website',
@@ -42,7 +47,6 @@
 			href: 'https://github.com/discretize/discretize-ui',
 			description: 'UI library for mirroring tooltips of the MMO Guild Wars 2',
 		},
-
 		{
 			name: 'LandLord',
 			href: 'https://www.spigotmc.org/resources/landlord-2.44398/',
@@ -55,13 +59,13 @@
 
 <h1>Hi, my name is Alex!</h1>
 
-<p>I am a software engineer, Linux enthusiast and a friend of automation.</p>
+<p>I am a software engineer, Linux enthusiast and a friend of lightweight, resilient systems.</p>
 <p>
 	Programming has been a hobby of mine since my teens. Been working on countless projects for
-	various games. For a few years now I am maintaining a small homelab, which got me into DevOps. I
-	am a privacy enthusiast and advocate for non-invasive software. Sometimes, I build slick websites
-	that do not load megabytes of data. Currently I complete my Bachelors degree in computer science
-	at
+	various games. For a few years now I am maintaining a small homelab, which got me into DevOps/SRE.
+	I am a privacy enthusiast and advocate for non-invasive software. Sometimes, I build slick
+	websites that do not load megabytes of data. Currently I complete my Bachelors degree in computer
+	science at
 	<Link href="https://www.tum.de/">TUM</Link> and will continue with my Masters.
 </p>
 
