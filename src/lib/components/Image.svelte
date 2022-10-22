@@ -14,10 +14,10 @@
 	// all images by format
 	let sources = new Map<string, typeof meta>();
 	meta.map((m) => sources.set(m.format, []));
-	meta.map((m) => sources.get(m.format).push(m));
+	meta.map((m) => (sources.get(m.format) ?? []).push(m));
 
 	// fallback image: first resolution of last format
-	let image = sources.get([...sources.keys()].slice(-1)[0])[0];
+	let image = (sources.get([...sources.keys()].slice(-1)[0]) ?? [])[0];
 
 	/**
 	 * `source` attribute. default: width of the first resolution specified in the
@@ -29,7 +29,7 @@
 	export let alt: string;
 
 	/** `img` attribute */
-	export let loading: string = undefined;
+	export let loading: string = 'lazy';
 </script>
 
 <!--
@@ -152,10 +152,10 @@
 		<source
 			{sizes}
 			type="image/{format}"
-			srcset={meta.map((m) => `/${m.src} ${m.width}w`).join(', ')}
+			srcset={meta.map((m) => `${m.src} ${m.width}w`).join(', ')}
 		/>
 	{/each}
-	<img src={'/' + image.src} {alt} {loading} />
+	<img src={image.src} {alt} {loading} />
 </picture>
 
 <style>
