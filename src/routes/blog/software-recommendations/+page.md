@@ -12,9 +12,11 @@ Moving away from BigTech is not an easy task. However, in these days, there are 
 alternatives out there. Over the years I tried out many different services and software. I will
 present what worked best for me here.
 
-An encompassing resource I am recommending is [PrivacyGuides](https://www.privacyguides.org/).
-However, their recommendations are at times rather purist. Everyone should use whatever works best for them.
-Privacy is not a black-and-white game.
+An encompassing resource I am recommending is
+[PrivacyGuides](https://www.privacyguides.org/). However, their recommendations are at
+times rather purist. Everyone should use whatever works best for them. Privacy is not a
+black-and-white game. Every bit of big-tech helps to minimize your digital footprint and
+puts you into a position to decide what people find about you online.
 
 ## Utilities
 
@@ -31,21 +33,29 @@ Privacy is not a black-and-white game.
 
 ## PC Software
 
-| Name                                                                           | Description                 | Cost | Selfhostable |
-| ------------------------------------------------------------------------------ | --------------------------- | :--: | :----------: |
-| [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) | Browser                     | free |      -       |
-| [KDE Software Suite](https://kde.org/)                                         | Desktop environment         | free |      -       |
-| [i3wm](https://i3wm.org/)                                                      | Desktop environment         | free |      -       |
-| [VSCodium](https://vscodium.com/)                                              | No telemetry VSCode         | free |      -       |
-| [Xournal++](https://xournalpp.github.io/)                                      | PDF annotation and creation | free |      -       |
+| Name                                                                           | Description                  | Cost | Selfhostable |
+| ------------------------------------------------------------------------------ | ---------------------------- | :--: | :----------: |
+| [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium) | Browser                      | free |      -       |
+| [KDE Software Suite](https://kde.org/)                                         | Desktop environment          | free |      -       |
+| [i3wm](https://i3wm.org/)                                                      | Desktop environment          | free |      -       |
+| [VSCodium](https://vscodium.com/)                                              | No telemetry VSCode          | free |      -       |
+| [Xournal++](https://xournalpp.github.io/)                                      | PDF annotation and creation  | free |      -       |
+| [Istilldontcareaboutcookies](https://www.stilldontcareaboutcookies.com/)       | No more nasty cookie banners | free |      -       |
 
 ## Android Apps
 
-| Name                                                                             | Description                | Cost |    Selfhostable    |
-| -------------------------------------------------------------------------------- | -------------------------- | :--: | :----------------: |
-| [Infinity](https://f-droid.org/packages/ml.docilealligator.infinityforreddit/)   | Reddit client              | free |         -          |
-| [Aegis](https://f-droid.org/en/packages/com.beemdevelopment.aegis)               | 2FA Manager                | free |         -          |
-| [FindMyDevice](https://f-droid.org/en/packages/de.nulide.findmydevice/)          | Remote phone control       | free | :white_check_mark: |
-| [AdAway](https://f-droid.org/en/packages/org.adaway/)                            | Adblocking with hosts file | free |         -          |
-| [OsmAnd+](https://f-droid.org/en/packages/net.osmand.plus/)                      | Global map                 | free |        :x:         |
-| [StreetComplete](https://f-droid.org/en/packages/de.westnordost.streetcomplete/) | Improve OpenStreetMap      | free |         -          |
+| Name                                                                                  | Description                                                | Cost |    Selfhostable    |
+| ------------------------------------------------------------------------------------- | ---------------------------------------------------------- | :--: | :----------------: |
+| [Aurora Store](https://auroraoss.com/)                                                | Anonymized access to the PlayStore                         | free |         -          |
+| [Aurora Droid](https://auroraoss.com/)                                                | Front-end for F-Droid                                      | free |         -          |
+| [Infinity](https://f-droid.org/packages/ml.docilealligator.infinityforreddit/)        | Reddit client                                              | free |         -          |
+| [Aegis](https://f-droid.org/en/packages/com.beemdevelopment.aegis)                    | 2FA Manager                                                | free |         -          |
+| [FindMyDevice](https://f-droid.org/en/packages/de.nulide.findmydevice/)               | Remote phone control                                       | free | :white_check_mark: |
+| [AdAway](https://f-droid.org/en/packages/org.adaway/)                                 | Adblocking with hosts file                                 | free |         -          |
+| [OsmAnd+](https://f-droid.org/en/packages/net.osmand.plus/)                           | Global map                                                 | free |        :x:         |
+| [StreetComplete](https://f-droid.org/en/packages/de.westnordost.streetcomplete/)      | Improve OpenStreetMap                                      | free |         -          |
+| [NewPipe](https://newpipe.net/)                                                       | Youtube client                                             | free |         -          |
+| [Finamp](https://github.com/jmshrv/finamp)                                            | Music client for Jellyfin                                  | free |         -          |
+| [K-9 Mail](https://k9mail.app/)                                                       | Mail client with PGP                                       | free |         -          |
+| [Ice Box](https://play.google.com/store/apps/details?id=com.catchingnow.icebox&gl=US) | Freeze Magisk to make certain banking apps _cough_ DKB run | free |         -          |
+| [Element](https://element.io/)                                                        | Instant messenging                                         | free | :white_check_mark: |

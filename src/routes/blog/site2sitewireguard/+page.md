@@ -1,5 +1,6 @@
 ---
 created: '2022-09-27'
+updated: '2022-10-22'
 title: 'Site 2 Site Wireguard VPN with a Mikrotik Router and a Cloud VM'
 description: ''
 keywords:
@@ -66,3 +67,10 @@ Endpoint = alphard.abc.de:23xxx
     interface wireguard peers set number=[find comment=belka] endpoint-address=[/resolve belka.abc.de]
 }
 ```
+
+**Edit 22-10-2022:**
+
+After running this setup for a while, I found it a bit unstable. Since I do not get a
+static IP address from my ISP, my address changes every now and then. The wireguard client
+at the other hand does not recheck the A record but instead loses connection and requires
+a manual restart. I would recommend to use a more stable protocol like IPsec.
