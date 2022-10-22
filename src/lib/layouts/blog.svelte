@@ -17,7 +17,7 @@
 	// svelte-ignore unused-export-let
 	export let data;
 	// svelte-ignore unused-export-let
-	export let errors;
+	export let form;
 
 	export let title;
 	// svelte-ignore unused-export-let

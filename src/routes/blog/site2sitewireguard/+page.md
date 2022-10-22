@@ -24,7 +24,7 @@ cloud provider probably organizes good routing to both sides. Since I meant to t
 Oracles free tier anyway, it seemed like a good opportunity to learn ansible properly and
 develop with IaC scripts to set up a reverse proxy in the cloud.
 
-<Image meta={architecture} />
+<Image meta={architecture} alt="Architecture of the site two site wireguard setup"/>
 
 1. Create Wireguard keys. If the CLI is not an option [this
    website](https://www.wireguardconfig.com/) is cool too (keys are client-sided generated)
@@ -34,7 +34,7 @@ develop with IaC scripts to set up a reverse proxy in the cloud.
 3. Create a new peer as follows. Important is the entry to allow the IP address of the
 cloud wg endpoint, otherwise the cloud cant ping back home.
 <div style="max-width:600px">
-    <Image meta={peer} />
+    <Image meta={peer} alt="Mikrotik router peer setup"/>
 </div>
 4. I had to adjust the firewall rules to allow communication with the tunnel network.
 5. On the proxy server we use similar settings. Interestingly enough, the Mikrotik wg

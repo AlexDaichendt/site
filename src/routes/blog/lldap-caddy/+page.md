@@ -46,7 +46,7 @@ bridge for networking so that I can resolve my other services with DNS. After th
 navigate to http://IP:17170 and are presented with the administration panel, where we can
 create users and groups.
 
-<Image meta={overview} />
+<Image meta={overview} alt="LLDAP Userinterface"/>
 
 ## Integration with Caddy
 

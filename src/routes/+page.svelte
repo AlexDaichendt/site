@@ -3,10 +3,6 @@
 	import ListItem from '$components/ListItem.svelte';
 	import Link from '$components/Link.svelte';
 	import type { Skill } from '$lib/utils/types';
-	// svelte-ignore unused-export-let
-	export let data;
-	// svelte-ignore unused-export-let
-	export let errors;
 
 	let _SKILLS = [
 		{ name: 'Web development (React/Svelte)', started: 2019 },
