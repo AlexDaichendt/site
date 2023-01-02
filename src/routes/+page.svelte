@@ -2,23 +2,17 @@
 	import SEO from '$components/SEO.svelte';
 	import ListItem from '$components/ListItem.svelte';
 	import Link from '$components/Link.svelte';
-	import type { Skill } from '$lib/utils/types';
 
-	let _SKILLS = [
-		{ name: 'Web development (React/Svelte)', started: 2019 },
-		{ name: 'Scripting and automation (Bash/Python)', started: 2018 },
-		{ name: 'Object oriented programming (Java)', started: 2013 },
-		{ name: 'Lightweight virtualisation (LXC/Docker)', started: 2021 },
-		{ name: 'Container orchestration at scale (K8s)', started: 2022 },
-		{ name: 'Cloud Computing (AWS, Cloudflare)', started: 2021 },
-		{ name: 'git & GitOps', started: 2016 },
-		{ name: 'Linux administration (Debian)', started: 2017 },
+	let SKILLS = [
+		{ name: 'Lightweight virtualisation (LXC, Docker)' },
+		{ name: 'Container orchestration at scale (K8s)' },
+		{ name: 'Cloud Computing (AWS, Cloudflare)' },
+		{ name: 'Web development (mostly frontend with React, Svelte, vanilla)' },
+		{ name: 'Scripting and automation (Bash, Python)' },
+		{ name: 'git and GitOps pipelines' },
+		{ name: 'Linux administration (Debian, Arch)' },
+		{ name: 'Object oriented programming (Java)' },
 	];
-	const SKILLS: Skill[] = _SKILLS.map((skill) => {
-		const years = new Date().getFullYear() - skill.started;
-		return { ...skill, years };
-	});
-	SKILLS.sort((a, b) => b.years - a.years);
 
 	const PROJECTS = [
 		{
@@ -32,25 +26,31 @@
 			description: 'Complete source code for this website',
 		},
 		{
-			name: 'Gear Optimizer',
+			name: 'Gear Optimizer (GW2)',
 			href: 'https://optimizer.discretize.eu',
 			description:
-				'Helps finding the optimal gear given numerous input paramaters for the MMO Guild Wars 2',
+				'MMO Guild Wars 2: Outputs the optimal build given numerous input paramaters; 500 DAUs',
 		},
 		{
-			name: 'Discretize.eu',
+			name: 'Discretize.eu (GW2)',
 			href: 'https://discretize.eu',
-			description: 'Advanced player guide for the MMO Guild Wars 2',
+			description: 'MMO Guild Wars 2: Advanced player guides; 3000 DAUs',
 		},
 		{
-			name: 'discretize-ui',
+			name: 'discretize-ui (GW2)',
 			href: 'https://github.com/discretize/discretize-ui',
-			description: 'UI library for mirroring tooltips of the MMO Guild Wars 2',
+			description: 'MMO Guild Wars 2: UI library for mirroring in game tooltips with React',
+		},
+		{
+			name: 'Gw2Library (GW2)',
+			href: 'https://gw2library.princeps.biz/',
+			description:
+				'MMO Guild Wars 2: Build library interfacing with the optimizer; CRUD app - NextJS, AWS',
 		},
 		{
 			name: 'LandLord',
 			href: 'https://www.spigotmc.org/resources/landlord-2.44398/',
-			description: 'Minecraft plugin for protecting and managing areas',
+			description: 'Minecraft plugin for protecting and managing areas - Java (until 2018)',
 		},
 	];
 </script>
@@ -64,17 +64,15 @@
 	Programming has been a hobby of mine since my teens. Been working on countless projects for
 	various games. For a few years now I am maintaining a small homelab, which got me into DevOps/SRE.
 	I am a privacy enthusiast and advocate for non-invasive software. Sometimes, I build slick
-	websites that do not load megabytes of data. Currently I complete my Bachelors degree in computer
-	science at
-	<Link href="https://www.tum.de/">TUM</Link> and will continue with my Masters.
+	websites that do not load megabytes of data and follow best-practices. Currently, I am working on
+	my Masters degree in computer science at <Link href="https://www.tum.de/">TUM</Link>.
 </p>
-
 <h2>Skills</h2>
 
 <ul>
 	{#each SKILLS as skill}
 		<ListItem>
-			{skill.name} - {skill.years} year{skill.started > 1 ? 's' : ''}
+			{skill.name}
 		</ListItem>
 	{/each}
 </ul>
