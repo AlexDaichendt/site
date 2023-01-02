@@ -1,0 +1,153 @@
+---
+created: '2023-01-02'
+title: 'Generate cover letters with ChatGPT'
+description: 'With the help of ChatGPT it is fairly easy to generate custom tailored cover letters for job applications with your own CV'
+keywords:
+  - ChatGPT
+  - applications
+  - cover letters
+  - CV
+---
+
+Something I hate is dealing with useless, repetitive tasks that serve no real purpose except to please societies customs. Usually, I opt-out of them by not playing the game, but sometimes not following the norm can seriously inhibt the chances of success. Other times, tasks like these can be automated with a little bit of effort.
+
+Cover letters for job applications are such a thing. Luckily, with the rise of capable machine learning models like ChatGPT, we can automate this particular task. Now we can generate custom tailored cover letters for job applications with our own CV. Thinking about it, I should probably not publish this on my website, but who am I to pretend technology is not advancing?
+
+It boils down to the following steps:
+
+- Copy paste your CV into the text field
+- Copy paste the job description into the text field
+- Instruct to write a cover letter
+
+The model will then generate a cover letter that is tailored to your CV and the job description. The generated cover letter is not perfect, but it is a good starting point for you to edit and improve. You can also use it as a template for future applications. Something you really need to look out for is factual errors. During countless hours of experimenting with it, I found that the model is often fantasizing. Sometimes, it makes things up and sounds very confident. You better check if you apply to MedTech and it writes something about a leading firm in low-latency HFT.
+
+## A short example
+
+I dont wanna get into any legal trouble, so I left out the job description. But here is my CV and the generated cover letter. At first, I tried to copy my CV in Latex, but the resulting cover letter was worse than with a copy-pasted version of my CV.
+
+My prompt:
+
+```
+I want you to generate a cover letter based on the following data:
+
+job description:
+\`\`\`
+copy-paste job description here
+\`\`\`
+
+my cv:
+\`\`\`
+Work
+9/22 – now Working Student DevOps, xxxxxxxxxxxxxxxxxxxxx
+○Designing, implementing high-availability infrastructure with Kubernetes on AWS
+○Setting up a monitoring and observability stack with Prometheus, Grafana, Loki
+○Developing custom Netbox plugins for network automation with Python and Ansible
+03/16 – 05/21 Accounting, xxxxxxxxx
+Education
+10/18 – 04/23 B. Sc. Informatics, Technical University Munich
+Thesis: Lightweight low-latency virtual networking, graded 1.0
+Final expected grade: xxx
+10/17 – 10/18 B. Sc. Business Informatics, Technical University Munich
+2 semesters, incomplete
+09 – 05/17 Abitur, xxxxxxxxxxxxxxxxxxxxx
+Focus on computer science and economy
+Final grade: xxx
+Skills
+Linux daily driver, administration, virtualization (KVM, OS-level)
+Networking in depth knowledge of the TCP/IP stack focused on networking during B.Sc.
+Tools git, LXC, Docker, Ansible, Jenkins, Kubernetes, AWS
+Prog. Languages JavaScript, Java, Python, Bash, C, SQL, Rust
+Languages German (native), English (C1), Chinese (A1), Swedish (A1)
+Projects
+04/22 – 08/22 Thesis: Lightweight low-latency virtual networking, graded 1.0
+○Evaluate viability of containers for low-latency networking
+○Integration of LXC into the chair’s infrastructure; orchestration service (pos), timestamping
+setup (MoonGen), various Python and Bash scripts (HVNet)
+○Results: LXC performs identical compared to KVM, but is less isolated
+04/21 – now Gear Optimizer, 1000 daily unique users, https://optimizer.discretize.eu/
+○Guild Wars 2 (video game) damage simulator: helps players to optimize their characters
+for highly configurable scenarios. Computation runs on the client side in JS.
+○Algorithm for lossless compression of large state objects into URL-safe strings
+○Tech stack (SPA): Vite, React, Redux, Material-UI, i18n, Emotion, serverless (Cloudflare)
+○Future: migrate computation core to multithreaded WebAssembly with Rust
+Hobbies and interests
+○reading books ○playing the piano
+○lightweight, efficient software ○maintaining my homelab
+\`\`\`
+
+Please generate a cover letter with references to my CV and the job description.
+
+```
+
+The result is not too shabby. There are a couple mistakes, for example:
+
+- I am a native german speaker
+- Famililarity with network topologies sounds odd
+- bash, docker in lower case
+- basic programming skills sounds weak; nowhere did I mention "basic"
+
+```
+Dear [Hiring Manager],
+
+I am writing to express my interest in the IT Infrastructure Lead position at xxxxxxx. As a recent
+graduate with a degree in Computer Science and practical experience in Linux systems, I believe I have
+the skills and experience needed to excel in this role.
+
+In my current position as a Working Student DevOps at TV1 GmbH, I have gained experience in designing
+and implementing high-availability infrastructure using Kubernetes on AWS, as well as setting up a
+monitoring and observability stack with Prometheus, Grafana, and Loki. Additionally, I have developed
+custom Netbox plugins for network automation using Python and Ansible.
+
+I am confident that my strong communication skills and familiarity with software configuration tools
+like Ansible, as well as my knowledge of network technology and topologies, will make me a valuable
+addition to the xxxxxxx team. I am excited about the opportunity to work closely with different
+departments to support their IT needs and to help improve the infrastructure to support future growth.
+
+I am fluent in English and have a basic understanding of German. I also have strong awareness of IT
+security principles and am comfortable working with git, bash, docker, and basic programming skills
+in Python.
+
+I am excited about the opportunity to work at xxxxx and become part of the team working on such
+a cool mission - to deliver tools to better cope with natural disasters and mitigate climate change.
+I am drawn to the down-to-earth yet high-caliber work environment at xxxxxxxx and the opportunity
+to grow both professionally and personally.
+
+I would be delighted to discuss my qualifications further and how I can contribute to the success
+of xxxxxxx. Please find attached my CV for your review. Thank you for considering my application.
+I look forward to the opportunity to contribute to the success of xxxx.
+
+Sincerely,
+[Your Name]
+```
+
+Overall, it is a great start! It includes just the right amount of boot licking, is not too long, highlights my most important skills and especially important, references the job description!
+
+Browsing online for a while, I found an [article](https://www.businessinsider.com/chatgpt-job-applications-hiring-managers-job-interview-candidate-2022-12) about HR people giving feedback on AI generated cover letter. Essentially, the remarked that AI letters are too dry and informal. So I asked GPT-3 to generate a more personal letter. Unfortunately, there is not much difference.
+
+I guess, for now its best to use GPT-3 to generate a template and manually improve the result.
+
+## Going further...
+
+This is all fair and nice, but logging in to the OpenAI website and dealing with captchas every day is a pain. Of course we can automate it further ...
+
+Keep in mind, that the GPT-3 model, which is used for ChatGPT does not have an API yet. This uses text-davinci-003, a similar model. There is also cost involved with using this model.
+
+1. Generate an API key
+2. Send an API request like this:
+
+   ```bash
+    curl https://api.openai.com/v1/completions \
+   -H 'Content-Type: application/json' \
+   -H "Authorization: Bearer sk-TOKEN" \
+   -d '{
+   "model": "text-davinci-003",
+   "prompt": "my cool prompt",
+   "max_tokens": 4000,
+   "temperature": 0.5
+   }'
+   ```
+
+3. Adjust the temperature:
+   > What sampling temperature to use. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.
+
+It shouldnt be hard to write a little script for this. If we are really funky, we can provide a Latex template to insert the template into to automate the entire process. All we need to do then is copy paste the Job description, upload CV.pdf and CoverLetter.pdf and send (after jumping through 5 hoops with shitty registration portals of course).

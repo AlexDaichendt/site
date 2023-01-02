@@ -29,7 +29,7 @@
 			name: 'Gear Optimizer (GW2)',
 			href: 'https://optimizer.discretize.eu',
 			description:
-				'MMO Guild Wars 2: Outputs the optimal build given numerous input paramaters; 500 DAUs',
+				'MMO Guild Wars 2: Outputs the optimal build given numerous input paramaters; 1000 DAUs',
 		},
 		{
 			name: 'Discretize.eu (GW2)',
