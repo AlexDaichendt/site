@@ -18,7 +18,7 @@
 		{
 			name: 'Lightweight low-latency virtual networking',
 			href: '/blog/tumthesis',
-			description: 'Evaluate the performance of containers in low-latency networking',
+			description: 'B.Sc. thesis: Evaluate the performance of containers in low-latency networking',
 		},
 		{
 			name: 'This site',
