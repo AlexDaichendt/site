@@ -15,7 +15,7 @@ export const load: PageServerLoad = async () => {
 		const path = Object.keys(modules)[index];
 		const { metadata } = file;
 
-		if (!metadata.hidden) posts.push({ ...metadata, href: `blog/${removeExtension(path)}` });
+		if (!metadata?.hidden) posts.push({ ...metadata, href: `blog/${removeExtension(path)}` });
 	});
 
 	posts.sort((a, b) => new Date(b.created).valueOf() - new Date(a.created).valueOf());
