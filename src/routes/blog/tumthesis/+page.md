@@ -24,6 +24,7 @@ Summary of my Bachelor's thesis:
   ([Website](https://www.net.in.tum.de/homepage/))
 - Graded: 1.0 (best possible grade)
 - Time allotted: about 30h / week for about 16-20 weeks
+- Download: [thesis.pdf](/files/thesis.pdf) - [final_talk.pdf](/files/final_talk.pdf)
 
 ## Finding a topic (1-2 months)
 
