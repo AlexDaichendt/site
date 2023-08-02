@@ -5,13 +5,12 @@
 
 	let SKILLS = [
 		{ name: 'Lightweight virtualisation (LXC, Docker)' },
-		{ name: 'Container orchestration at scale (K8s)' },
-		{ name: 'Cloud Computing (AWS, Cloudflare)' },
-		{ name: 'Web development (mostly frontend with React, Svelte, vanilla)' },
+		{ name: 'Kubernetes' },
+		{ name: 'Cloud Computing / IaaS (AWS, Cloudflare)' },
+		{ name: 'Web development (fullstack; React, Next, Svelte, vanilla, Rust+WASM)' },
 		{ name: 'Scripting and automation (Bash, Python)' },
 		{ name: 'git and GitOps pipelines' },
-		{ name: 'Linux administration (Debian, Arch)' },
-		{ name: 'Object oriented programming (Java)' },
+		{ name: 'Linux administration' },
 	];
 
 	const PROJECTS = [
@@ -64,8 +63,8 @@
 	Programming has been a hobby of mine since my teens. Been working on countless projects for
 	various games. For a few years now I am maintaining a small homelab, which got me into DevOps/SRE.
 	I am a privacy enthusiast and advocate for non-invasive software. Sometimes, I build slick
-	websites that do not load megabytes of data and follow best-practices. Currently, I am working on
-	my Masters degree in computer science at <Link href="https://www.tum.de/">TUM</Link>.
+	websites that do not load megabytes of data and try to follow best-practices. Currently, I am
+	working on my Masters degree in computer science at <Link href="https://www.tum.de/">TUM</Link>.
 </p>
 <h2>Skills</h2>
 

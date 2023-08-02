@@ -18,7 +18,7 @@
 		<ThemeSwitcher />
 	</div>
 	<nav>
-		<ol>
+		<ol class="navList">
 			{#each NAV_ITEMS as navItem}
 				<li
 					class="navItem {$page.url.pathname === navItem.href ||
@@ -40,7 +40,9 @@
 	.active {
 		font-weight: 600;
 	}
-
+	.navList {
+		padding: 0;
+	}
 	.navItem {
 		display: inline;
 	}

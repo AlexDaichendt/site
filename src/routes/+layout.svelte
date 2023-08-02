@@ -7,9 +7,9 @@
 
 <div class="container upper">
 	<Header />
-	<div class="content">
+	<main>
 		<slot />
-	</div>
+	</main>
 </div>
 <MoveUpButton />
 <Footer />
@@ -20,10 +20,6 @@
 
 	.upper {
 		min-height: calc(100vh - 4rem - 8px);
-	}
-	.content {
-		max-width: 60rem;
-		margin: 0 auto;
 	}
 
 	:global(.container) {

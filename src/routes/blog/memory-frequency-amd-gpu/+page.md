@@ -17,6 +17,7 @@ keywords:
   - linux kernel
   - kernel
 hidden: false
+updated: '2023-08-02'
 ---
 
 <script>
@@ -57,3 +58,11 @@ The power draw is now as expected at around 8W. The memory downclocks to 96Mhz. 
 This might not seem like a lot, but in situations like this I have to think about how many GPUs were sold globally and are affected by this bug. It's is not an insignificant amount of power that is wasted on a global scale.
 
 <Image meta={hz144low} alt="High power draw and high mem frequency"/>
+
+_Update: 2021-08-02_:
+
+I tried to use my internal GPU for the display and the 6700 XT for compute only. Initially, this setup would crash every few minutes. A couple days ago, Gigabyte pushed a new BIOS update for my B650 AM5 board - version F7 - which apparently fixed this issue.
+
+To launch games on the dGPU, I must launch it with an environment variable: `DRI_PRIME=1`. For steam games, you can set this in the launch options. For example: `DRI_PRIME=1 %command%`.
+
+My dGPU sits now happily in idle at 5W with 96Mhz memory frequency.

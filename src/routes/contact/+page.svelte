@@ -45,8 +45,6 @@
 	</ListItem>
 </ul>
 
-I usually reply within a couple minutes - if it is important.
-
 <style>
 	ul {
 		list-style-type: none;
