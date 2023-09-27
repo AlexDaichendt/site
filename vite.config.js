@@ -1,5 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { imagetools } from 'vite-imagetools';
+import { FontaineTransform } from 'fontaine';
 
 /** @type {import('vite').UserConfig} */
 const config = {
@@ -16,6 +17,7 @@ const config = {
 				return new URLSearchParams();
 			},
 		}),
+		FontaineTransform.vite({ fallbacks: ['Arial', 'Roboto'] }),
 	],
 };
 
