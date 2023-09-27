@@ -10,6 +10,17 @@ export interface BlogPostFrontmatter {
 export interface BlogPostMeta extends BlogPostFrontmatter {
 	href: string;
 }
+
+export interface ProjectsFrontmatter {
+	title: string;
+	description: string;
+	keywords: string[];
+	inProgress: boolean;
+}
+export interface ProjectMeta extends ProjectsFrontmatter {
+	href: string;
+}
+
 export interface Skill {
 	name: string;
 	years: number;

@@ -33,13 +33,19 @@
 <SEO {title} {description} {keywords} />
 
 <h1>{title}</h1>
-<aside role="note">
-	{#if updated}
-		<Icon path={mdiPencil} size="0.8rem" /> updated {new Date(updated).toLocaleDateString('en-GB')};
-	{/if}
-	<Icon path={mdiCalendar} size="0.8rem" /> created
-	{new Date(created).toLocaleDateString('en-GB')}
-</aside>
+{#if updated || created}
+	<aside role="note">
+		{#if updated}
+			<Icon path={mdiPencil} size="0.8rem" /> updated {new Date(updated).toLocaleDateString(
+				'en-GB',
+			)};
+		{/if}
+		{#if created}
+			<Icon path={mdiCalendar} size="0.8rem" /> created
+			{new Date(created).toLocaleDateString('en-GB')}
+		{/if}
+	</aside>
+{/if}
 <Divider />
 <slot />
 

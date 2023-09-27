@@ -1,7 +1,12 @@
 {
-	"name": "myblog",
-	"version": "0.0.1",
+	"name": "daichendt.one",
+	"version": "1.0.0",
 	"license": "MIT",
+	"author": {
+		"email": "me@daichendt.one",
+		"name": "Alex Daichendt"
+	},
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -43,7 +48,6 @@
 		"vite": "^4.0.3",
 		"vite-imagetools": "^4.0.12"
 	},
-	"type": "module",
 	"dependencies": {
 		"@fontsource/ubuntu-mono": "^4.5.11",
 		"@mdi/js": "^7.1.96",

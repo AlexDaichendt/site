@@ -23,7 +23,7 @@
 	}
 
 	:global(.container) {
-		max-width: 70rem;
+		max-width: 50rem;
 		margin: 0 auto;
 		padding: 0 1rem;
 		overflow-x: hidden;

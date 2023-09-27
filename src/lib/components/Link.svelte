@@ -30,10 +30,11 @@
 	{...props}
 	{href}
 >
+	<span class="text"><slot /></span>
+	
 	{#if !disableIcon && !internal}
 		<Icon path={internal ? mdiChevronRight : mdiLinkVariant} size="1rem"  />
 	{/if}
-	<span class="text"><slot /></span>
 </a><style>
 	a {
 		color: var(--special-color);

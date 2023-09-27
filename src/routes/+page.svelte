@@ -60,12 +60,18 @@
 
 <p>I am a software engineer, Linux enthusiast and a friend of lightweight, resilient systems.</p>
 <p>
-	Programming has been a hobby of mine since my teens. Been working on countless projects for
-	various games. For a few years now I am maintaining a small homelab, which got me into DevOps/SRE.
-	I am a privacy enthusiast and advocate for non-invasive software. Sometimes, I build slick
-	websites that do not load megabytes of data and try to follow best-practices. Currently, I am
-	working on my Masters degree in computer science at <Link href="https://www.tum.de/">TUM</Link>.
+	My journey in the tech world has been a dynamic one. I've immersed myself in countless projects
+	spanning various video games and, for the past few years, have been maintaining a small homelab,
+	which ignited my passion for DevOps / SRE. I am a privacy enthusiast and advocate for non-invasive
+	software. Occasionally, I channel my creativity into building sleek web applications that
+	prioritize efficiency and adhere to web standards and best practices.
 </p>
+<p>
+	Currently, I'm pursuing a Master's degree in computer science at <Link href="https://www.tum.de/"
+		>TUM</Link
+	>, where I successfully contribute to numerous research papers.
+</p>
+
 <h2>Skills</h2>
 
 <ul>
