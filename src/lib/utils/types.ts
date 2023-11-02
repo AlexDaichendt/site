@@ -46,3 +46,17 @@ export interface PageData {
 		keywords: string[];
 	};
 }
+
+export interface PublicationFrontmatter {
+	created: string;
+	title: string;
+	authors: string[];
+	conference: string;
+	pdf: string; // url to pdf
+	keywords: string[];
+	hidden: boolean;
+}
+
+export interface PublicationMeta extends PublicationFrontmatter {
+	href: string;
+}
