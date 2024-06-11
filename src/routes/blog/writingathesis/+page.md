@@ -67,5 +67,5 @@ commas, it pointed out many mistakes which I would have not noticed on my own.
 One thing I disliked about Writefull is that it is only available for Word documents or
 Overleaf. I am using neither. Therefore, I had to copy and paste my tex files from my local
 editor to Overleaf. A bit of a hassle, but okay. Another thing I noticed is that the Latex
-acronym package is not supported. Often it would suggest reordering my `\`ac{DPDK}` so that
+acronym package is not supported. Often, it would suggest reordering my \ac so that
 it does not make sense afterward.
