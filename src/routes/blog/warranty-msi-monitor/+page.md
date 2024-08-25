@@ -1,7 +1,7 @@
 ---
 created: '2024-08-10'
 title: "Experience with MSI warranty for a monitor"
-description: 'Useful tips for avoiding common mistakes when writing a thesis. Includes recommendations for writing, formatting, figures and Latex.'
+description: "Positive review of MSI's warranty service for a monitor."
 keywords:
   - warranty
   - msi

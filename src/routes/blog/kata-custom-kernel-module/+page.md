@@ -1,0 +1,64 @@
+---
+created: '2024-08-25'
+title: "Kata Containers: Custom Kernel Module in Guest"
+description: 'How to build a custom kernel module for a Kata Containers guest.'
+keywords:
+  - kata
+  - containers
+  - kernel
+  - module
+  - custom
+  - guest
+  - build
+  - compile
+hidden: false
+---
+
+Kata Containers is a lightweight container runtime that leverages hardware virtualization to provide strong isolation between containers. It is compatible with the Open Container Initiative (OCI) and the Container Runtime Interface (CRI). Kata Containers uses a lightweight VM to run each container, which provides an additional layer of isolation compared to traditional container runtimes like Docker or containerd.
+
+The official documentation is fairly lackluster here and there. For example, see [here](https://github.com/kata-containers/kata-containers/blob/main/docs/how-to/how-to-load-kernel-modules-with-kata.md). There is a lot of prerequisite knowledge assumed. 
+Another tutorial is [here](https://vadosware.io/post/building-custom-kernels-for-kata-containers/), which sheds some light into the building process of a custom kernel image, but leaves out custom kernel modules. 
+
+This article aims to provide a step-by-step guide on how to utilize a custom kernel module in a Kata Containers guest. In this example, we will include the igb_uio kernel module, which can be used with DPDK.
+
+This guide assumes you already installed yq.
+```bash
+KATA_VERSION="3.2.0"
+KATA_CONFIG_VERSION="114"
+wget "https://github.com/kata-containers/kata-containers/archive/refs/tags/$KATA_VERSION.tar.gz"
+tar -xf $KATA_VERSION.tar.gz
+
+cd kata-containers-$KATA_VERSION/tools/packaging/kernel
+bash build-kernel.sh -v 6.7 -s -f setup # download the kernel source, force create the .config file
+
+mkdir -p kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/igb_uio
+cp -r source/folder/to/module/igb_uio/* kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/igb_uio/
+
+# create Kconfig file, this file will make the module visible in make menuconfig
+cat > kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/igb_uio/Kconfig << EOF
+menuconfig IGB_UIO
+  tristate "igb_uio driver"
+  depends on UIO
+  default y
+EOF
+# overwrite Makefile to avoid building the module as .ko file 
+echo "# SPDX-License-Identifier: GPL-2.0" > kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/igb_uio/Makefile
+echo "obj-\$(CONFIG_IGB_UIO) += igb_uio.o" >> kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/igb_uio/Makefile
+
+# link into main Kconfig, so that make menuconfig has a new entry; insert into the line after uio entry
+sed -i '135i\source "drivers/igb_uio/Kconfig"' kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/Kconfig
+
+# add folder to main Makefile
+echo "obj-\$(CONFIG_IGB_UIO) += igb_uio/" >> kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/Makefile
+
+# remove Kbuild file to avoid building the module as .ko file and therefore directly link it into the built kernel
+rm kata-linux-6.7-$KATA_CONFIG_VERSION/drivers/igb_uio/Kbuild
+
+# append to .config file
+echo "CONFIG_IGB_UIO=y" >> kata-linux-6.7-$KATA_CONFIG_VERSION/.config
+
+# build the kernel with the new module
+bash build-kernel.sh -v 6.7 build
+``` 
+
+Why Kata 3.2.0, an ancient version, you might ask? Unfortunately, we were unable to get newer version to work with SEV-SNP. 
