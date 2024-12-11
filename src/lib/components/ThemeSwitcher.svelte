@@ -71,7 +71,7 @@
 
 <label class="switch">
 	<input aria-label="Nightmode" type="checkbox" bind:checked on:change={toggleTheme} />
-	<span class="slider round" />
+	<span class="slider round"></span>
 </label>
 
 <style>

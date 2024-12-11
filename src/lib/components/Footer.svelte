@@ -3,18 +3,19 @@
 </script>
 
 <script>
-	import { mdiCopyright } from '@mdi/js';
-
-	import Icon from 'mdi-svelte';
+	import Icon from '@iconify/svelte';
 	import Link from './Link.svelte';
 </script>
 
-<footer>
+<footer class="mt-16 p-8">
 	<!-- container class inherited from __layout-->
 	<div class="container">
-		<p>Copyright <Icon path={mdiCopyright} size="1rem" /> {year} Alexander Daichendt</p>
+		<p class="flex items-center gap-1">
+			Copyright <Icon icon="material-symbols:copyright" class="inline-block" />
+			{year} Alexander Daichendt
+		</p>
 
-		<div class="footerLinks">
+		<div class="flex md:justify-between md:flex-row flex-col gap-1">
 			<Link href="/cat">Meeeeeow</Link>
 			<Link href="/privacy">Privacy Policy</Link>
 			<Link href="/impressum">Impressum</Link>
@@ -26,17 +27,11 @@
 <style>
 	footer {
 		background-color: var(--special-bg-color);
-		padding: 2rem;
-		margin-top: 4rem;
 	}
 	@media screen and (max-width: 500px) {
 		.footerLinks {
 			flex-direction: column;
 		}
-	}
-	.footerLinks {
-		display: flex;
-		justify-content: space-between;
 	}
 	:global(footer div a) {
 		color: var(--text-soft-color) !important;

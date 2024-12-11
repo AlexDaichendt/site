@@ -29,16 +29,16 @@
 	export let alt: string;
 
 	/** `img` attribute */
-	export let loading: string = 'lazy';
+	export let loading: 'lazy' | 'eager' = 'lazy';
 </script>
 
 <!--
     @component
     takes the output of a vite-imagetools import (using the `meta` output format)
     and generates a `<picture>` with `<source>` tags and an `<img>`.
-  
+
     usage
-  
+
     - in `global.d.ts`
       ```typescript
       declare module "*&imagetools" {
@@ -64,9 +64,9 @@
           border-radius: 50%;
         }
         ```
-  
+
     example generated `<picture>`
-  
+
     ```html
     <picture>
       <source
@@ -88,20 +88,20 @@
       <img src="/_app/assets/me-2bc09a6d.png" alt="me" />
     </picture>
     ```
-  
+
     notes
-  
+
     - from the documentation for
       [`sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes),
-  
+
       > The selected source size affects the intrinsic size of the image (the
       > image’s display size if no CSS styling is applied). If the srcset
       > attribute is absent, or contains no values with a width descriptor, then
       > the sizes attribute has no effect.
-  
+
       there are other things that may also affect the intrinsic (and separately,
       display) size of the image, but this is all we set here.
-  
+
     - the `&imagetools` in the usage above is to make typescript happy. there are
       other workarounds, if you'd prefer a differnet one
       https://github.com/JonasKruckenberg/imagetools/issues/160
@@ -109,9 +109,9 @@
       testing that didn't seem to allow for multiple formats. i was also tempted
       to just use png, but in my bit of testing the webp file was only ~10% (!)
       the size of the png.
-  
+
     assumptions
-  
+
     - this counts on vite-imagetools returning metadata objects in the same order
       as the query values are specified
       - e.g. for `?width=100;200&format=webp;png&meta` we expect the source with
@@ -120,9 +120,9 @@
       - i don't think this is guaranteed, so hopefully it doesn't change. looks
         like it depends on this bit of code
         https://github.com/JonasKruckenberg/imagetools/blob/main/packages/core/src/lib/resolve-configs.ts#L17
-  
+
     references
-  
+
     - responsive images
       - mdn https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
       - css-tricks https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/

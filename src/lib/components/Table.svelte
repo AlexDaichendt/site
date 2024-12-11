@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<div tabindex="0">
+<div tabindex="-1">
 	<table id="table">
 		<slot />
 	</table>

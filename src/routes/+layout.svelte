@@ -3,6 +3,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import '@fontsource/ubuntu-mono/400.css';
+	import '../app.css';
 </script>
 
 <div class="container upper">
@@ -15,9 +16,6 @@
 <Footer />
 
 <style>
-	@import 'normalize.css';
-	@import 'sanitize.css';
-
 	.upper {
 		min-height: calc(100vh - 4rem - 8px);
 	}

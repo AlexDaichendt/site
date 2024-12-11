@@ -1,5 +1,5 @@
 import adapter from '@sveltejs/adapter-cloudflare';
-import preprocess from 'svelte-preprocess';
+import { sveltePreprocess } from 'svelte-preprocess';
 import autoprefixer from 'autoprefixer';
 import cssNormalizer from 'postcss-normalize';
 import { mdsvex } from 'mdsvex';
@@ -12,7 +12,7 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: [
-		preprocess({ postcss: { plugins: [autoprefixer, cssNormalizer()] } }),
+		sveltePreprocess({ postcss: { plugins: [autoprefixer, cssNormalizer()] } }),
 		mdsvex(mdsvexconfig),
 	],
 
