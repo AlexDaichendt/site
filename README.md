@@ -1,26 +1,64 @@
-# Alex' small website
+# daichendt.one
 
-Link to the [website](https://daichendt.one)
+Personal website built with Astro, TailwindCSS, and MDX.
 
-Powered by Svelte & SvelteKit
+## 🚀 Getting Started
 
-## Developing
+### Prerequisites
 
-Once you've created a project and installed dependencies with `pnpm install`, start a development server:
+- [Node.js](https://nodejs.org/) (v20 or higher)
+- [pnpm](https://pnpm.io/) (v8 or higher)
 
+### Installation
+
+1. Clone the repository:
 ```bash
-pnpm dev
-
-# or start the server and open the app in a new browser tab
-pnpm dev -- --open
+git clone https://github.com/AlexDaichendt/site
+cd site
 ```
 
-## Building
+2. Install dependencies:
+```bash
+pnpm install
+```
 
-To create a production version of your app:
+### Development
 
+Start the development server:
+```bash
+pnpm dev
+```
+
+### Building for Production
+
+Build the project:
 ```bash
 pnpm build
 ```
 
-You can preview the production build with `pnpm run preview`.
+Preview the production build:
+```bash
+pnpm preview
+```
+
+## 🛠 Tech Stack
+
+- [Astro](https://astro.build)
+- [TailwindCSS](https://tailwindcss.com)
+- [MDX](https://mdxjs.com)
+- [Sharp](https://sharp.pixelplumbing.com) for image optimization
+- [Iconify](https://iconify.design) for icons
+
+## 📦 Key Dependencies
+
+- `@astrojs/mdx` - MDX integration
+- `@astrojs/rss` - RSS feed support
+- `@astrojs/sitemap` - Sitemap generation
+- `@astrojs/tailwind` - TailwindCSS integration
+- `@fontsource/ubuntu` - Ubuntu font
+- `astro-icon` - Icon component
+- `remark-emoji` - Emoji support in markdown
+
+## 🙏 Credits
+
+This theme is based on the [Bear Blog](https://github.com/HermanMartinus/bearblog/) theme.

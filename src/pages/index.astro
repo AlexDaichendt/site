@@ -1,0 +1,58 @@
+---
+import Link from "../components/Link.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <h1>Hi, my name is Alex!</h1>
+    <p>
+        I am a software engineer, Linux enthusiast and a friend of lightweight,
+        resilient systems.
+    </p>
+    <p>
+        My journey in the tech world has been a dynamic one. I've immersed
+        myself in countless projects spanning various video games and, for the
+        past few years, have been maintaining a small homelab, which ignited my
+        passion for DevOps / SRE. I am a privacy enthusiast and advocate for
+        non-invasive software. Occasionally, I channel my creativity into
+        building sleek web applications that prioritize efficiency and adhere to
+        web standards and best practices.
+    </p>
+    <p>
+        I currently work as a software engineer at <Link href="https://tv1.eu"
+            >TV1 GmbH</Link
+        >, a company that provides innovative live streaming and communication
+        solutions. In my free time, I am pursuing my Master's degree in computer
+        science at <Link href="https://www.tum.de/">TUM</Link>, where I
+        contribute to various research papers.
+    </p>
+
+    <h2 class="my-8">Skills</h2>
+
+    <div class="flex flex-wrap gap-4">
+        <div class="flex-[0_1_calc(50%-0.5rem)]">
+            <strong>Core stack:</strong><br />
+            Typescript/Node.js, Python, Rust, SQL, vanilla HTML/css
+        </div>
+
+        <div class="flex-[0_1_calc(50%-0.5rem)]">
+            <strong>Frontend:</strong><br />
+            NextJS, SvelteKit, Astro, Tailwind
+        </div>
+
+        <div class="flex-[0_1_calc(50%-0.5rem)]">
+            <strong>Ops:</strong><br />
+            Prometheus, Docker, Kubernetes, AWS, Github/lab actions
+        </div>
+
+        <div class="flex-[0_1_calc(50%-0.5rem)]">
+            <strong>Misc:</strong><br />
+            git, agile, REST, GraphQL, web performance, Linux sysadmin, Vitest
+        </div>
+
+        <div class="flex-[0_1_calc(50%-0.5rem)]">
+            <strong>Languages:</strong><br />
+            German (native), English
+        </div>
+    </div>
+</BaseLayout>

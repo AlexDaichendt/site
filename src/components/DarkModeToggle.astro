@@ -1,0 +1,148 @@
+---
+
+---
+
+<script>
+    const themeToggleBtns = document.querySelectorAll(
+        ".theme-toggle",
+    ) as NodeListOf<HTMLInputElement>;
+    const sliders = document.querySelectorAll(".slider");
+
+    // Set initial state of toggle based on previous settings
+    if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+        themeToggleBtns.forEach((btn) => (btn.checked = true));
+        document.documentElement.classList.add("dark");
+    } else {
+        themeToggleBtns.forEach((btn) => (btn.checked = false));
+        document.documentElement.classList.remove("dark");
+    }
+    // Remove no-transition class after initial load
+    window.addEventListener("load", () => {
+        setTimeout(() => {
+            sliders.forEach((slider) =>
+                slider.classList.remove("no-transition"),
+            );
+        }, 0);
+    });
+    themeToggleBtns.forEach((btn) => {
+        btn.addEventListener("change", function () {
+            // If is set in localStorage
+            if (localStorage.getItem("color-theme")) {
+                if (localStorage.getItem("color-theme") === "light") {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    themeToggleBtns.forEach((btn) => (btn.checked = true));
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    themeToggleBtns.forEach((btn) => (btn.checked = false));
+                }
+            } else {
+                if (document.documentElement.classList.contains("dark")) {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    themeToggleBtns.forEach((btn) => (btn.checked = false));
+                } else {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    themeToggleBtns.forEach((btn) => (btn.checked = true));
+                }
+            }
+        });
+    });
+</script>
+
+<label class="switch" for="theme-toggle">
+    <span class="sr-only">Toggle dark mode</span>
+    <input
+        id="theme-toggle"
+        class="theme-toggle"
+        type="checkbox"
+        role="switch"
+        aria-checked="false"
+    />
+    <span class="slider round no-transition" aria-hidden="true"></span>
+</label>
+
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--tw-mytheme-200);
+        transition: 0.4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: gold;
+        transition: 0.4s;
+        background: radial-gradient(
+            yellow,
+            orange 63%,
+            transparent calc(63% + 3px) 100%
+        );
+    }
+
+    input:checked + .slider {
+        background-color: var(--tw-mytheme-600);
+    }
+
+    input:checked + .slider:before {
+        background-color: white;
+        background: radial-gradient(
+            circle at 19% 19%,
+            transparent 41%,
+            var(--tw-mytheme-50) 43%
+        );
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 5px var(--tw-mytheme-700);
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .no-transition {
+        transition: none !important;
+    }
+
+    .no-transition:before {
+        transition: none !important;
+    }
+</style>

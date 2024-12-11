@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /contact
-Disallow: /admin
-
-User-agent: GPTBot
-Disallow: /

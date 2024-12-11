@@ -1,0 +1,27 @@
+---
+interface Props {
+    href: string;
+    disablePrefetch?: boolean;
+}
+
+const { href, disablePrefetch = false } = Astro.props;
+
+const internal = !href.startsWith("http");
+
+let linkProps = internal
+    ? !disablePrefetch
+        ? { "data-astro-prefetch": `${!disablePrefetch}` }
+        : {}
+    : {
+          rel: "nofollow noreferrer noopener",
+          target: "_blank",
+      };
+---
+
+<a
+    {...linkProps}
+    {href}
+    class="text-special text-mytheme-700 dark:text-mytheme-300 font-medium hover:bg-outline hover:text-dark no-underline"
+>
+    <span class="underline break-words"><slot /></span></a
+>

@@ -1,0 +1,78 @@
+---
+pubDate: '2022-05-08'
+title: 'How to: Arrow OS on Redmi Note 7, root, microG'
+description: 'Learn how to install ArrowOS, based on Android 12 on your Redmi Note 7 (lavender) phone! Also installs root and microG for a BigTech free phone.'
+keywords:
+  - ArrowOS
+  - Redmi Note 7
+  - Lavender
+  - root
+  - microG
+  - Magisk
+---
+
+This tutorial will show you how to flash ArrowOS, a nice android 12 rom, together with magisk to get root access to the phone and also microG, the google alternative to google play services. This tutorial is tailored for the Redmi Note 7, commonly referred to as lavender. Other phones might work differently due to not having a ramdisk, or being an A/B device, or ... something else. Proceed with caution. You can't blame me for bricked devices.
+
+Prerequisites:
+
+- an unlocked bootloader (check [here](https://forum.xda-developers.com/t/all-in-one-redmi-note-7-lavender-unlock-bootloader-flash-twrp-root-flash-rom.3890751/) if you haven't, steps A+B only).
+- ADB installed and also whatever driver your OS requires to send commands via adb
+- USB debugging enabled on the phone
+
+## 1. Flash OrangeFox Recovery
+
+- Download the latest version [here](https://orangefox.download/device/lavender) and extract it.
+- I'm following essentially [this](https://wiki.orangefox.tech/en/guides/installing_orangefox) guide
+- Boot your phone into fastboot with `adb reboot fastboot`.
+- Since lavender is an A-only phone, you need to flash the recovery with `fastboot flash recovery recovery.img`
+- Once your PC says it is done, reboot the phone by holding the power button and the volume up button at the same time until the orange fox pops up. Please note, that booting with a command from your pc to recovery did not work for me!
+- Flash the orangefox recovery on your phone by navigating into the fox folder and selecting the zip file.
+- This should be it.
+
+## 2. Install the latest version of MIUI
+
+I'm not actually sure if this is necessary, but I found a simple firmware upgrade not to be as comprising as the full MIUI flash - even if it means that you have to deal with the cancer that is MIUI.
+
+1. Wipe data, cache, ART/Dalvik cache in the recovery (you'll lose all of you data!)
+2. Format Data
+3. Download the latest MIUI version from [here](https://c.mi.com//miuidownload/detail?device=1700360)
+4. Move it to your phone with `adb push path/to/miui/ sdcard`
+5. On your phone, navigate to `sdcard` and install MIUI. This process might take a while. It even crashed for me during OTA_BAK, which is just the backup process. So I interrupted the process after the clock was frozen for 10 min.
+6. According to the ArrowOS docs you dont need to boot into MIUI. But since it froze for me, I kinda had to.
+7. Enabled USB debugging in MIUI again.
+
+Reinstall OrangeFox recovery now with the same steps from 1. If your MIUI installation doesnt freeze, you should be able to go to 3 without the hassle.
+
+## 3. Install ArrowOS
+
+1. If you had to reboot earlier, wipe data, cache, ART/Dalvik cache in the recovery again.
+2. Format Data
+3. Download ArrowOS [here](https://arrowos.net/download/lavender)
+4. `adb push path/to/arrowos sdcard` and install it.
+5. Rewipe cache with the button that pops up after the installation.
+6. \o/ Boot into arrowOS
+
+## 4. Install Magisk
+
+I'm following mostly the steps from the official documentation [here](https://topjohnwu.github.io/Magisk/install.html).
+
+1. The magisk docs are a bit tricky. First, grab the ArrowOS zip and unzip it. We'll get back later to that.
+2. Download the [Magisk App](https://github.com/topjohnwu/Magisk/releases/latest), send it to your phone with `adb push path/to/magisk sdcard` and install the apk on your phone.
+3. Lavender has a ramdisk despite the magisk app saying otherwise! Hence you need to move the `boot.img` file and also the `vbmeta.img` that we extracted in step 1 to your phone (for example with adb again ... by now you should be able to use that command)
+4. Now we patch the `boot.img` file in the magisk app. Click install in magisk.
+5. Dont select "Recovery mode" and also dont select the vbmeta option
+6. Select the previously moved `boot.img` file, and start the patching.
+7. Move the patched file back to your pc with `adb pull /sdcard/Download/magisk_patched_[random_strings].img`
+8. Reboot your phone into fastboot again with `adb reboot fastboot`
+9. Flash the patched image with `fastboot flash boot /path/to/magisk_patched.img`. This will overwrite the boot partition of your phone so that it loads the magisk related processes on its own.
+10. Flash the vbmeta image as well with `fastboot flash vbmeta --disable-verity --disable-verification vbmeta.img`
+11. Reboot! The magisk app should show up as installed now!
+
+## 5. Install microG
+
+This is luckily quite easy. A lot quicker and easier than the previous steps! Lucky us, someone put together a magisk module, that takes care of the installation. Check [here](https://github.com/nift4/microg_installer_revived).
+
+1. Download the latest version of the installer [here](https://github.com/nift4/microg_installer_revived/releases)
+2. Move the installer to your phone (with adb)
+3. Go to magisk modules, select the file and install it.
+4. Reboot your phone \o/ thats it. I promise.
