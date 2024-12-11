@@ -6,7 +6,8 @@ import { Picture } from "astro:assets";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime } =
+    Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -32,6 +33,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
                     }
                 </div>
                 <h1>{title}</h1>
+                <p>{readingTime}</p>
                 <hr />
             </div>
             <slot />
@@ -55,9 +57,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         box-shadow: var(--box-shadow);
     }
     .prose {
-        width: 768px;
-        max-width: calc(100% - 2em);
         color: rgb(var(--gray-dark));
+        text-wrap: pretty;
     }
     .title {
         margin-bottom: 1em;

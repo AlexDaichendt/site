@@ -7,6 +7,7 @@ import remarkEmoji from "remark-emoji";
 import tailwind from "@astrojs/tailwind";
 
 import icon from "astro-icon";
+import { remarkReadingTime } from "./src/remark/remark-reading-time";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +18,7 @@ export default defineConfig({
   site: "https://daichendt.one",
   integrations: [
     mdx({
-      remarkPlugins: [remarkEmoji],
+      remarkPlugins: [remarkEmoji, remarkReadingTime],
     }),
     sitemap(),
     tailwind(),

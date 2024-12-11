@@ -7,6 +7,7 @@ import Ul from "../../components/Ul.astro";
 import Ol from "../../components/Ol.astro";
 import Li from "../../components/Li.astro";
 import Link from "../../components/Link.astro";
+import { getEntry } from "astro:content";
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -18,7 +19,8 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
+const readingTime = remarkPluginFrontmatter.minutesRead;
 
 const components = {
     ul: Ul,
@@ -29,6 +31,6 @@ const components = {
 };
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} readingTime={readingTime}>
     <Content components={components} />
 </BlogPost>

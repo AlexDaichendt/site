@@ -93,6 +93,9 @@ ol:not(ul ol, ol ol) {
     margin-bottom: 2em;
 }
 
+.footnotes {
+    margin-left: 2rem;
+}
 .footnotes ol {
     list-style: outside;
 }
