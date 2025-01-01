@@ -11,38 +11,52 @@ const { cv } = Astro.props;
 
 <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6">
   <ul class="space-y-4 mb-0">
-    <li class="flex items-start">
-      <span class="text-gray-500 dark:text-gray-400 min-w-32"> UUID: </span>
-      <span class="text-gray-800 dark:text-gray-200 font-medium">
+    <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+      <span
+        class="text-gray-500 dark:text-gray-400 sm:min-w-32 whitespace-nowrap"
+      >
+        UUID:
+      </span>
+      <span class="text-gray-800 dark:text-gray-200 font-medium break-all">
         {cv.uuid}
       </span>
     </li>
-    <li class="flex items-start">
-      <span class="text-gray-500 dark:text-gray-400 min-w-32">
+    <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+      <span
+        class="text-gray-500 dark:text-gray-400 sm:min-w-32 whitespace-nowrap"
+      >
         Issued by:
       </span>
       <span class="text-gray-800 dark:text-gray-200 font-medium">
         {cv.author}
       </span>
     </li>
-    <li class="flex items-start">
-      <span class="text-gray-500 dark:text-gray-400 min-w-32">
+    <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+      <span
+        class="text-gray-500 dark:text-gray-400 sm:min-w-32 whitespace-nowrap"
+      >
         Issued to:
       </span>
       <span class="text-gray-800 dark:text-gray-200 font-medium">
         {cv.company_name}
       </span>
     </li>
-    <li class="flex items-start">
-      <span class="text-gray-500 dark:text-gray-400 min-w-32">
+    <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+      <span
+        class="text-gray-500 dark:text-gray-400 sm:min-w-32 whitespace-nowrap"
+      >
         Issue date:
       </span>
       <span class="text-gray-800 dark:text-gray-200 font-medium">
         {cv.created?.toLocaleString()}
       </span>
     </li>
-    <li class="flex items-start">
-      <span class="text-gray-500 dark:text-gray-400 min-w-32"> Purpose: </span>
+    <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+      <span
+        class="text-gray-500 dark:text-gray-400 sm:min-w-32 whitespace-nowrap"
+      >
+        Purpose:
+      </span>
       <span class="text-gray-800 dark:text-gray-200 font-medium">
         {cv.purpose}
       </span>
