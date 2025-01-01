@@ -7,6 +7,7 @@ import DataTable from "../../components/verification/DataTable.astro";
 import NoCV from "../../components/verification/NoCV.astro";
 import Verified from "../../components/verification/Verified.astro";
 import Revoked from "../../components/verification/Revoked.astro";
+import Link from "../../components/Link.astro";
 
 export const prerender = false;
 const id = Astro.url.searchParams.get("id");
@@ -35,5 +36,10 @@ const cv = id
         </div>
       )
     }
+
+    <p class="mt-8 text-sm opacity-50">
+      More information about the CV verification can be found
+      <Link href="/blog/cv-verification">here</Link>.
+    </p>
   </section>
 </BaseLayout>
