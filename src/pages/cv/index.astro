@@ -9,12 +9,12 @@ import Verified from "../../components/verification/Verified.astro";
 import Revoked from "../../components/verification/Revoked.astro";
 
 export const prerender = false;
-const uuid = Astro.url.searchParams.get("uuid");
+const id = Astro.url.searchParams.get("id");
 
 const db = drizzle(Astro.locals.runtime.env.DB);
 
-const cv = uuid
-  ? await db.select().from(cvTable).where(eq(cvTable.uuid, uuid))
+const cv = id
+  ? await db.select().from(cvTable).where(eq(cvTable.uuid, id))
   : [];
 ---
 

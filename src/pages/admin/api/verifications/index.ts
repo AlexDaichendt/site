@@ -1,6 +1,7 @@
 import type { APIContext } from "astro";
 import { drizzle } from "drizzle-orm/d1";
 import { cvTable } from "../../../../db/schema";
+import { nanoid } from "nanoid";
 
 export const prerender = false;
 
@@ -16,7 +17,7 @@ export async function POST(context: APIContext) {
   const purpose = formData.get("purpose") as string;
   const tooling = formData.get("tooling") as string;
   const created = new Date();
-  const uuid = crypto.randomUUID();
+  const uuid = nanoid(8);
 
   try {
     await db
@@ -24,6 +25,7 @@ export async function POST(context: APIContext) {
       .values({ company_name, author, purpose, tooling, created, uuid })
       .execute();
   } catch (error) {
+    console.error(error);
     return new Response(JSON.stringify({ success: false, error }));
   }
 
