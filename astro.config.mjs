@@ -9,13 +9,17 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import { remarkReadingTime } from "./src/remark/remark-reading-time";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   prefetch: {
     defaultStrategy: "hover",
     prefetchAll: true,
   },
+
   site: "https://daichendt.one",
+
   integrations: [
     mdx({
       remarkPlugins: [remarkEmoji, remarkReadingTime],
@@ -24,4 +28,10 @@ export default defineConfig({
     tailwind(),
     icon(),
   ],
+
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
 });

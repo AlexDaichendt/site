@@ -1,0 +1,39 @@
+---
+import { eq } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/d1";
+import { cvTable } from "../../db/schema";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DataTable from "../../components/verification/DataTable.astro";
+import NoCV from "../../components/verification/NoCV.astro";
+import Verified from "../../components/verification/Verified.astro";
+import Revoked from "../../components/verification/Revoked.astro";
+
+export const prerender = false;
+const uuid = Astro.url.searchParams.get("uuid");
+
+const db = drizzle(Astro.locals.runtime.env.DB);
+
+const cv = uuid
+  ? await db.select().from(cvTable).where(eq(cvTable.uuid, uuid))
+  : [];
+---
+
+<BaseLayout title="CV Verification">
+  <section class="max-w-4xl mx-auto min-h-screen">
+    {
+      cv.length === 0 ? (
+        <NoCV />
+      ) : cv[0].status !== "active" ? (
+        <div class="text-center p-8 bg-red-50 dark:bg-red-950 rounded-lg shadow-sm">
+          <Revoked />
+          <DataTable cv={cv[0]} />
+        </div>
+      ) : (
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+          <Verified cv={cv[0]} />
+          <DataTable cv={cv[0]} />
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>

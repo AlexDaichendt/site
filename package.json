@@ -6,19 +6,29 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 migrations apply cv-verification --local",
+    "db:migrate:prod": "wrangler d1 migrations apply cv-verification --remote",
+    "db:migrate:preview": "wrangler d1 migrations apply --env preview d1-demo-preview-db --remote",
+    "db:studio:local": "LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit) drizzle-kit studio",
+    "db:studio:preview": "source .drizzle.env && DB_ID='yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy' drizzle-kit studio",
+    "db:studio:prod": "source .drizzle.env && DB_ID='ae0b9867-26f2-4a5b-8aa6-805a86792662' drizzle-kit studio"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^12.1.0",
     "@astrojs/mdx": "^4.0.1",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.3",
+    "@cloudflare/workers-types": "^4.20241230.0",
     "@fontsource/ubuntu": "^5.1.0",
     "@iconify-json/mdi": "^1.2.1",
     "@iconify-json/simple-icons": "^1.2.14",
     "astro": "^5.0.3",
     "astro-icon": "^1.1.4",
+    "drizzle-orm": "^0.38.3",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
     "sharp": "^0.33.5",
@@ -27,6 +37,12 @@
   },
   "devDependencies": {
     "@tailwind-plugin/expose-colors": "^1.1.8",
+    "@types/node": "^22.10.3",
+    "better-sqlite3": "^11.7.0",
+    "cross-env": "^7.0.3",
+    "drizzle-kit": "^0.30.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
     "remark-emoji": "^5.0.1"
   }
 }

@@ -1,0 +1,51 @@
+---
+import type { InferSelectModel } from "drizzle-orm";
+import type { cvTable } from "../../db/schema";
+
+interface Props {
+  cv: InferSelectModel<typeof cvTable>;
+}
+
+const { cv } = Astro.props;
+---
+
+<div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6">
+  <ul class="space-y-4 mb-0">
+    <li class="flex items-start">
+      <span class="text-gray-500 dark:text-gray-400 min-w-32"> UUID: </span>
+      <span class="text-gray-800 dark:text-gray-200 font-medium">
+        {cv.uuid}
+      </span>
+    </li>
+    <li class="flex items-start">
+      <span class="text-gray-500 dark:text-gray-400 min-w-32">
+        Issued by:
+      </span>
+      <span class="text-gray-800 dark:text-gray-200 font-medium">
+        {cv.author}
+      </span>
+    </li>
+    <li class="flex items-start">
+      <span class="text-gray-500 dark:text-gray-400 min-w-32">
+        Issued to:
+      </span>
+      <span class="text-gray-800 dark:text-gray-200 font-medium">
+        {cv.company_name}
+      </span>
+    </li>
+    <li class="flex items-start">
+      <span class="text-gray-500 dark:text-gray-400 min-w-32">
+        Issue date:
+      </span>
+      <span class="text-gray-800 dark:text-gray-200 font-medium">
+        {cv.created?.toLocaleString()}
+      </span>
+    </li>
+    <li class="flex items-start">
+      <span class="text-gray-500 dark:text-gray-400 min-w-32"> Purpose: </span>
+      <span class="text-gray-800 dark:text-gray-200 font-medium">
+        {cv.purpose}
+      </span>
+    </li>
+  </ul>
+</div>
