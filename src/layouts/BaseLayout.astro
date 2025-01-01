@@ -4,10 +4,12 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import DarkModeToggle from "../components/DarkModeToggle.astro";
+import "@fontsource/ubuntu";
+import "@fontsource/ubuntu/700.css";
 
 interface Props {
-    title?: string;
-    description?: string;
+  title?: string;
+  description?: string;
 }
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
@@ -15,61 +17,59 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <BaseHead title={title} description={description} />
-        <script is:inline>
-            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-            if (
-                localStorage.getItem("color-theme") === "dark" ||
-                (!("color-theme" in localStorage) &&
-                    window.matchMedia("(prefers-color-scheme: dark)").matches)
-            ) {
-                document.documentElement.classList.add("dark");
-            } else {
-                document.documentElement.classList.remove("dark");
-            }
-        </script>
-    </head>
-    <body class="bg-white dark:bg-gray-900 text-black dark:text-white">
-        <!-- Mobile layout -->
-        <div class="lg:hidden flex flex-col min-h-screen p-4">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="font-bold text-lg">
-                    <a href="/">{SITE_TITLE}</a>
-                </h2>
-                <DarkModeToggle />
-            </div>
+  <head>
+    <BaseHead title={title} description={description} />
+    <script is:inline>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-black dark:text-white">
+    <!-- Mobile layout -->
+    <div class="lg:hidden flex flex-col min-h-screen p-4">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-bold text-lg">
+          <a href="/">{SITE_TITLE}</a>
+        </h2>
+        <DarkModeToggle />
+      </div>
 
-            <Header />
+      <Header />
 
-            <main class="flex-grow">
-                <slot />
-            </main>
-        </div>
+      <main class="flex-grow">
+        <slot />
+      </main>
+    </div>
 
-        <!-- Desktop layout -->
-        <div
-            class="hidden lg:grid grid-cols-[150px_1fr_60px] gap-4 min-h-screen p-4"
-        >
-            <div class="flex items-start">
-                <h2 class="font-bold text-xl mt-3">
-                    <a href="/">{SITE_TITLE}</a>
-                </h2>
-            </div>
+    <!-- Desktop layout -->
+    <div
+      class="hidden lg:grid grid-cols-[150px_1fr_60px] gap-4 min-h-screen p-4"
+    >
+      <div class="flex items-start">
+        <h2 class="font-bold text-xl mt-3">
+          <a href="/">{SITE_TITLE}</a>
+        </h2>
+      </div>
 
-            <div>
-                <Header />
-                <main
-                    class="w-full lg:w-[768px] max-w-[calc(100%-2em)] mx-auto p-2"
-                >
-                    <slot />
-                </main>
-            </div>
+      <div>
+        <Header />
+        <main class="w-full lg:w-[768px] max-w-[calc(100%-2em)] mx-auto p-2">
+          <slot />
+        </main>
+      </div>
 
-            <div class="flex justify-end">
-                <DarkModeToggle />
-            </div>
-        </div>
-        <Footer />
-    </body>
+      <div class="flex justify-end">
+        <DarkModeToggle />
+      </div>
+    </div>
+    <Footer />
+  </body>
 </html>
