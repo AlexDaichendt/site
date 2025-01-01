@@ -1,0 +1,107 @@
+<form
+  method="POST"
+  action="/admin/api/verifications"
+  class="flex flex-col gap-4 max-w-lg mx-auto p-6 rounded-lg shadow-md
+  bg-white dark:bg-gray-800 transition-colors"
+>
+  <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+    Add CV Verification
+  </h2>
+
+  <div class="flex flex-col gap-2">
+    <label
+      for="company_name"
+      class="font-medium text-gray-700 dark:text-gray-200"
+    >
+      Company Name
+    </label>
+    <input
+      type="text"
+      id="company_name"
+      name="company_name"
+      required
+      class="border rounded-md p-2
+        bg-gray-50 dark:bg-gray-900
+        text-gray-900 dark:text-white
+        border-gray-300 dark:border-gray-600
+        focus:border-blue-500 dark:focus:border-blue-400
+        focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+        focus:outline-none
+        placeholder:text-gray-400 dark:placeholder:text-gray-500"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="author" class="font-medium text-gray-700 dark:text-gray-200">
+      Author
+    </label>
+    <input
+      type="text"
+      id="author"
+      name="author"
+      required
+      value="Alexander Daichendt"
+      class="border rounded-md p-2
+        bg-gray-50 dark:bg-gray-900
+        text-gray-900 dark:text-white
+        border-gray-300 dark:border-gray-600
+        focus:border-blue-500 dark:focus:border-blue-400
+        focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+        focus:outline-none
+        placeholder:text-gray-400 dark:placeholder:text-gray-500"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="purpose" class="font-medium text-gray-700 dark:text-gray-200">
+      Purpose
+    </label>
+    <textarea
+      id="purpose"
+      name="purpose"
+      required
+      rows="3"
+      class="border rounded-md p-2
+        bg-gray-50 dark:bg-gray-900
+        text-gray-900 dark:text-white
+        border-gray-300 dark:border-gray-600
+        focus:border-blue-500 dark:focus:border-blue-400
+        focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+        focus:outline-none
+        placeholder:text-gray-400 dark:placeholder:text-gray-500"
+      >Application
+    </textarea>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="tooling" class="font-medium text-gray-700 dark:text-gray-200">
+      Tooling
+    </label>
+    <textarea
+      id="tooling"
+      name="tooling"
+      required
+      rows="3"
+      class="border rounded-md p-2
+        bg-gray-50 dark:bg-gray-900
+        text-gray-900 dark:text-white
+        border-gray-300 dark:border-gray-600
+        focus:border-blue-500 dark:focus:border-blue-400
+        focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+        focus:outline-none
+        placeholder:text-gray-400 dark:placeholder:text-gray-500"
+      >Typst</textarea
+    >
+  </div>
+
+  <button
+    type="submit"
+    class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600
+      text-white py-2 px-4 rounded-md
+      transition-colors duration-200
+      focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+      disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    Submit Verification
+  </button>
+</form>
