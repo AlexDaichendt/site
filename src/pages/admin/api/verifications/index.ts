@@ -2,6 +2,7 @@ import type { APIContext } from "astro";
 import { drizzle } from "drizzle-orm/d1";
 import { cvTable } from "../../../../db/schema";
 import { nanoid } from "nanoid";
+import { eq } from "drizzle-orm";
 
 export const prerender = false;
 
@@ -17,7 +18,33 @@ export async function POST(context: APIContext) {
   const purpose = formData.get("purpose") as string;
   const tooling = formData.get("tooling") as string;
   const created = new Date();
-  const uuid = nanoid(8);
+
+  let uuid;
+  let existing;
+  let maxAttempts = 10;
+
+  do {
+    uuid = nanoid(8);
+
+    // check if uuid already exists
+    existing = await db
+      .select()
+      .from(cvTable)
+      .where(eq(cvTable.uuid, uuid))
+      .execute();
+
+    maxAttempts--;
+
+    // Safety check to prevent infinite loops
+    if (maxAttempts <= 0) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Failed to generate unique UUID after multiple attempts",
+        }),
+      );
+    }
+  } while (existing.length > 0);
 
   try {
     await db
