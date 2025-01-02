@@ -4,6 +4,23 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      fontSize: {
+        // Mobile sizes
+        "h1-mobile": ["2rem", { lineHeight: "1.2" }], // 32px
+        "h2-mobile": ["1.75rem", { lineHeight: "1.2" }], // 28px
+        "h3-mobile": ["1.5rem", { lineHeight: "1.2" }], // 24px
+        "h4-mobile": ["1.25rem", { lineHeight: "1.2" }], // 20px
+        "h5-mobile": ["1.1rem", { lineHeight: "1.2" }], // 17.6px
+        "h6-mobile": ["1rem", { lineHeight: "1.2" }], // 16px
+
+        // Desktop sizes
+        h1: ["3rem", { lineHeight: "1.2" }],
+        h2: ["2.7rem", { lineHeight: "1.2" }],
+        h3: ["2.25rem", { lineHeight: "1.2" }],
+        h4: ["2rem", { lineHeight: "1.2" }],
+        h5: ["1.75rem", { lineHeight: "1.2" }],
+        h6: ["1.5rem", { lineHeight: "1.2" }],
+      },
       colors: {
         mytheme: {
           50: "#ecfcfb",

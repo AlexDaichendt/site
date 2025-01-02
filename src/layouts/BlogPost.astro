@@ -13,64 +13,67 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } =
 ---
 
 <BaseLayout title={title} description={description}>
-  <article>
-    <div class="hero-image">
-      {heroImage && <Picture src={heroImage} alt="" width={752} />}
-    </div>
-    <div class="prose">
-      <div class="title">
-        <div class="date">
-          <FormattedDate date={pubDate} />
+  <article class="max-w-3xl mx-auto">
+    {
+      heroImage && (
+        <div class="mb-12">
+          <Picture
+            src={heroImage}
+            alt=""
+            width={752}
+            class="rounded-lg shadow-lg w-full object-cover aspect-[16/9] dark:shadow-gray-800/30 transition-transform hover:scale-[1.02]"
+          />
+        </div>
+      )
+    }
+
+    <div class="prose dark:prose-invert max-w-none">
+      <div class="space-y-2 text-center mb-12">
+        <div class="space-y-2">
+          <time class="text-sm text-gray-600 dark:text-gray-400">
+            <FormattedDate date={pubDate} />
+          </time>
+
           {
             updatedDate && (
-              <div class="last-updated-on">
+              <div class="text-sm text-gray-500 dark:text-gray-400 italic">
                 Last updated on <FormattedDate date={updatedDate} />
               </div>
             )
           }
         </div>
-        <h1>{title}</h1>
-        <p>{readingTime}</p>
-        <hr />
+
+        <h1 class="font-bold tracking-tight text-gray-900 dark:text-white">
+          {title}
+        </h1>
+
+        <div
+          class="flex items-center justify-center space-x-4 text-sm text-gray-600 dark:text-gray-400"
+        >
+          <span class="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-4 h-4 mr-1"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            {readingTime} min read
+          </span>
+        </div>
+
+        <hr class="w-32 mx-auto border-gray-200 dark:border-gray-800" />
       </div>
-      <slot />
+
+      <div class="mt-8 text-gray-800 dark:text-gray-200">
+        <slot />
+      </div>
     </div>
   </article>
 </BaseLayout>
-
-<style>
-  main {
-    width: calc(100% - 2em);
-    max-width: 100%;
-    margin: 0;
-  }
-  .hero-image {
-    width: 100%;
-  }
-  .hero-image img {
-    display: block;
-    margin: 0 auto;
-    border-radius: 12px;
-    box-shadow: var(--box-shadow);
-  }
-  .prose {
-    color: rgb(var(--gray-dark));
-    text-wrap: pretty;
-  }
-  .title {
-    margin-bottom: 1em;
-    padding: 1em 0;
-    text-align: center;
-    line-height: 1;
-  }
-  .title h1 {
-    margin: 0 0 0.5em 0;
-  }
-  .date {
-    margin-bottom: 0.5em;
-    color: rgb(var(--gray));
-  }
-  .last-updated-on {
-    font-style: italic;
-  }
-</style>
