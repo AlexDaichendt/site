@@ -1,6 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import NavMenu from "../components/NavMenu.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import DarkModeToggle from "../components/DarkModeToggle.astro";
@@ -36,13 +36,14 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <!-- Mobile layout -->
     <div class="lg:hidden flex flex-col min-h-screen p-4">
       <div class="flex justify-between items-center mb-4">
-        <h2 class="font-bold text-lg">
+        <h2 class="font-bold text-lg mb-0">
           <a href="/">{SITE_TITLE}</a>
         </h2>
-        <DarkModeToggle />
+        <div class="flex items-center gap-4">
+          <DarkModeToggle />
+          <NavMenu />
+        </div>
       </div>
-
-      <Header />
 
       <main class="flex-grow">
         <slot />
@@ -60,7 +61,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
       </div>
 
       <div>
-        <Header />
+        <NavMenu />
         <main class="w-full lg:w-[768px] max-w-[calc(100%-2em)] mx-auto p-2">
           <slot />
         </main>
