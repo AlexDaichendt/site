@@ -29,6 +29,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20241230.0
         version: 4.20241230.0
+      '@fontsource/fira-sans':
+        specifier: ^5.1.1
+        version: 5.1.1
       '@fontsource/ubuntu':
         specifier: ^5.1.0
         version: 5.1.0
@@ -960,6 +963,9 @@ packages:
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
+
+  '@fontsource/fira-sans@5.1.1':
+    resolution: {integrity: sha512-LdbPwcMEADFjbcMx5sdPcyLi0NnEzP34YO+4d2eOeIKjCu1SyJiG/bBz5K07qm4pyhh2cQveifhFrG7gQDG9wQ==}
 
   '@fontsource/ubuntu@5.1.0':
     resolution: {integrity: sha512-0XG/HrFsfP1q3phf4QN8IO7tetd0zOZKHZSHcTnBuVoQedoo1wS/hXxY2FMZuqoG+mVfrXh+Q614MDVmQPJq2w==}
@@ -4156,6 +4162,8 @@ snapshots:
     optional: true
 
   '@fastify/busboy@2.1.1': {}
+
+  '@fontsource/fira-sans@5.1.1': {}
 
   '@fontsource/ubuntu@5.1.0': {}
 

@@ -5,12 +5,15 @@
 @layer base {
   h1 {
     @apply text-h1-mobile md:text-h1;
+    font-family: "Fira Sans", sans-serif;
   }
   h2 {
     @apply text-h2-mobile md:text-h2;
+    font-family: "Fira Sans", sans-serif;
   }
   h3 {
     @apply text-h3-mobile md:text-h3;
+    font-family: "Fira Sans", sans-serif;
   }
   h4 {
     @apply text-h4-mobile md:text-h4;

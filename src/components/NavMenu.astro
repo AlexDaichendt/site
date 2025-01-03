@@ -17,7 +17,7 @@ import HeaderLink from "./HeaderLink.astro";
   </nav>
 </header>
 
-<button id="menu" class="lg:hidden relative w-[30px] h-[30px]">
+<button id="nav-menu" class="lg:hidden relative w-[30px] h-[30px]">
   <Icon
     name="mdi:menu"
     id="iconMenu"
@@ -33,7 +33,7 @@ import HeaderLink from "./HeaderLink.astro";
 </button>
 <header
   id="drawer"
-  class="fixed top-16 right-0 h-full bg-neutral-50 shadow dark:bg-gray-700 p-6 rounded w-54 transform translate-x-full transition-transform duration-300 ease-in-out"
+  class="fixed z-50 top-14 right-0 h-full bg-neutral-50 shadow dark:bg-gray-700 p-6 rounded w-54 transform translate-x-full transition-transform duration-300 ease-in-out"
 >
   <div class="flex flex-col gap-4">
     <HeaderLink href="/">Home</HeaderLink>
@@ -45,7 +45,7 @@ import HeaderLink from "./HeaderLink.astro";
 </header>
 
 <script>
-  const menu = document.getElementById("menu");
+  const menu = document.getElementById("nav-menu");
   const drawer = document.getElementById("drawer");
 
   function toggle() {
@@ -68,10 +68,15 @@ import HeaderLink from "./HeaderLink.astro";
   document.addEventListener("click", (event) => {
     console.log("click outside");
     if (
-      !drawer.classList.contains("hidden") &&
+      !drawer.classList.contains("translate-x-full") &&
       !drawer.contains(event.target) &&
       !menu.contains(event.target)
     ) {
+      console.log(
+        !drawer.classList.contains("translate-x-full"),
+        !drawer.contains(event.target),
+        !menu.contains(event.target),
+      );
       toggle();
     }
   });

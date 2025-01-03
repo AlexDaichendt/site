@@ -108,7 +108,7 @@ const { cv } = Astro.props;
       </span>
     </summary>
 
-    <div class="p-6 pt-6 space-y-6">
+    <div class="p-4 sm:p-6 pt-6 space-y-6">
       <div>
         <h4 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">
           1. Verify SHA256 Hash
@@ -136,27 +136,36 @@ const { cv } = Astro.props;
             >
           </li>
           <li>
-            Import the key into your keyring with
-            <pre
-              class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono sm:ml-6 mb-2">gpg --import ~/Downloads/pub.key</pre>
-
-            <li>
-              Download the above PGP signature by clicking <button
-                class="text-blue-500 dark:text-blue-400 hover:underline"
-                id="download-pgp"
-                >here
-              </button>
-            </li>
-            <li>Run the following command:</li>
+            Import the key into your keyring with<br />
+            <code
+              class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono sm:ml-6 mb-2 break-all"
+              >gpg --import ~/Downloads/pub.key</code
+            >
           </li>
-          <pre
-            class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono sm:ml-6">gpg --verify signature.asc cv.pdf</pre>
-          <p class="text-gray-600 dark:text-gray-400 mt-2">
-            If the verification is successful, GPG will indicate so.
-            <pre
-              class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-xs font-mono mt-2">gpg: Good signature from &quot;Alexander Daichendt &lt;alexander@daichendt.one&gt;&quot; [ultimate]</pre>
-          </p>
+
+          <li>
+            Download the above PGP signature by clicking <button
+              class="text-blue-500 dark:text-blue-400 hover:underline"
+              id="download-pgp"
+              >here
+            </button>
+          </li>
+          <li>
+            Run the following command:<br />
+            <code
+              class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono sm:ml-6"
+              >gpg --verify signature.asc cv.pdf</code
+            >
+          </li>
         </ol>
+        <p class="text-gray-600 dark:text-gray-400 mt-2">
+          If the verification is successful, GPG will indicate so.<br />
+          <code
+            class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-xs font-mono mt-2 break-all"
+            >gpg: Good signature from &quot;Alexander Daichendt
+            &lt;alexander@daichendt.one&gt;&quot; [ultimate]</code
+          >
+        </p>
       </div>
     </div>
   </details>

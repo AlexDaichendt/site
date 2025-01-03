@@ -4,68 +4,70 @@ import { Icon } from "astro-icon/components";
 ---
 
 <BaseLayout title="Contact">
-    <ul class="space-y-2">
-        <li class="flex items-center space-x-3">
-            <span class="flex items-center">
-                <Icon name="mdi:email" class="w-6 h-6" />
-                <span class="ml-2 font-medium">E-Mail:</span>
-            </span>
-            <a
-                href="mailto:me@daichendt.one"
-                class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
-                target="_blank"
-                rel="nofollow noreferrer noopener"
-            >
-                me@daichendt.one
-            </a>
-            <a
-                href="/pub.key"
-                class="ml-2 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
-                target="_blank"
-                rel="nofollow noreferrer noopener"
-            >
-                <Icon name="mdi:key" class="w-4 h-4 inline" />
-                PGP key
-            </a>
-        </li>
-        <li class="flex items-center space-x-3">
-            <span class="flex items-center">
-                <Icon name="mdi:github" class="w-6 h-6" />
-                <span class="ml-2 font-medium">Github:</span>
-            </span>
-            <a
-                href="https://github.com/AlexDaichendt"
-                class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
-                target="_blank"
-                rel="nofollow noreferrer noopener"
-            >
-                AlexDaichendt
-            </a>
-        </li>
+  <h1 class="mb-16">Contact</h1>
 
-        <li class="flex items-center space-x-3">
-            <span class="flex items-center">
-                <Icon name="simple-icons:element" class="w-6 h-6" />
-                <span class="ml-2 font-medium">Element:</span>
-            </span>
-            <span class="text-gray-700 dark:text-gray-300">
-                @alexdaichendt:matrix.org
-            </span>
-        </li>
+  <ul class="space-y-2">
+    <li class="flex items-center space-x-3">
+      <span class="flex items-center">
+        <Icon name="mdi:email" class="w-6 h-6" />
+        <span class="ml-2 font-medium">E-Mail:</span>
+      </span>
+      <a
+        href="mailto:me@daichendt.one"
+        class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
+        target="_blank"
+        rel="nofollow noreferrer noopener"
+      >
+        me@daichendt.one
+      </a>
+      <a
+        href="/pub.key"
+        class="ml-2 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+        target="_blank"
+        rel="nofollow noreferrer noopener"
+      >
+        <Icon name="mdi:key" class="w-4 h-4 inline" />
+        PGP key
+      </a>
+    </li>
+    <li class="flex items-center space-x-3">
+      <span class="flex items-center">
+        <Icon name="mdi:github" class="w-6 h-6" />
+        <span class="ml-2 font-medium">Github:</span>
+      </span>
+      <a
+        href="https://github.com/AlexDaichendt"
+        class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
+        target="_blank"
+        rel="nofollow noreferrer noopener"
+      >
+        AlexDaichendt
+      </a>
+    </li>
 
-        <li class="flex items-center space-x-3">
-            <span class="flex items-center">
-                <Icon name="simple-icons:bluesky" class="w-6 h-6" />
-                <span class="ml-2 font-medium">Bluesky:</span>
-            </span>
-            <a
-                href="https://bsky.app/profile/alexdaichendt.bsky.social"
-                class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
-                target="_blank"
-                rel="nofollow noreferrer noopener"
-            >
-                @alexdaichendt.bsky.social
-            </a>
-        </li>
-    </ul>
+    <li class="flex items-center space-x-3">
+      <span class="flex items-center">
+        <Icon name="simple-icons:element" class="w-6 h-6" />
+        <span class="ml-2 font-medium">Element:</span>
+      </span>
+      <span class="text-gray-700 dark:text-gray-300">
+        @alexdaichendt:matrix.org
+      </span>
+    </li>
+
+    <li class="flex items-center space-x-3">
+      <span class="flex items-center">
+        <Icon name="simple-icons:bluesky" class="w-6 h-6" />
+        <span class="ml-2 font-medium">Bluesky:</span>
+      </span>
+      <a
+        href="https://bsky.app/profile/alexdaichendt.bsky.social"
+        class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
+        target="_blank"
+        rel="nofollow noreferrer noopener"
+      >
+        @alexdaichendt.bsky.social
+      </a>
+    </li>
+  </ul>
 </BaseLayout>

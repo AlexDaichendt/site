@@ -4,30 +4,29 @@ import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const posts = (await getCollection("blog")).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <BaseLayout>
-    <section class="max-w-4xl mx-auto">
-        <ul class="">
-            {
-                posts.map((post) => (
-                    <li class="hover:dark:bg-gray-700 hover:bg-gray-100 p-2 rounded">
-                        <a
-                            href={`/blog/${post.id}`}
-                            class="grid grid-cols-[2fr,1fr] gap-4 items-center"
-                        >
-                            <h6 class="text-lg font-medium">
-                                {post.data.title}
-                            </h6>
-                            <span class="date text-right text-gray-600 text-sm">
-                                <FormattedDate date={post.data.pubDate} />
-                            </span>
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
-    </section>
+  <h1 class="mb-16">Blog</h1>
+  <section class="max-w-4xl mx-auto">
+    <ul class="">
+      {
+        posts.map((post) => (
+          <li class="hover:dark:bg-gray-700 hover:bg-gray-100 p-2 rounded">
+            <a
+              href={`/blog/${post.id}`}
+              class="grid grid-cols-[2fr,1fr] gap-4 items-center"
+            >
+              <h6 class="text-lg font-medium mb-0">{post.data.title}</h6>
+              <span class="date text-right text-gray-600 text-sm">
+                <FormattedDate date={post.data.pubDate} />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </BaseLayout>
