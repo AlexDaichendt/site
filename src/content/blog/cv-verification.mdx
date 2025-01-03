@@ -10,10 +10,10 @@ keywords:
   - job
 ---
 
-In my CV in the bottom right corner, I have a QR code that links to this website. The called page displays information to whom this CV was issued, when and for what purpose. I can revoke a CV in my backend and have it display a message that the CV is no longer valid, for example, when the current sent CV is outdated.
+In my CV in the bottom right corner, I have a QR code that links to this website. The called page displays information to whom this CV was issued, when and for what purpose. I can revoke a CV in my backend and have it display a message that the CV is no longer valid, for example, when the current sent CV is outdated. Furthermore, the site shows the sha256 hash and a PGP signature of the CV, which can be used to verify the integrity and authenticity of the CV.
 
-While the recipient can still store and process the CV, they can only use it for its intended purpose since others can verify who it was issued to through the QR code.
-This is probably not very useful, but I think it's a cool little gimmick. It does give me some control over my CV, which is nice.
+While the recipient can still store and process the CV, they can only use it for its intended purpose since others can verify who it was issued to through the QR code. If a third party were to manipulate the CV, the hash would not match the one on the website, and the PGP signature would not be valid.
+Pretty cool gimmick! This effectively binds the CV document to my personal website and domain. It provides me more control over the CV and its usage, and it is a nice touch to show off my technical skills.
 
 ![CV Demo](../../assets/cv_demo.png)
 [QR code leads to this link](https://daichendt.one/cv?id=RtoiZRTN)
@@ -51,4 +51,57 @@ On the Typst side, I am using following code to place the QR code in the bottom 
 )
 ```
 
-This allows me to regex replace the `REPLACEME` with the generated id from the backend in a simple script alongside my other parameterized values. And that's it, I have a CV verification tool. I deliberately kept it as simple as possible with a trivial workflow to keep maintenance and the time it takes to create a new CV as low as possible. I am happy with the result.
+After entering the company name and submitting the shown form, a new uid is returned to the browser. Now I can create my CV with this custom uid by running my Typst build script which inserts the uid into the Typst document, compiles a pdf, creates a sha256 hash and a PGP signature of the pdf. The script looks like this:
+
+```python
+#!/usr/bin/env python3
+
+import os
+import shutil
+import subprocess
+import argparse
+from pathlib import Path
+
+CV_FILE = "cv.typ"
+
+def main():
+    parser = argparse.ArgumentParser(description="Build CV")
+    parser.add_argument("-o", "--output", help="Output file", default="cv.pdf")
+    parser.add_argument("-u", "--uid", help="unique CV ID", required=True)
+    args = parser.parse_args()
+
+    print("Building CV")
+    # copy cv file to build directory
+    os.makedirs("build", exist_ok=True)
+    shutil.copy(CV_FILE, "build")
+
+    path = Path("build/cv.typ")
+    content = path.read_text().replace("REPLACE_ME", args.uid)
+    path.write_text(content)
+
+    # build cv
+    subprocess.run(["typst", "compile", "build/cv.typ", args.output], check=True)
+    print("CV built")
+    shutil.rmtree("build", ignore_errors=True)
+
+    # print sha256 hash of the output file
+    sha256 = subprocess.run(["sha256sum", args.output], stdout=subprocess.PIPE, check=True).stdout.decode().split()[0]
+    print(f"SHA256 hash of the output file: {sha256}")
+
+    #  gpg --detach-sign --armor --output - cv.pdf
+    gpg_sig = subprocess.run(["gpg", "--detach-sign", "--armor", "--output", "-", args.output], stdout=subprocess.PIPE, check=True).stdout.decode()
+    print("GPG signature:")
+    print(gpg_sig)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Finally, I enter the generated sha256 hash and the PGP signature into the second page of the create verification workflow.
+
+<div align="center" style={{ width: '500px', margin: '0 auto' }}>
+  ![Backend Second Step](../../assets/cv_backend2.png)
+</div>
+
+And that's it, I have a CV verification tool. I deliberately kept it as simple as possible with a trivial workflow to keep maintenance and the time it takes to create a new CV as low as possible. I am happy with the result.
