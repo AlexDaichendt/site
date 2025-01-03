@@ -25,12 +25,12 @@ const cv = id
       cv.length === 0 ? (
         <NoCV />
       ) : cv[0].status !== "active" ? (
-        <div class="text-center p-8 bg-red-50 dark:bg-red-950 rounded-lg shadow-sm">
+        <div class="text-center p-1 sm:p-8 bg-red-50 dark:bg-red-950 rounded-lg shadow-sm">
           <Revoked />
           <DataTable cv={cv[0]} />
         </div>
       ) : (
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+        <div class="p-6 sm:p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
           <Verified cv={cv[0]} />
           <DataTable cv={cv[0]} />
         </div>

@@ -1,6 +1,7 @@
 ---
 import type { InferSelectModel } from "drizzle-orm";
 import type { cvTable } from "../../db/schema";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   cv: InferSelectModel<typeof cvTable>;
@@ -9,7 +10,7 @@ interface Props {
 const { cv } = Astro.props;
 ---
 
-<div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6">
+<div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6 mb-4">
   <ul class="space-y-4 mb-0">
     <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
       <span
@@ -61,5 +62,131 @@ const { cv } = Astro.props;
         {cv.purpose}
       </span>
     </li>
+    <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+      <span
+        class="text-gray-500 dark:text-gray-400 sm:min-w-32 whitespace-nowrap"
+      >
+        SHA256:
+      </span>
+      <span class="text-gray-800 dark:text-gray-200 font-medium break-all">
+        {cv.sha256}
+      </span>
+    </li>
   </ul>
 </div>
+
+<div class="">
+  <pre
+    id="signature"
+    class="p-6 rounded-lg overflow-x-auto text-sm font-mono whitespace-pre-wrap mb-0">{cv.pgp_signature}</pre>
+</div>
+
+<div class="mt-8">
+  <details class="group bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+    <summary class="flex items-center justify-between p-4 cursor-pointer">
+      <h3
+        class="flex items-center text-xl font-semibold text-gray-900 dark:text-gray-100 mb-0"
+      >
+        <Icon name="mdi:information-outline" class="mr-2" />
+
+        Verification Instructions
+      </h3>
+      <span class="relative ml-4 flex-shrink-0">
+        <svg
+          class="h-5 w-5 text-gray-500 dark:text-gray-400 transform group-open:rotate-180 transition-transform"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </span>
+    </summary>
+
+    <div class="p-6 pt-6 space-y-6">
+      <div>
+        <h4 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">
+          1. Verify SHA256 Hash
+        </h4>
+        <p class="text-gray-600 dark:text-gray-400 mb-2">
+          Compare the output of following command with the SHA256 hash shown
+          above.
+        </p>
+        <pre
+          class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 p-3 rounded text-sm font-mono">shasum -a 256 cv.pdf</pre>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">
+          2. Verify PGP Signature
+        </h4>
+
+        <ol
+          class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-2"
+        >
+          <li>
+            Download Alexander Daichendt's public pgp key from <a
+              href="https://daichendt.one/pub.key"
+              class="text-blue-500 dark:text-blue-400 hover:underline">here</a
+            >
+          </li>
+          <li>
+            Import the key into your keyring with
+            <pre
+              class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono sm:ml-6 mb-2">gpg --import ~/Downloads/pub.key</pre>
+
+            <li>
+              Download the above PGP signature by clicking <button
+                class="text-blue-500 dark:text-blue-400 hover:underline"
+                id="download-pgp"
+                >here
+              </button>
+            </li>
+            <li>Run the following command:</li>
+          </li>
+          <pre
+            class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono sm:ml-6">gpg --verify signature.asc cv.pdf</pre>
+          <p class="text-gray-600 dark:text-gray-400 mt-2">
+            If the verification is successful, GPG will indicate so.
+            <pre
+              class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-xs font-mono mt-2">gpg: Good signature from &quot;Alexander Daichendt &lt;alexander@daichendt.one&gt;&quot; [ultimate]</pre>
+          </p>
+        </ol>
+      </div>
+    </div>
+  </details>
+</div>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<script>
+  const pgpElements = document.querySelectorAll("#download-pgp");
+
+  pgpElements.forEach((pgpElement) => {
+    pgpElement.addEventListener("click", () => {
+      console.log("Downloading PGP signature");
+
+      const pgpSignature = document.getElementById("signature")?.innerText;
+      if (!pgpSignature) {
+        console.error("No PGP signature found");
+        return;
+      }
+      const blob = new Blob([pgpSignature], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "signature.asc";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  });
+</script>

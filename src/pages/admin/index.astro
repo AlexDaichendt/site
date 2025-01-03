@@ -1,10 +1,104 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AddCVVerification from "../../components/verification/AddCVVerification.astro";
+import { cvTable } from "../../db/schema";
+import { eq } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/d1";
+import { nanoid } from "nanoid";
+import AddHashAndSig from "../../components/verification/AddHashAndSig.astro";
+
+export const prerender = false;
+
+let uid = undefined;
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const company_name = data.get("company_name")?.toString();
+    const author = data.get("author")?.toString();
+    const purpose = data.get("purpose")?.toString();
+    const tooling = data.get("tooling")?.toString();
+
+    const _uid = data.get("uid")?.toString();
+    const sha256 = data.get("sha256")?.toString();
+    const pgp_signature = data.get("pgp_signature")?.toString();
+
+    const d1 = Astro.locals.runtime.env.DB;
+    const db = drizzle(d1, { schema: { cvTable } });
+
+    if (company_name && author && purpose && tooling) {
+      const created = new Date();
+
+      let uuid: string;
+      let existing;
+      let maxAttempts = 10;
+
+      do {
+        uuid = nanoid(8);
+
+        // check if uuid already exists
+        existing = await db
+          .select()
+          .from(cvTable)
+          .where(eq(cvTable.uuid, uuid))
+          .execute();
+
+        maxAttempts--;
+
+        // Safety check to prevent infinite loops
+        if (maxAttempts <= 0) {
+          return new Response(
+            JSON.stringify({
+              success: false,
+              error: "Failed to generate unique UUID after multiple attempts",
+            }),
+          );
+        }
+      } while (existing.length > 0);
+
+      try {
+        await db
+          .insert(cvTable)
+          .values({
+            company_name,
+            author,
+            purpose,
+            tooling,
+            created,
+            uuid,
+          })
+          .execute();
+      } catch (error) {
+        console.error(error);
+        return new Response(JSON.stringify({ success: false, error }));
+      }
+
+      uid = uuid;
+    } else if (_uid && sha256) {
+      // Update the record with the sha256sum
+      try {
+        console.log(pgp_signature);
+        await db
+          .update(cvTable)
+          .set({ sha256, pgp_signature })
+          .where(eq(cvTable.uuid, _uid))
+          .execute();
+      } catch (error) {
+        console.error(error);
+        return new Response(JSON.stringify({ success: false, error }));
+      }
+    } else {
+      console.error("Missing data");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
 ---
 
 <BaseLayout>
   <h1>Admin</h1>
 
   <AddCVVerification />
+  {uid && <AddHashAndSig uid={uid} />}
 </BaseLayout>

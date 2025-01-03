@@ -12,4 +12,6 @@ export const cvTable = sqliteTable("cv", {
   status: text("status", {
     enum: ["active", "revoked"],
   }).default("active"),
+  sha256: text("sha256"),
+  pgp_signature: text("pgp_signature"),
 });
