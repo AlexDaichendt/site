@@ -4,7 +4,7 @@ import HeaderLink from "./HeaderLink.astro";
 ---
 
 <header
-  class="mb-8 w-full lg:w-[768px] max-w-[calc(100%-2em)] lg:mx-auto overflow-scroll hidden lg:block"
+  class="mb-8 w-full lg:w-[768px] max-w-[calc(100%-2em)] lg:mx-auto hidden lg:block"
 >
   <nav>
     <div class="flex gap-4">
@@ -45,8 +45,10 @@ import HeaderLink from "./HeaderLink.astro";
 </header>
 
 <script>
-  const menu = document.getElementById("nav-menu");
-  const drawer = document.getElementById("drawer");
+  const menu = document.getElementById("nav-menu")!;
+  const drawer = document.getElementById("drawer")!;
+  const iconMenu = document.getElementById("iconMenu")!;
+  const iconClose = document.getElementById("iconClose")!;
 
   function toggle() {
     drawer.classList.toggle("translate-x-full");
@@ -65,17 +67,17 @@ import HeaderLink from "./HeaderLink.astro";
   });
 
   // click-away listener
-  document.addEventListener("click", (event) => {
-    console.log("click outside");
+  document.addEventListener("click", (event: MouseEvent) => {
+    const target = event.target as Node;
     if (
       !drawer.classList.contains("translate-x-full") &&
-      !drawer.contains(event.target) &&
-      !menu.contains(event.target)
+      !drawer.contains(target) &&
+      !menu.contains(target)
     ) {
       console.log(
         !drawer.classList.contains("translate-x-full"),
-        !drawer.contains(event.target),
-        !menu.contains(event.target),
+        !drawer.contains(target),
+        !menu.contains(target),
       );
       toggle();
     }
