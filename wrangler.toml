@@ -1,4 +1,4 @@
-node_compat = true
+compatibility_flags = ["nodejs_compat"]
 
 [[d1_databases]]
 binding = "DB"
