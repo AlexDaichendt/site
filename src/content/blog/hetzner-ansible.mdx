@@ -1,0 +1,114 @@
+---
+pubDate: "2025-06-21"
+title: "From Basement to Cloud: Migrating to Hetzner"
+description: "This post explains how to build a highly available infrastructure using Hetzner, Terraform, and Ansible—integrating services like Traefik for reverse proxying, Authentik for centralized authentication, and automated backups for seamless recovery."
+keywords:
+  - hetzner
+  - vps
+  - ansible
+  - terraform
+  - timetagger
+  - infrastructure
+---
+
+Now that I graduated and started freelancing, I require some software infrastructure with higher availability guarantees than what I have from my basement.
+Typically, an ISP selling consumer-grade internet access guarantees uptime between 95% and 99%, which is ridiculously low. I've had several outages in the past, so I do not want to rely on my consumer-grade internet to host my infrastructure.
+A popular cloud alternative is Hetzner, a medium-sized German cloud provider whose principal office is just a few kilometers from my former employer in Unterföhring (Munich).
+Although they do not offer any SLA, which surprised me, people online have had positive experiences overall.
+Aside from that, their pricing is very competitive: if something goes wrong with Hetzner, I can still migrate away to another provider -- hopefully with minimal effort, which is what this post is about.
+
+[Hetzner](https://www.hetzner.com/)
+
+What kind of services do I need?
+
+- Timetagger (time tracking)
+- VideoVault (video-on-demand platform I am currently developing)
+- Forgejo (self-hosted Git platform)
+- something for calendar, contacts, notes
+
+Utilities:
+
+- Authentik (single sign-on for all other services and potential client logins)
+- Traefik (reverse proxy)
+- Cloudflare-companion (DNS management)
+- ntfy (push notifications)
+
+## Terraforming
+
+Requesting a VM with code from Hetzner is trivial. They provide an awesome [Terraform provider](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs).
+One interesting detail is that I am using the Cloudflare provider to set up DNS records for the three zones I manage.
+This is useful because it allows me to CNAME onto these DNS records later.
+In my tfvars, I simply define:
+
+```terraform
+cloudflare_dns_records = [{
+  zone_id = "zone1"
+  name = "hetzner-fsn1-vm-001.shiverpeak.xyz"
+  type = "A"
+  proxied = false
+},
+{
+  zone_id = "zone2"
+  name = "hetzner-fsn1-vm-001.daichendt.one"
+  type = "A"
+  proxied = false
+}
+]
+```
+
+Another noteworthy aspect is that I use the null resource to call Ansible playbooks to configure the VM.
+There are two playbooks: the first prepares the machine, like setting up another user, adding SSH keys, etc. And the second one is the centerpiece of this post: it installs and configures the services I need.
+
+## Ansible Playbooking
+
+All my secrets are stored in a vault file in `ansible/vars/vault.yml`. The configuration is stored in `ansible/group_vars/all.yml`.
+A separate role installs and configures every service.
+
+### Traefiking
+
+Traefik is a popular reverse proxy in the cloud-native ecosystem. I like it because I can keep the DNS and proxy configurations close to the application via Docker labels.
+Although Caddy is also quite simple to use, arguably even simpler than Traefik, it only provides a centralized configuration file (maybe something has changed there now?).
+Traefik will automatically create a TLS certificate with ACME - Let's Encrypt for every service configured with the label `traefik.http.routers.<service>.tls.certresolver=`.
+
+The last step is to automatically configure DNS records for the services. Traefik does not have a native way to do this, but there is a handy project called [cloudflare-companion](https://github.com/tiredofit/docker-traefik-cloudflare-companion). After supplying it with an API key with access to all DNS zones, it will automatically create CNAME records on the previously defined A records.
+Getting the config right was a little tricky since I needed 3 different zones (and I did not bother to read the README, mhm). The full config is [here](https://git.shiverpeak.xyz/shiverpeak.xyz/infrastructure/src/branch/main/ansible/roles/cloudflare-companion/tasks/main.yml).
+Now, whenever a new service is added to the reverse proxy, the DNS records will be automatically created.
+
+### Applicationing
+
+All my applications are installed via Docker containers. Jeff Geerling provides a great [Ansible Role](https://github.com/geerlingguy/ansible-role-docker) for Docker, which I use to install Docker on the server.
+The installation of the remaining applications went uneventful. I store each application's configuration and data in `/mnt/user/appdata/<service>`, the same way as it is managed in Unraid.
+Locating every application's state inside one folder is a useful property for managing backups and restores; more on that later.
+
+### Authenticating
+
+Authentik is great! At work, I started to use Keycloak; however, I wanted to get my hands dirty with the newer, hipper kid on the block, Authentik.
+I've got a couple Google Titan Security keys for essentially no money (3 EUR per), so I can use them for passwordless login. Passwordless login allows me to simply click the key and be logged in without needing to enter a password or even a username. Pretty cool stuff! Following [this Video](https://www.youtube.com/watch?v=aEpT2fYGwLw) explains how to set up a passwordless login with Authentik.
+
+Another feature I required is invitations! I do not want anyone to sign up by themselves, but I would like to be able to send a signup link to selected individuals.
+Although Authentik provides a [guide](https://docs.goauthentik.io/docs/users-sources/user/invitations), it is not actually enough information to get it to work.
+The guide is missing a crucial step: Creating a new Invitation Stage and linking it to the imported flow. Only then will the yellow warning in the Invitation's Menu disappear, and an invitation link will be generated.
+
+VideoVault and Forgejo can be easily connected to Authentik using the OIDC provider. With just a few mouse clicks, copying over the credentials to the respective application's configuration is all that is needed.
+Timetagger was harder: it does not support OIDC and has its own authentication mechanism. Luckily, Authentik covers Proxy Authentication too, where it will act as a layer in front of the application, handling authentication and authorization and setting the respective headers, which will be interpreted by Timetagger to automatically sign in the user.
+Getting this to work was a bit tricky. In the end, I stuck with the embedded outpost. The full setup involved:
+
+- Creating a new Application with Proxy Provider (forward auth single app) in Authentik
+- Creating a Traefik Middleware for forward Auth ([link](https://git.shiverpeak.xyz/shiverpeak.xyz/infrastructure/src/branch/main/ansible/roles/traefik/templates/dynamic-conf.yml.j2#L15-L30))
+- Assigning the middleware to the application ([link](https://git.shiverpeak.xyz/shiverpeak.xyz/infrastructure/src/branch/main/ansible/roles/timetagger/tasks/main.yml#L100))
+- Making sure all the URLs are correct ;)
+
+Full ansible role for [Authentik](https://git.shiverpeak.xyz/shiverpeak.xyz/infrastructure/src/branch/main/ansible/roles/authentik).
+
+### Backuping
+
+The goal is to be able to destroy the infrastructure and recreate it from scratch, all automatically.
+I need to store the state of each application and restore it when the infrastructure is recreated.
+A simple backup mechanism, which utilizes Backblaze B2 buckets, creates a tar.gz archive of each application's state daily, uploads it to the bucket, and deletes old backups.
+When an application is reinstalled and detects its state folder is empty or missing, it will download the latest backup from the bucket and extract it to the state folder.
+Simple but useful.
+
+## Final remarks
+
+I will keep this post updated as I adjust and tweak the infrastructure.
+Thanks for reading thus far.
