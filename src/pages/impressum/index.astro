@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ImpressumContent from "../../components/ImpressumContent.astro";
+
+const address = {
+  street: "Wiesenweg 10a",
+  city: "Neufinsing",
+  postalCode: "85464",
+  country: "Germany",
+};
+---
+
+<BaseLayout
+  title="Impressum"
+  subtitle="Rechtliche Angaben gemäß § 5 TMG (Telemediengesetz)"
+>
+  <ImpressumContent
+    companyName="Daichendt IT (freiberuflich)"
+    ownerName="Alexander Daichendt"
+    contact={{
+      email: "inquiries@daichendt.one",
+      website: "https://daichendt.one",
+    }}
+    responsiblePerson={{
+      name: "Alexander Daichendt",
+      address,
+    }}
+    business={{
+      vatId: "beantragt",
+      registrationOffice: "Finanzamt Erding",
+    }}
+    address={address}
+  />
+</BaseLayout>

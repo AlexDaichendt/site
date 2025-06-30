@@ -1,18 +1,24 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import NavMenu from "../components/NavMenu.astro";
-import Footer from "../components/Footer.astro";
+import Footer from "../components/nav/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import DarkModeToggle from "../components/DarkModeToggle.astro";
 import "@fontsource/ubuntu";
 import "@fontsource/ubuntu/700.css";
+import TopHeader from "../components/nav/TopHeader.astro";
+import PageHeadline from "../components/PageHeadline.astro";
+import MobileNavDrawer from "../components/nav/MobileNavDrawer.astro";
 
 interface Props {
   title?: string;
   description?: string;
+  subtitle?: string;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  subtitle,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -20,7 +26,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
   <head>
     <BaseHead title={title} description={description} />
     <script is:inline>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      // Prevent FOUC for dark mode
       if (
         localStorage.getItem("color-theme") === "dark" ||
         (!("color-theme" in localStorage) &&
@@ -32,45 +38,25 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
       }
     </script>
   </head>
-  <body class="bg-white dark:bg-gray-900 text-black dark:text-white">
-    <!-- Mobile layout -->
-    <div class="lg:hidden flex flex-col min-h-screen p-2 sm:p-4">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="font-bold text-lg mb-0">
-          <a href="/">{SITE_TITLE}</a>
-        </h2>
-        <div class="flex items-center gap-4">
-          <DarkModeToggle />
-          <NavMenu />
-        </div>
-      </div>
 
-      <main class="flex-grow">
+  <body
+    class="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen flex flex-col"
+  >
+    <!-- Mobile Navigation Drawer (at body level for proper positioning) -->
+    <MobileNavDrawer />
+
+    <!-- Header -->
+    <TopHeader />
+
+    <!-- Main Content -->
+    <main class="flex-1">
+      <div class="max-w-2xl mx-auto px-4 py-8">
+        <PageHeadline title={title} subtitle={subtitle} />
         <slot />
-      </main>
-    </div>
-
-    <!-- Desktop layout -->
-    <div
-      class="hidden lg:grid grid-cols-[150px_1fr_60px] gap-4 min-h-screen p-4"
-    >
-      <div class="flex items-start">
-        <h2 class="font-bold text-xl mt-3">
-          <a href="/">{SITE_TITLE}</a>
-        </h2>
       </div>
+    </main>
 
-      <div>
-        <NavMenu />
-        <main class="w-full lg:w-[768px] max-w-[calc(100%-2em)] mx-auto p-2">
-          <slot />
-        </main>
-      </div>
-
-      <div class="flex justify-end">
-        <DarkModeToggle />
-      </div>
-    </div>
+    <!-- Footer -->
     <Footer />
   </body>
 </html>

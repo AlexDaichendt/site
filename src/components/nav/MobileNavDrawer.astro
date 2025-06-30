@@ -1,0 +1,130 @@
+---
+import { navItems } from "./DesktopNav.astro";
+import HeaderLink from "../HeaderLink.astro";
+import DarkModeToggle from "./DarkModeToggle.astro";
+---
+
+<!-- Mobile Navigation Drawer and Backdrop -->
+<div class="lg:hidden">
+  <!-- Backdrop -->
+  <div
+    id="mobile-backdrop"
+    class="fixed inset-0 bg-black/25 z-40 opacity-0 pointer-events-none transition-opacity duration-300"
+  >
+  </div>
+
+  <!-- Mobile Drawer -->
+  <nav
+    id="mobile-drawer"
+    class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50"
+  >
+    <!-- Close button in drawer -->
+    <div
+      class="flex justify-between p-4 border-b border-gray-200 dark:border-gray-700"
+    >
+      <DarkModeToggle />
+      <button
+        id="mobile-nav-close"
+        class="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        aria-label="Close navigation"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="p-6">
+      <div class="flex flex-col space-y-4">
+        {
+          navItems.map((item) => (
+            <HeaderLink href={item.href}>{item.label}</HeaderLink>
+          ))
+        }
+      </div>
+    </div>
+  </nav>
+</div>
+<script>
+  function initMobileNav() {
+    const toggle = document.getElementById("mobile-nav-toggle")!;
+    const closeBtn = document.getElementById("mobile-nav-close")!;
+    const drawer = document.getElementById("mobile-drawer")!;
+    const backdrop = document.getElementById("mobile-backdrop")!;
+
+    if (!toggle || !drawer || !backdrop) {
+      console.error("Missing elements, retrying in 100ms...");
+      setTimeout(initMobileNav, 100);
+      return;
+    }
+
+    let isOpen = false;
+
+    function openNav() {
+      console.log("Opening nav");
+      isOpen = true;
+      toggle.classList.add("nav-open");
+      backdrop.classList.remove("opacity-0", "pointer-events-none");
+      drawer.classList.remove("translate-x-full");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeNav() {
+      console.log("Closing nav");
+      isOpen = false;
+      toggle.classList.remove("nav-open");
+      backdrop.classList.add("opacity-0", "pointer-events-none");
+      drawer.classList.add("translate-x-full");
+      document.body.style.overflow = "";
+    }
+
+    // Toggle button click
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("Toggle clicked, isOpen:", isOpen);
+      isOpen ? closeNav() : openNav();
+    });
+
+    // Close button click
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("Close button clicked");
+        closeNav();
+      });
+    }
+
+    // Backdrop click
+    backdrop.addEventListener("click", () => {
+      console.log("Backdrop clicked");
+      closeNav();
+    });
+
+    // Navigation links
+    drawer.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        console.log("Nav link clicked");
+        closeNav();
+      });
+    });
+
+    // Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen) {
+        console.log("Escape pressed");
+        closeNav();
+      }
+    });
+
+    console.log("Mobile nav initialized successfully");
+  }
+
+  // Try multiple initialization strategies
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMobileNav);
+  } else {
+    initMobileNav();
+  }
+
+  // Also try with astro:page-load for Astro's client-side navigation
+  document.addEventListener("astro:page-load", initMobileNav);
+</script>

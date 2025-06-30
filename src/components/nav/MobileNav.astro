@@ -1,0 +1,40 @@
+---
+
+---
+
+<!-- Mobile Navigation Button Only -->
+<div class="lg:hidden">
+  <button
+    id="mobile-nav-toggle"
+    class="relative w-8 h-8 flex items-center justify-center flex-col z-50"
+    aria-label="Toggle navigation"
+    type="button"
+  >
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+</div>
+
+<style>
+  .hamburger-line {
+    @apply block w-5 h-0.5 bg-gray-600 dark:bg-gray-300 transition-all duration-300;
+    margin-bottom: 3px;
+  }
+
+  .hamburger-line:last-child {
+    margin-bottom: 0;
+  }
+
+  #mobile-nav-toggle.nav-open .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(2px, 2px);
+  }
+
+  #mobile-nav-toggle.nav-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-nav-toggle.nav-open .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(2px, -2px);
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+import HeaderLink from "../HeaderLink.astro";
+
+export const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+  { href: "/projects", label: "Projects" },
+  { href: "/publications", label: "Publications" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<!-- Desktop Navigation -->
+<nav class="hidden lg:block">
+  <div class="flex gap-4">
+    {
+      navItems.map((item) => (
+        <HeaderLink href={item.href}>{item.label}</HeaderLink>
+      ))
+    }
+  </div>
+</nav>

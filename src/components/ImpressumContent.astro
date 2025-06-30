@@ -1,0 +1,275 @@
+---
+interface Props {
+  companyName?: string;
+  ownerName?: string;
+  address?: {
+    street?: string;
+    city?: string;
+    postalCode?: string;
+    country?: string;
+  };
+  contact?: {
+    phone?: string;
+    email: string;
+    website: string;
+  };
+  business?: {
+    vatId?: string;
+    registrationOffice?: string;
+  };
+  responsiblePerson?: {
+    name: string;
+    address: {
+      street: string;
+      city: string;
+      postalCode: string;
+      country: string;
+    };
+  };
+}
+
+const {
+  companyName,
+  ownerName,
+  address,
+  contact,
+  business,
+  responsiblePerson,
+} = Astro.props;
+---
+
+<div class="max-w-4xl mx-auto space-y-12">
+  <section>
+    <h2
+      class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-3"
+    >
+      Diensteanbieter
+    </h2>
+    <div class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <dt class="font-semibold text-gray-900 dark:text-white">Firmenname:</dt>
+        <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+          {companyName}
+        </dd>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <dt class="font-semibold text-gray-900 dark:text-white">Inhaber:</dt>
+        <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+          {ownerName}
+        </dd>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <dt class="font-semibold text-gray-900 dark:text-white">Anschrift:</dt>
+        <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+          {address?.street}<br />
+          {address?.postalCode}
+          {address?.city}<br />
+          {address?.country}
+        </dd>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section>
+    <h2
+      class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-3"
+    >
+      Kontaktdaten
+    </h2>
+    <div class="space-y-4">
+      {
+        contact?.phone && (
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <dt class="font-semibold text-gray-900 dark:text-white">
+              Telefon:
+            </dt>
+            <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+              {contact?.phone}
+            </dd>
+          </div>
+        )
+      }
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <dt class="font-semibold text-gray-900 dark:text-white">E-Mail:</dt>
+        <dd class="md:col-span-2">
+          <a
+            href={`mailto:${contact?.email}`}
+            class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
+          >
+            {contact?.email}
+          </a>
+        </dd>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <dt class="font-semibold text-gray-900 dark:text-white">Website:</dt>
+        <dd class="md:col-span-2">
+          <a
+            href={contact?.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
+          >
+            {contact?.website}
+          </a>
+        </dd>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Registration -->
+  {
+    (business?.vatId || business?.registrationOffice) && (
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-3">
+          Gewerbliche Angaben
+        </h2>
+        <div class="space-y-4">
+          {business?.vatId && (
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <dt class="font-semibold text-gray-900 dark:text-white">
+                Umsatzsteuer-ID:
+              </dt>
+              <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+                {business.vatId}
+                <br />
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  gemäß § 27a Umsatzsteuergesetz
+                </span>
+              </dd>
+            </div>
+          )}
+          {business.registrationOffice && (
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <dt class="font-semibold text-gray-900 dark:text-white">
+                Gewerbeanmeldung:
+              </dt>
+              <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+                {business?.registrationOffice}
+              </dd>
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Responsible for Content -->
+  <section>
+    <h2
+      class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-3"
+    >
+      Verantwortlich für den Inhalt
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <dt class="font-semibold text-gray-900 dark:text-white">
+        Verantwortlich nach § 55 Abs. 2 RStV:
+      </dt>
+      <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+        {responsiblePerson?.name}<br />
+        {responsiblePerson?.address.street}<br />
+        {responsiblePerson?.address.postalCode}
+        {responsiblePerson?.address.city}<br />
+        {responsiblePerson?.address.country}
+      </dd>
+    </div>
+  </section>
+
+  <!-- EU Dispute Resolution -->
+  <section>
+    <h2
+      class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-3"
+    >
+      EU-Streitschlichtung
+    </h2>
+    <div class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <dt class="font-semibold text-gray-900 dark:text-white">
+          Online-Streitbeilegung:
+        </dt>
+        <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+          Die Europäische Kommission stellt eine Plattform zur
+          Online-Streitbeilegung (OS) bereit:<br />
+          <a
+            href="https://ec.europa.eu/consumers/odr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
+          >
+            https://ec.europa.eu/consumers/odr/
+          </a>
+        </dd>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <dt class="font-semibold text-gray-900 dark:text-white">
+          Verbraucherschlichtung:
+        </dt>
+        <dd class="md:col-span-2 text-gray-700 dark:text-gray-300">
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
+          vor einer Verbraucherschlichtungsstelle teilzunehmen.
+        </dd>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer Section -->
+  <section>
+    <h2
+      class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-3"
+    >
+      Haftungsausschluss
+    </h2>
+
+    <!-- Content Liability -->
+    <div class="mb-8">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        Haftung für Inhalte
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf
+        diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8
+        bis 10 TMG sind wir als Diensteanbieter jedoch nicht unter der
+        Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu
+        überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+        Tätigkeit hinweisen.
+      </p>
+    </div>
+
+    <!-- Links Liability -->
+    <div class="mb-8">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        Haftung für Links
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren
+        Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden
+        Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten
+        Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten
+        verantwortlich.
+      </p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mb-8">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        Urheberrecht
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
+        Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
+        Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
+        Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des
+        jeweiligen Autors bzw. Erstellers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer Note -->
+  <div class="border-t border-gray-200 dark:border-gray-600 pt-8 mt-12">
+    <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
+      Letzte Aktualisierung: <span class="font-medium">
+        {new Date().toLocaleDateString("de-DE")}
+      </span>
+    </p>
+  </div>
+</div>
