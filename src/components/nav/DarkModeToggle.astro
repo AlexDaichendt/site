@@ -3,146 +3,218 @@
 ---
 
 <script>
-    const themeToggleBtns = document.querySelectorAll(
-        ".theme-toggle",
-    ) as NodeListOf<HTMLInputElement>;
-    const sliders = document.querySelectorAll(".slider");
+  const themeToggleBtns = document.querySelectorAll(
+    ".theme-toggle",
+  ) as NodeListOf<HTMLInputElement>;
+  const sliders = document.querySelectorAll(".slider");
 
-    // Set initial state of toggle based on previous settings
-    if (
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-        themeToggleBtns.forEach((btn) => (btn.checked = true));
+  // Function to animate theme transition
+  function animateThemeTransition(
+    toggleButton: HTMLElement,
+    isDarkMode: boolean,
+  ) {
+    // Set animation to start from top right corner
+    const centerX = window.innerWidth - 20; // 20px from right edge
+    const centerY = 20; // 20px from top edge
+
+    // Calculate radius needed to cover entire screen from top right
+    const maxDistance = Math.sqrt(
+      Math.pow(centerX, 2) + Math.pow(window.innerHeight - centerY, 2),
+    );
+
+    // Create a temporary pseudo-element animation using CSS custom properties
+    const newThemeColor = isDarkMode ? "rgb(17, 24, 39)" : "rgb(255, 255, 255)";
+
+    // Apply the animation using CSS custom properties
+    document.documentElement.style.setProperty(
+      "--theme-transition-color",
+      newThemeColor,
+    );
+    document.documentElement.style.setProperty(
+      "--theme-transition-x",
+      `${centerX}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--theme-transition-y",
+      `${centerY}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--theme-transition-radius",
+      "0px",
+    );
+
+    // Add animation class but don't change theme colors yet
+    document.body.classList.add("theme-transitioning");
+
+    // Start animation
+    requestAnimationFrame(() => {
+      document.documentElement.style.setProperty(
+        "--theme-transition-radius",
+        `${maxDistance}px`,
+      );
+    });
+
+    // Switch theme colors halfway through animation when background has covered most content
+    setTimeout(() => {
+      if (isDarkMode) {
         document.documentElement.classList.add("dark");
-    } else {
-        themeToggleBtns.forEach((btn) => (btn.checked = false));
+        localStorage.setItem("color-theme", "dark");
+      } else {
         document.documentElement.classList.remove("dark");
-    }
-    // Remove no-transition class after initial load
-    window.addEventListener("load", () => {
-        setTimeout(() => {
-            sliders.forEach((slider) =>
-                slider.classList.remove("no-transition"),
-            );
-        }, 0);
+        localStorage.setItem("color-theme", "light");
+      }
+    }, 300); // Half of the 600ms animation
+
+    // Clean up after full animation completes
+    setTimeout(() => {
+      // Remove animation class
+      document.body.classList.remove("theme-transitioning");
+    }, 600);
+  }
+
+  // Set initial state of toggle based on previous settings
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    themeToggleBtns.forEach((btn) => (btn.checked = true));
+    document.documentElement.classList.add("dark");
+  } else {
+    themeToggleBtns.forEach((btn) => (btn.checked = false));
+    document.documentElement.classList.remove("dark");
+  }
+  // Remove no-transition class after initial load
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      sliders.forEach((slider) => slider.classList.remove("no-transition"));
+    }, 0);
+  });
+  themeToggleBtns.forEach((btn) => {
+    btn.addEventListener("change", function () {
+      // Prevent default theme switching - we'll handle it after animation
+      const currentIsDark = document.documentElement.classList.contains("dark");
+      const targetIsDark = !currentIsDark;
+
+      // Update toggle states immediately for visual feedback
+      themeToggleBtns.forEach(
+        (toggleBtn) => (toggleBtn.checked = targetIsDark),
+      );
+
+      // Find the closest switch element to get position
+      const switchElement = btn.closest(".switch") as HTMLElement;
+
+      // Animate the transition
+      animateThemeTransition(switchElement, targetIsDark);
     });
-    themeToggleBtns.forEach((btn) => {
-        btn.addEventListener("change", function () {
-            // If is set in localStorage
-            if (localStorage.getItem("color-theme")) {
-                if (localStorage.getItem("color-theme") === "light") {
-                    document.documentElement.classList.add("dark");
-                    localStorage.setItem("color-theme", "dark");
-                    themeToggleBtns.forEach((btn) => (btn.checked = true));
-                } else {
-                    document.documentElement.classList.remove("dark");
-                    localStorage.setItem("color-theme", "light");
-                    themeToggleBtns.forEach((btn) => (btn.checked = false));
-                }
-            } else {
-                if (document.documentElement.classList.contains("dark")) {
-                    document.documentElement.classList.remove("dark");
-                    localStorage.setItem("color-theme", "light");
-                    themeToggleBtns.forEach((btn) => (btn.checked = false));
-                } else {
-                    document.documentElement.classList.add("dark");
-                    localStorage.setItem("color-theme", "dark");
-                    themeToggleBtns.forEach((btn) => (btn.checked = true));
-                }
-            }
-        });
-    });
+  });
 </script>
 
 <label class="switch" for="theme-toggle">
-    <span class="sr-only">Toggle dark mode</span>
-    <input
-        id="theme-toggle"
-        class="theme-toggle"
-        type="checkbox"
-        role="switch"
-        aria-checked="false"
-    />
-    <span class="slider round no-transition" aria-hidden="true"></span>
+  <span class="sr-only">Toggle dark mode</span>
+  <input
+    id="theme-toggle"
+    class="theme-toggle"
+    type="checkbox"
+    role="switch"
+    aria-checked="false"
+  />
+  <span class="slider round no-transition" aria-hidden="true"></span>
 </label>
 
 <style>
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-    }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
 
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--tw-mytheme-200);
-        transition: 0.4s;
-    }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--tw-mytheme-200);
+    transition: 0.4s;
+  }
 
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: gold;
-        transition: 0.4s;
-        background: radial-gradient(
-            yellow,
-            orange 63%,
-            transparent calc(63% + 3px) 100%
-        );
-    }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: gold;
+    transition: 0.4s;
+    background: radial-gradient(
+      yellow,
+      orange 63%,
+      transparent calc(63% + 3px) 100%
+    );
+  }
 
-    input:checked + .slider {
-        background-color: var(--tw-mytheme-600);
-    }
+  input:checked + .slider {
+    background-color: var(--tw-mytheme-600);
+  }
 
-    input:checked + .slider:before {
-        background-color: white;
-        background: radial-gradient(
-            circle at 19% 19%,
-            transparent 41%,
-            var(--tw-mytheme-50) 43%
-        );
-    }
+  input:checked + .slider:before {
+    background-color: white;
+    background: radial-gradient(
+      circle at 19% 19%,
+      transparent 41%,
+      var(--tw-mytheme-50) 43%
+    );
+  }
 
-    input:focus + .slider {
-        box-shadow: 0 0 5px var(--tw-mytheme-700);
-    }
+  input:focus + .slider {
+    box-shadow: 0 0 5px var(--tw-mytheme-700);
+  }
 
-    input:checked + .slider:before {
-        transform: translateX(26px);
-    }
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
 
-    .slider.round {
-        border-radius: 34px;
-    }
+  .slider.round {
+    border-radius: 34px;
+  }
 
-    .slider.round:before {
-        border-radius: 50%;
-    }
+  .slider.round:before {
+    border-radius: 50%;
+  }
 
-    .no-transition {
-        transition: none !important;
-    }
+  .no-transition {
+    transition: none !important;
+  }
 
-    .no-transition:before {
-        transition: none !important;
-    }
+  .no-transition:before {
+    transition: none !important;
+  }
+
+  /* Theme transition animation */
+  body.theme-transitioning::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--theme-transition-color);
+    clip-path: circle(
+      var(--theme-transition-radius) at var(--theme-transition-x)
+        var(--theme-transition-y)
+    );
+    transition: clip-path 0.6s ease-in-out;
+    pointer-events: none;
+    z-index: -1;
+  }
 </style>

@@ -3,7 +3,8 @@ import { Picture as AstroPicture } from "astro:assets";
 ---
 
 <AstroPicture
-    src={Astro.props.src}
-    alt={Astro.props.alt}
-    formats={["avif", "webp"]}
+  src={Astro.props.src}
+  alt={Astro.props.alt}
+  formats={["avif", "webp"]}
+  {...Astro.props}
 />

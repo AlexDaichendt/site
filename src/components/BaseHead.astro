@@ -63,3 +63,24 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alexander Daichendt",
+    "url": "https://daichendt.one/",
+    "image": "https://daichendt.one/files/alexdaichendt.jpg",
+    "sameAs": ["https://github.com/alexdaichendt"],
+    "jobTitle": "IT Consultant",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Technical University Munich"
+    },
+    "description": "Short description about you and your expertise."
+  }
+</script>

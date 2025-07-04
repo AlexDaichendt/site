@@ -1,56 +1,137 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import me from "../assets/me.jpg";
+import { Image } from "astro:assets";
+import Picture from "../components/Picture.astro";
+import Link from "../components/Link.astro";
+
+const love = [
+  {
+    emoji: "🦀",
+    text: "Rust",
+  },
+  {
+    emoji: "🐧",
+    text: "Linux",
+  },
+  {
+    emoji: "📚",
+    text: "Books",
+  },
+  {
+    emoji: "🎨",
+    text: "Clean UI",
+  },
+  {
+    emoji: "🤝",
+    text: "OpenSource",
+  },
+];
+
+const skills = {
+  "Core Stack": ["Rust", "TypeScript", "Node.js", "SQL", "HTML", "CSS"],
+  Frontend: ["Next.js", "SvelteKit", "Astro", "Tailwind"],
+  DevOps: [
+    "Prometheus",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "GitHub Actions",
+    "GitLab Actions",
+  ],
+  "Tools & Methods": [
+    "Git",
+    "Agile",
+    "REST",
+    "GraphQL",
+    "Web Performance",
+    "Linux Sysadmin",
+    "Vitest",
+  ],
+  Languages: ["German (native)", "English"],
+};
 ---
 
 <BaseLayout
   title="Hi, my name is Alex!"
   subtitle="Software Engineer, Linux Enthusiast, Lightweight Systems Advocate"
+  className="w-full py-16 gap-16 flex flex-col"
 >
-  <p>
-    My journey in the tech world has been a dynamic one. I've immersed myself in
-    countless projects spanning various video games and, for the past few years,
-    have been maintaining a small homelab, which ignited a passion for
-    automating infrastructure. I am a privacy enthusiast and advocate for
-    non-invasive software. Occasionally, I channel my creativity into building
-    sleek web applications that prioritize efficiency and usability over visual
-    clutter, and adhere to web standards and best practices.
-  </p>
-  <p>
-    Currently, I am available for hire as a freelance Software Engineer,
-    advising clients in optimizing and creating Web Applications. With a strong
-    background in various programming languages and frameworks, I specialize in
-    developing scalable and efficient web solutions tailored to meet the unique
-    needs of each client.
-  </p>
-  <p>
-    Contact me <a href="/contact">here</a>!
-  </p>
+  <section
+    class="max-w-8xl mx-auto grid grid-cols-[auto,1fr,auto] items-start gap-8"
+  >
+    <div class="w-64 hidden md:block"></div>
 
-  <h2 class="mt-16">Skills</h2>
-  <div class="flex flex-wrap gap-4">
-    <div class="flex-[0_1_calc(50%-0.5rem)]">
-      <strong>Core stack:</strong><br />
-      Typescript/Node.js, Python, Rust, SQL, vanilla HTML/css
+    <div class="max-w-2xl px-4">
+      <p>
+        I am a privacy-first software engineer passionate about building web
+        applications that are efficient, user-friendly, and respectful of your
+        data.
+      </p>
+      <p>
+        I help clients design and develop sleek, standards-compliant web
+        solutions, always prioritizing usability over visual clutter. With
+        hands-on experience in Rust, Node.js and many more, I believe in using
+        the best tools and technologies for each project, ensuring scalable and
+        long-term maintainable results.
+      </p>
+      <p>
+        Ready to collaborate? <Link href="/contact">Get in touch here</Link>!
+      </p>
     </div>
 
-    <div class="flex-[0_1_calc(50%-0.5rem)]">
-      <strong>Frontend:</strong><br />
-      NextJS, SvelteKit, Astro, Tailwind
+    <div>
+      <Picture src={me} alt="me" class="w-64 h-auto" />
     </div>
+  </section>
 
-    <div class="flex-[0_1_calc(50%-0.5rem)]">
-      <strong>Ops:</strong><br />
-      Prometheus, Docker, Kubernetes, AWS, Github/lab actions
+  <section class="py-16 bg-mytheme-200/70 dark:bg-mytheme-700/50">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2
+        class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-slate-100"
+      >
+        What I Love
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          love.map((item) => (
+            <div class="flex items-center justify-center p-6 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-slate-200/50 dark:border-slate-700/50 hover:scale-105 cursor-default">
+              <span class="text-3xl mr-3">{item.emoji}</span>
+              <span class="text-lg font-medium text-slate-700 dark:text-slate-200">
+                {item.text}
+              </span>
+            </div>
+          ))
+        }
+      </div>
     </div>
+  </section>
 
-    <div class="flex-[0_1_calc(50%-0.5rem)]">
-      <strong>Misc:</strong><br />
-      git, agile, REST, GraphQL, web performance, Linux sysadmin, Vitest
+  <section class="py-16">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2
+        class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-slate-100"
+      >
+        What I Can Do
+      </h2>
+      <div class="space-y-8">
+        {
+          Object.entries(skills).map(([category, skillList]) => (
+            <div class="space-y-4">
+              <h3 class="text-xl font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 pb-2">
+                {category}
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {skillList.map((skill, index) => (
+                  <span class="inline-flex items-center px-3 py-1.5 text-sm font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 transition-colors cursor-default rounded-full">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
-
-    <div class="flex-[0_1_calc(50%-0.5rem)]">
-      <strong>Languages:</strong><br />
-      German (native), English
-    </div>
-  </div>
+  </section>
 </BaseLayout>
