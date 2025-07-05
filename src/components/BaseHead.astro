@@ -69,6 +69,7 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Alexander Daichendt",
+    "email": "jsonld@daichendt.one",
     "url": "https://daichendt.one/",
     "image": "https://daichendt.one/files/alexdaichendt.jpg",
     "sameAs": ["https://github.com/alexdaichendt"],
@@ -81,6 +82,33 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
       "@type": "CollegeOrUniversity",
       "name": "Technical University Munich"
     },
-    "description": "Short description about you and your expertise."
+    "nationality": {
+      "@type": "Country",
+      "name": "Germany"
+    },
+    "description": "Privacy-first software engineer passionate about building efficient, user-friendly, and data-respectful web applications. Experienced in Rust, Node.js, and more, delivering scalable, standards-compliant solutions with a focus on usability.",
+    "hasCredential": {
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Master's degree",
+      "name": "Master of Science in Informatics",
+      "description": "Graduate degree awarded for completing the Master of Science program in Informatics at the Technical University of Munich.",
+      "educationalLevel": "Master's",
+      "recognizedBy": {
+        "@type": "CollegeOrUniversity",
+        "name": "Technical University of Munich",
+        "url": "https://www.tum.de"
+      },
+      "awardedBy": {
+        "@type": "CollegeOrUniversity",
+        "name": "Technical University of Munich",
+        "url": "https://www.tum.de"
+      },
+      "subjectOf": {
+        "@type": "EducationalProgram",
+        "name": "Informatics",
+        "url": "https://www.in.tum.de/en/for-prospective-students/masters-programs/informatics-msc/"
+      }
+    }
   }
 </script>
