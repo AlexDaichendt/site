@@ -55,20 +55,26 @@ const skills = {
 <BaseLayout
   title="Hi, my name is Alex!"
   subtitle="Software Engineer, Linux Enthusiast, Lightweight Systems Advocate"
-  className="w-full py-16 gap-16 flex flex-col"
+  className="w-full py-16 flex flex-col"
 >
   <section
-    class="max-w-8xl mx-auto grid grid-cols-[auto,1fr,auto] items-start gap-8"
+    class="max-w-8xl mx-auto
+        grid grid-cols-1 lg:grid-cols-[auto,1fr,auto]
+        items-center md:items-start
+        gap-8
+        py-8 md:py-12"
   >
-    <div class="w-64 hidden md:block"></div>
+    <!-- Left Spacer: Already responsive, no changes needed -->
+    <div class="w-72 hidden md:block"></div>
 
-    <div class="max-w-2xl px-4">
-      <p>
+    <!-- Main Content: Add order to place it below the image on mobile -->
+    <div class="max-w-2xl px-4 order-2 md:order-none">
+      <p class="mb-4">
         I am a privacy-first software engineer passionate about building web
         applications that are efficient, user-friendly, and respectful of your
         data.
       </p>
-      <p>
+      <p class="mb-4">
         I help clients design and develop sleek, standards-compliant web
         solutions, always prioritizing usability over visual clutter. With
         hands-on experience in Rust, Node.js and many more, I believe in using
@@ -80,8 +86,9 @@ const skills = {
       </p>
     </div>
 
-    <div>
-      <Picture src={me} alt="me" class="w-64 h-auto" />
+    <!-- Picture: Place it first on mobile using order -->
+    <div class="px-4 order-1 md:order-none">
+      <Picture src={me} alt="me" class="w-48 md:w-64 h-auto mx-auto" />
     </div>
   </section>
 
