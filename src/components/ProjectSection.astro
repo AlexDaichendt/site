@@ -1,0 +1,40 @@
+---
+import { Picture } from "astro:assets";
+import { projects } from "../consts";
+---
+
+<section class="py-16 bg-mytheme-200/70 dark:bg-mytheme-700/50">
+  <h2
+    class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-slate-100"
+  >
+    Software I developed
+  </h2>
+
+  <div
+    class="max-w-7xl mx-auto
+      grid grid-cols-1 lg:grid-cols-[auto,1fr,auto]
+      items-center md:items-start
+      gap-8
+      py-8 md:py-12"
+  >
+    <div class="w-72 md:block">project details</div>
+
+    <div class="max-w-2xl px-4 order-2 md:order-none">
+      {
+        projects.map((project, index) => (
+          <div class="">
+            -- TODO: make it rotate through images, create new component for
+            this
+            <Picture
+              src={project.images[0].src}
+              alt={project.images[0].alt}
+              class="w-full"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="w-48 md-w-64 md:block hidden"></div>
+  </div>
+</section>

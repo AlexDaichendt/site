@@ -4,6 +4,8 @@ import me from "../assets/me.jpg";
 import { Image } from "astro:assets";
 import Picture from "../components/Picture.astro";
 import Link from "../components/Link.astro";
+import { projects } from "../consts";
+import ProjectSection from "../components/ProjectSection.astro";
 
 const love = [
   {
@@ -64,10 +66,8 @@ const skills = {
         gap-8
         py-8 md:py-12"
   >
-    <!-- Left Spacer: Already responsive, no changes needed -->
     <div class="w-72 hidden md:block"></div>
 
-    <!-- Main Content: Add order to place it below the image on mobile -->
     <div class="max-w-2xl px-4 order-2 md:order-none">
       <p class="mb-4">
         I am a privacy-first software engineer passionate about building web
@@ -86,7 +86,6 @@ const skills = {
       </p>
     </div>
 
-    <!-- Picture: Place it first on mobile using order -->
     <div class="px-4 order-1 md:order-none">
       <Picture src={me} alt="me" class="w-48 md:w-64 h-auto mx-auto" />
     </div>
@@ -141,4 +140,6 @@ const skills = {
       </div>
     </div>
   </section>
+
+  <ProjectSection />
 </BaseLayout>
