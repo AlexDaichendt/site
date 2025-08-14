@@ -1,11 +1,10 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
 import me from "../assets/me.jpg";
-import { Image } from "astro:assets";
-import Picture from "../components/Picture.astro";
 import Link from "../components/Link.astro";
-import { projects } from "../consts";
+import Picture from "../components/Picture.astro";
 import ProjectSection from "../components/ProjectSection.astro";
+import ThreeColumnSection from "../components/ThreeColumnSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const love = [
   {
@@ -59,16 +58,10 @@ const skills = {
   subtitle="Software Engineer, Linux Enthusiast, Lightweight Systems Advocate"
   className="w-full py-16 flex flex-col"
 >
-  <section
-    class="max-w-8xl mx-auto
-        grid grid-cols-1 lg:grid-cols-[auto,1fr,auto]
-        items-center md:items-start
-        gap-8
-        py-8 md:py-12"
-  >
-    <div class="w-72 hidden md:block"></div>
+  <ThreeColumnSection reverseOnMobile={true}>
+    <div slot="left"></div>
 
-    <div class="max-w-2xl px-4 order-2 md:order-none">
+    <div slot="center" class="max-w-2xl">
       <p class="mb-4">
         I am a privacy-first software engineer passionate about building web
         applications that are efficient, user-friendly, and respectful of your
@@ -86,13 +79,18 @@ const skills = {
       </p>
     </div>
 
-    <div class="px-4 order-1 md:order-none">
-      <Picture src={me} alt="me" class="w-48 md:w-64 h-auto mx-auto" />
+    <div slot="right" class="flex justify-center md:justify-start items-start">
+      <Picture
+        src={me}
+        alt="My profile picture"
+        class="w-48 md:w-64 h-auto rounded-lg"
+      />
     </div>
-  </section>
+  </ThreeColumnSection>
 
-  <section class="py-16 bg-mytheme-200/70 dark:bg-mytheme-700/50">
-    <div class="max-w-2xl mx-auto px-4">
+  <ThreeColumnSection bgClass="bg-mytheme-200/70 dark:bg-mytheme-700/50">
+    <div slot="left"></div>
+    <div slot="center" class="max-w-2xl">
       <h2
         class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-slate-100"
       >
@@ -111,10 +109,12 @@ const skills = {
         }
       </div>
     </div>
-  </section>
+    <div slot="right"></div>
+  </ThreeColumnSection>
 
-  <section class="py-16">
-    <div class="max-w-2xl mx-auto px-4">
+  <ThreeColumnSection>
+    <div slot="left"></div>
+    <div slot="center">
       <h2
         class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-slate-100"
       >
@@ -139,7 +139,8 @@ const skills = {
         }
       </div>
     </div>
-  </section>
+    <div slot="right"></div>
+  </ThreeColumnSection>
 
   <ProjectSection />
 </BaseLayout>

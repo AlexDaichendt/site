@@ -1,0 +1,49 @@
+---
+export interface Props {
+  bgClass?: string;
+  containerClass?: string;
+  maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "4xl" | "6xl" | "8xl";
+  py?: string;
+  reverseOnMobile?: boolean;
+}
+
+const {
+  bgClass = "",
+  containerClass = "",
+  maxWidth = "8xl",
+  py = "py-8 md:py-12",
+  reverseOnMobile = false,
+} = Astro.props;
+
+const maxWidthClasses = {
+  sm: "max-w-sm",
+  md: "max-w-md",
+  lg: "max-w-lg",
+  xl: "max-w-xl",
+  "2xl": "max-w-2xl",
+  "4xl": "max-w-4xl",
+  "6xl": "max-w-6xl",
+  "8xl": "max-w-8xl",
+};
+---
+
+<section class={`${bgClass} ${py}`}>
+  <div
+    class={`${maxWidthClasses[maxWidth]} mx-auto grid grid-cols-1 lg:grid-cols-[1fr_640px_1fr] items-center md:items-start gap-8 px-4 ${containerClass}`}
+  >
+    <!-- Left Column (Hidden on mobile, visible on desktop) -->
+    <div class={`${reverseOnMobile ? "order-3 lg:order-1" : "order-1"}`}>
+      <slot name="left" />
+    </div>
+
+    <!-- Center Column (Main content) -->
+    <div class={`order-1 lg:order-2`}>
+      <slot name="center" />
+    </div>
+
+    <!-- Right Column -->
+    <div class={`${reverseOnMobile ? "order-1 lg:order-3" : "order-3"}`}>
+      <slot name="right" />
+    </div>
+  </div>
+</section>

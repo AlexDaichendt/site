@@ -45,29 +45,30 @@ export const projects: Project[] = [
   // complexity: 4,
   // company: "TV1 GmbH",
   // },
-  // {
-  //   title: "VIDEO.TAXI Meetings",
-  //   live_url: "https://meetings.video.taxi/",
-  //   description:
-  //     "Records, transcribes, and translates meetings (Webex, Teams, Zoom). Interfaces with the GraphQL API of VIDEO.TAXI. Architecure, development, and deployment all done by me. Greenfield project.",
-  //   tech_stack: [
-  //     "Svelte",
-  //     "TypeScript",
-  //     "Tailwind CSS",
-  //     "Express",
-  //     "GraphQL",
-  //     "PostgreSQL",
-  //     "Docker",
-  //     "OpenAPI",
-  //   ],
-  //   duration: "2024 - Present",
-  //   company: "TV1 GmbH",
-  //   deliverables: [
-  //     "Live Updating Dashboard",
-  //     "Meeting Bots for Teams, Zoom and Webex",
-  //     "Keycloak integration",
-  //   ],
-  // },
+  {
+    title: "VIDEO.TAXI Meetings",
+    live_url: "https://meetings.video.taxi/",
+    description:
+      "Records, transcribes, and translates meetings (Webex, Teams, Zoom). Interfaces with the GraphQL API of VIDEO.TAXI. Architecure, development, and deployment all done by me. Greenfield project.",
+    tech_stack: [
+      "Svelte",
+      "TypeScript",
+      "Tailwind CSS",
+      "Express",
+      "GraphQL",
+      "PostgreSQL",
+      "Docker",
+      "OpenAPI",
+    ],
+    duration: "2024 - Present",
+    company: "TV1 GmbH",
+    deliverables: [
+      "Live Updating Dashboard",
+      "Meeting Bots for Teams, Zoom and Webex",
+      "Keycloak integration",
+    ],
+    images: [],
+  },
   // {
   //   title: "Netbox PDU Plugin",
   //   repo_url: "https://github.com/AlexDaichendt/axians-netbox-plugin-pdu",
@@ -107,7 +108,7 @@ export const projects: Project[] = [
   //   company: "TV1 GmbH",
   // },
   {
-    title: "Discretize -- Gear Optimizer",
+    title: "Discretize: Gear Optimizer",
     live_url: "https://optimizer.discretize.eu/",
     repo_url: "https://github.com/discretize/discretize-gear-optimizer",
     description:
