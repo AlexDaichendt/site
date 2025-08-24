@@ -100,8 +100,7 @@ blockquote {
   font-size: 1.333em;
 }
 hr {
-  border: none;
-  border-top: 1px solid rgb(var(--gray-light));
+  @apply mb-8 border-t-2 border-t-mytheme-500 dark:border-t-mytheme-300 rounded-sm;
 }
 ul:not(ul ul, ol ul),
 ol:not(ul ol, ol ol) {
