@@ -5,6 +5,11 @@ description: A guide on what is needed to get Linux running on the Huawei MateBo
 heroImage: ./images/matebook.jpg
 ---
 
+**UPDATE 24/08/2024**:
+Having used this machine for a year soon, I can not recommend it. None of my issues have been resolved, some even gotten worse. The laptop's battery life is poor, often barely reaching 3 hours while having a text editor open. I pretty much depend on plugging the laptop into the wall, all the time to not degrade the battery more than necessary. The webcam, fingerprint, S3 and Xe drivers are still all pretty much broken. Bluetooth also behaves a bit strangely where it sometimes requires multiple attempts to connect.
+
+---
+
 I recently bought a Huawei MateBook X Pro 2024. It is a beautiful laptop with a 3:2 aspect ratio display and a touchscreen. The laptop comes with Windows 11 preinstalled. However, I wanted to run Linux on it. Here is a guide on what is needed to get Linux running on the Huawei MateBook X Pro 2024.
 
 Overall, the experience was okay, but not something I would recommend to an average user. There are a fair bit of quirks that need to be ironed out. Especially distros running older kernels will have a hard time. I am running CachyOS with the latest 6.13-rc1 kernel, more on that later.
@@ -59,10 +64,10 @@ The webcam is an ipu6-based camera. Support has been trickling in over the years
 
 The fingerprint sensor is not supported at the moment. It does not even show up anywhere. One of those ingenious Goodix sensors that are not supported by the fprintd library.
 
-
 ---
 
 Sources:
 
 [^1]: https://www.kernelconfig.io/search?q=CONFIG_BOOTPARAM_HOTPLUG_CPU0&kernelversion=6.12.4&arch=x86
+
 [^2]: https://github.com/intel/intel-lpmd

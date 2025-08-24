@@ -1,0 +1,233 @@
+---
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  images: {
+    src: ImageMetadata;
+    alt: string;
+  }[];
+}
+
+const { images } = Astro.props;
+
+const carouselId = `carousel-${Math.random().toString(36).slice(2, 11)}`;
+const helpId = `${carouselId}-help`;
+---
+
+<section
+  id={carouselId}
+  class="relative overflow-hidden rounded-lg"
+  role="region"
+  aria-roledescription="carousel"
+  aria-label="Image carousel"
+  data-carousel-id={carouselId}
+  tabindex="0"
+  aria-describedby={helpId}
+>
+  <!-- Slides -->
+  <div class="relative h-0 pb-[56.25%]">
+    {
+      images.map((image, i) => (
+        <img
+          src={image.src.src}
+          alt={image.alt}
+          class={`
+            absolute inset-0 w-full h-full object-cover object-top
+            transition-opacity duration-500 ease-in-out
+            ${i === 0 ? "opacity-100" : "opacity-0"}
+            carousel-slide
+          `}
+          data-index={i}
+        />
+      ))
+    }
+  </div>
+
+  <!-- Navigation Buttons -->
+  <button
+    type="button"
+    class="absolute left-4 top-1/2 -translate-y-1/2
+      flex h-10 w-10 items-center justify-center
+      rounded-full bg-white/70 backdrop-blur-sm
+      text-gray-800 hover:bg-white focus:outline-none
+      focus-visible:ring-2 focus-visible:ring-indigo-600
+      transition-colors"
+    aria-label="Previous slide"
+    data-dir="prev"
+  >
+    <Icon name="mdi:chevron-left" class="h-5 w-5" />
+    <span class="sr-only">Previous</span>
+  </button>
+
+  <button
+    type="button"
+    class="absolute right-4 top-1/2 -translate-y-1/2
+      flex h-10 w-10 items-center justify-center
+      rounded-full bg-white/70 backdrop-blur-sm
+      text-gray-800 hover:bg-white focus:outline-none
+      focus-visible:ring-2 focus-visible:ring-indigo-600
+      transition-colors"
+    aria-label="Next slide"
+    data-dir="next"
+  >
+    <Icon name="mdi:chevron-right" class="h-5 w-5" />
+    <span class="sr-only">Next</span>
+  </button>
+
+  <!-- Theater toggle button (bottom-right) -->
+  <button
+    type="button"
+    class="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center
+           rounded-full bg-white/30 backdrop-blur-sm text-gray-800
+           hover:bg-white focus:outline-none focus-visible:ring-2
+           focus-visible:ring-indigo-600 transition-colors"
+    aria-label="Enter wide mode"
+    aria-pressed="false"
+    data-theater-toggle
+  >
+    <Icon name="mdi:arrow-expand-horizontal" class="h-5 w-5" />
+  </button>
+
+  <!-- Live region for screen‑reader announcements -->
+  <div
+    class="sr-only"
+    aria-live="polite"
+    aria-atomic="true"
+    data-live-announcer
+  >
+  </div>
+
+  <!-- Hidden helper text for screen readers -->
+  <p id={helpId} class="sr-only">
+    Carousel focused. Use Left and Right Arrow keys to change slides. Press T to
+    toggle wide mode. Press Escape to exit wide mode.
+  </p>
+</section>
+
+<script define:vars={{ carouselId }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll(".carousel-slide");
+    const prevBtn = carousel.querySelector('[data-dir="prev"]');
+    const nextBtn = carousel.querySelector('[data-dir="next"]');
+    const liveAnnouncer = carousel.querySelector("[data-live-announcer]");
+    const theaterBtn = carousel.querySelector("[data-theater-toggle]");
+
+    let current = 0;
+    const total = slides.length;
+    let autoRotateTimer;
+    let theater = false;
+
+    const updateTheaterButton = () => {
+      if (!theaterBtn) return;
+      theaterBtn.setAttribute("aria-pressed", theater ? "true" : "false");
+      theaterBtn.setAttribute(
+        "aria-label",
+        theater ? "Exit wide mode" : "Enter wide mode",
+      );
+      const icon = theaterBtn.querySelector("svg");
+      if (icon) {
+        icon.setAttribute("data-icon-state", theater ? "collapse" : "expand");
+      }
+    };
+
+    const applyTheaterState = () => {
+      const section = carousel.closest("[data-threecol]");
+      if (!section) return;
+      section.classList.toggle("theater-mode", theater);
+      updateTheaterButton();
+    };
+
+    const toggleTheater = () => {
+      theater = !theater;
+      applyTheaterState();
+    };
+
+    const exitTheater = () => {
+      if (!theater) return;
+      theater = false;
+      applyTheaterState();
+    };
+
+    theaterBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleTheater();
+    });
+
+    const showSlide = (index) => {
+      slides[current].classList.remove("opacity-100");
+      slides[current].classList.add("opacity-0");
+
+      current = index;
+
+      slides[current].classList.remove("opacity-0");
+      slides[current].classList.add("opacity-100");
+
+      if (liveAnnouncer) {
+        liveAnnouncer.textContent = `Slide ${current + 1} of ${total}`;
+      }
+    };
+
+    const goPrev = () => {
+      const prev = (current - 1 + total) % total;
+      showSlide(prev);
+    };
+    const goNext = () => {
+      const next = (current + 1) % total;
+      showSlide(next);
+    };
+
+    prevBtn?.addEventListener("click", goPrev);
+    nextBtn?.addEventListener("click", goNext);
+
+    // Key handling (now works when the section itself is focused)
+    carousel.addEventListener("keydown", (e) => {
+      const target = e.target;
+      const isTyping =
+        target instanceof HTMLElement &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
+      if (isTyping) return;
+
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goPrev();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goNext();
+      } else if (
+        (e.key === "t" || e.key === "T") &&
+        !e.altKey &&
+        !e.metaKey &&
+        !e.ctrlKey
+      ) {
+        e.preventDefault();
+        toggleTheater();
+      } else if (e.key === "Escape") {
+        exitTheater();
+      }
+    });
+
+    const startAutoRotate = () => {
+      stopAutoRotate();
+      autoRotateTimer = window.setInterval(goNext, 5000);
+    };
+    const stopAutoRotate = () => {
+      if (autoRotateTimer) {
+        clearInterval(autoRotateTimer);
+        autoRotateTimer = undefined;
+      }
+    };
+
+    startAutoRotate();
+
+    carousel.addEventListener("mouseenter", stopAutoRotate);
+    carousel.addEventListener("mouseleave", startAutoRotate);
+    carousel.addEventListener("focusin", stopAutoRotate);
+    carousel.addEventListener("focusout", startAutoRotate);
+  });
+</script>
