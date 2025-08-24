@@ -27,23 +27,113 @@ const maxWidthClasses = {
 };
 ---
 
-<section class={`${bgClass} ${py}`}>
+<section class={`${bgClass} ${py}`} data-threecol>
   <div
-    class={`${maxWidthClasses[maxWidth]} mx-auto grid grid-cols-1 lg:grid-cols-[1fr_640px_1fr] items-center md:items-start gap-8 px-4 ${containerClass}`}
+    class={`threecol-row ${maxWidthClasses[maxWidth]} mx-auto flex flex-col lg:flex-row gap-8 px-4 ${containerClass}`}
   >
-    <!-- Left Column (Hidden on mobile, visible on desktop) -->
-    <div class={`${reverseOnMobile ? "order-3 lg:order-1" : "order-1"}`}>
+    <!-- Left Column -->
+    <div
+      class={`${reverseOnMobile ? "order-3 lg:order-1" : "order-1"} flex-col`}
+      data-left
+    >
       <slot name="left" />
     </div>
 
-    <!-- Center Column (Main content) -->
-    <div class={`order-1 lg:order-2`}>
+    <!-- Center Column -->
+    <div class={`order-1 lg:order-2 flex-col`} data-center>
       <slot name="center" />
     </div>
 
     <!-- Right Column -->
-    <div class={`${reverseOnMobile ? "order-1 lg:order-3" : "order-3"}`}>
+    <div
+      class={`${reverseOnMobile ? "order-1 lg:order-3" : "order-3"} flex-col`}
+      data-right
+    >
       <slot name="right" />
     </div>
   </div>
 </section>
+
+<style>
+  /* Base layout variables */
+  [data-threecol] .threecol-row {
+    --center-initial: 640px; /* initial center width at lg+ */
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Make sure columns can shrink properly */
+  [data-threecol] [data-left],
+  [data-threecol] [data-center],
+  [data-threecol] [data-right] {
+    min-width: 0;
+  }
+
+  /* Large-screen flex behavior (mobile stays stacked naturally) */
+  @media (min-width: 1024px) {
+    [data-threecol] .threecol-row {
+      align-items: stretch;
+    }
+
+    [data-threecol] [data-left] {
+      max-width: 33.33%;
+      flex: 1 1 33.33%;
+      /* optional: transition flex changes if you expect subtle movement */
+      transition: flex 0.55s var(--transition-ease);
+    }
+
+    [data-threecol] [data-center] {
+      flex: 0 0 var(--center-initial);
+      transition:
+        flex-basis 0.55s var(--transition-ease),
+        flex-grow 0.55s var(--transition-ease),
+        max-width 0.55s var(--transition-ease);
+      display: flex;
+      flex-direction: column;
+    }
+
+    [data-threecol] [data-right] {
+      flex: 1 1 0;
+      transition:
+        flex-basis 0.55s var(--transition-ease),
+        flex-grow 0.55s var(--transition-ease),
+        opacity 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* THEATER MODE (expanded center) */
+    [data-threecol].theater-mode [data-center] {
+      flex: 1 1 0; /* allow it to fill remaining space */
+      max-width: 100%;
+    }
+
+    [data-threecol].theater-mode [data-right] {
+      flex: 0 0 0;
+      flex-grow: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Optional: subtle emphasis on the center content while expanding */
+    [data-threecol] .threecol-row :is([data-center]) .carousel-theater-target,
+    [data-threecol] .threecol-row :is([data-center]) > * {
+      transition:
+        box-shadow 0.55s var(--transition-ease),
+        transform 0.55s var(--transition-ease);
+    }
+    [data-threecol].theater-mode [data-center] .carousel-theater-target,
+    [data-threecol].theater-mode [data-center] > * {
+      /* Example visual polish (comment out if not desired) */
+      /* box-shadow: 0 6px 24px -4px rgba(0,0,0,.25); */
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-threecol] [data-left],
+    [data-threecol] [data-center],
+    [data-threecol] [data-right] {
+      transition: none !important;
+    }
+  }
+</style>
