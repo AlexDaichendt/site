@@ -1,8 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
-import { projects } from "../consts";
+import { type Project } from "../consts";
 import Carousel from "./Carousel.astro";
 import ThreeColumnSection from "./ThreeColumnSection.astro";
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
 ---
 
 <section class="py-16 bg-mytheme-200/70 dark:bg-mytheme-700/50">

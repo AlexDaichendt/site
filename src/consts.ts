@@ -3,6 +3,10 @@ import optimizer1 from "./assets/projects/optimizer/Discretize-Gear-Optimizer-08
 import optimizer2 from "./assets/projects/optimizer/Discretize-Gear-Optimizer-08-05-2025_11_53_AM.png";
 import optimizer3 from "./assets/projects/optimizer/Discretize-Gear-Optimizer-08-05-2025_11_54_AM.png";
 import optimizer4 from "./assets/projects/optimizer/Discretize-Gear-Optimizer-08-05-2025_11_55_AM.png";
+import videovault_dashboard from "./assets/projects/videovault/dashboard.png";
+import videovault_edit from "./assets/projects/videovault/edit.png";
+import videovault_frontpage from "./assets/projects/videovault/frontpage.png";
+import videovault_player from "./assets/projects/videovault/player.png";
 
 export const SITE_TITLE = "Alex Daichendt";
 export const SITE_DESCRIPTION =
@@ -10,6 +14,7 @@ export const SITE_DESCRIPTION =
 
 export interface Project {
   title: string;
+  featured: boolean;
   live_url?: string;
   repo_url?: string;
   description: string;
@@ -24,91 +29,59 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  // {
-  //   title: "daichendt.one (this site)",
-  //   live_url: "https://www.youtube.com/watch?v=XfELJU1mRMg",
-  //   repo_url: "https://github.com/AlexDaichendt/site",
-  //   description: "Personal website and blog.",
-  //   tech_stack: ["Astro", "Tailwind CSS"],
-  //   duration: "2022 - Present",
-  //   deliverables: [
-  //     "Cloudflare Workers & KV Integration",
-  //     "Lightweight & easy to maintain",
-  //   ],
-  // },
-  // {
-  //   title: "Radio Player",
-  //   live_url: "https://video.taxi/en/functions/simultaneous-interpreting/",
-  //  description: "A radio player for the VIDEO.TAXI website. Allows users to listen to radio stations with dubbed audio with the voice of the original speaker.",
-  //  tech_stack: ["React", "TypeScript", "Vite", "Go", "Docker"],
-  // duration: "2024 - Present",
-  // complexity: 4,
-  // company: "TV1 GmbH",
-  // },
   {
-    title: "VIDEO.TAXI Meetings",
-    live_url: "https://meetings.video.taxi/",
+    title: "VideoVault",
+    featured: true,
+    live_url: "https://videovault.shiverpeak.xyz/",
+    repo_url: "https://github.com/AlexDaichendt/VideoVault",
     description:
-      "Records, transcribes, and translates meetings (Webex, Teams, Zoom). Interfaces with the GraphQL API of VIDEO.TAXI. Architecure, development, and deployment all done by me. Greenfield project.",
+      "A private, self-hosted video vault for your personal use. Supports multiple video transcodes, search, and is blazingly fast thanks to a backend written in Rust and a zero-js (vanilla) frontend.",
     tech_stack: [
-      "Svelte",
-      "TypeScript",
+      "Rust",
+      "Axum",
+      "sqlx",
+      "Tera Templates",
       "Tailwind CSS",
-      "Express",
-      "GraphQL",
-      "PostgreSQL",
-      "Docker",
-      "OpenAPI",
+      "Node.js",
+      "pnpm",
+      "cargo",
+      "ffmpeg",
     ],
-    duration: "2024 - Present",
-    company: "TV1 GmbH",
+    duration: "2025 - Present",
     deliverables: [
-      "Live Updating Dashboard",
-      "Meeting Bots for Teams, Zoom and Webex",
-      "Keycloak integration",
+      "HLS Streaming of videos",
+      "Video Scrubbing",
+      "Aspect Ratio Awareness",
+      "Multiple Video Transcodes",
+      "External Transcoding Workers",
+      "Responsive, lightweight design",
+      "User Accounts via local, LDAP or OIDC",
+      "Sharing with timestamps",
+      "Quick and simple deployment (Docker)",
     ],
-    images: [],
+    images: [
+      {
+        alt: "Frontpage",
+        src: videovault_frontpage,
+      },
+      {
+        alt: "VideoVault Dashboard",
+        src: videovault_dashboard,
+      },
+      {
+        alt: "VideoVault Video Player",
+        src: videovault_player,
+      },
+      {
+        alt: "VideoVault Edit",
+        src: videovault_edit,
+      },
+    ],
   },
-  // {
-  //   title: "Netbox PDU Plugin",
-  //   repo_url: "https://github.com/AlexDaichendt/axians-netbox-plugin-pdu",
-  //   description:
-  //     "Netbox plugin to read out power usage of PDUs. Forked and maintained from the original plugin by Axians. Used in production by multiple companies.",
-  //   tech_stack: ["Python", "Django", "Netbox"],
-  //   duration: "2023 - Present",
-  //   complexity: 4,
-  //   company: "TV1 GmbH",
-  // },
-  // {
-  //   title: "Latency IRQ Analyzer",
-  //   repo_url: "https://github.com/AlexDaichendt/latency-irq-analyzer",
-  //   description:
-  //     "Quick uni project for overlaying latency files with IRQ data.",
-  //   tech_stack: ["NodeJS", "Highcharts"],
-  //   duration: "2024",
-  //   complexity: 2,
-  // },
-  // {
-  //   title: "Netbox Agent",
-  //   description:
-  //     "Reads out lshw, dmidecode and other data of a server and creates Netbox devices. Forked from the original project.",
-  //   tech_stack: ["Python"],
-  //   duration: "2023 - Present",
-  //   complexity: 2,
-  //   company: "TV1 GmbH",
-  // },
-  // {
-  //   title: "magewell-exporter",
-  //   repo_url: "https://github.com/TV1-EU/magewell-exporter",
-  //   description:
-  //     "Prometheus exporter for Magewell AiO encoders. Allows monitoring of the capture card status and video signal. Used in production by TV1.",
-  //   tech_stack: ["NodeJs", "Typescript"],
-  //   duration: "2023",
-  //   complexity: 4,
-  //   company: "TV1 GmbH",
-  // },
+
   {
     title: "Discretize: Gear Optimizer",
+    featured: true,
     live_url: "https://optimizer.discretize.eu/",
     repo_url: "https://github.com/discretize/discretize-gear-optimizer",
     description:

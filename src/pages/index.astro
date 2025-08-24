@@ -4,8 +4,8 @@ import Link from "../components/Link.astro";
 import Picture from "../components/Picture.astro";
 import ProjectSection from "../components/ProjectSection.astro";
 import ThreeColumnSection from "../components/ThreeColumnSection.astro";
+import { projects } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 const love = [
   {
     emoji: "🦀",
@@ -142,5 +142,5 @@ const skills = {
     <div slot="right"></div>
   </ThreeColumnSection>
 
-  <ProjectSection />
+  <ProjectSection projects={projects.filter((project) => project.featured)} />
 </BaseLayout>

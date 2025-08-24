@@ -1,32 +1,19 @@
 ---
-// ──────────────────────────────────────────────────────────────
-//  Types & Props
-// ──────────────────────────────────────────────────────────────
 import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
-  /** Array of images for the carousel */
   images: {
-    /** Astro image metadata – we only need the `src` field */
     src: ImageMetadata;
-    /** Alt text for the image (required for accessibility) */
     alt: string;
   }[];
 }
 
 const { images } = Astro.props;
 
-// ──────────────────────────────────────────────────────────────
-//  Unique ID – needed so multiple carousels on the same page don’t
-//  clash when we query the DOM from the <script> block.
-// ──────────────────────────────────────────────────────────────
 const carouselId = `carousel-${Math.random().toString(36).slice(2, 11)}`;
 ---
 
-<!-- ──────────────────────────────────────────────────────────────
-     Carousel markup – all styling is done with Tailwind classes.
-     The outer <section> gets the proper ARIA roles/labels.
-   ────────────────────────────────────────────────────────────── -->
 <section
   id={carouselId}
   class="relative overflow-hidden rounded-lg"
@@ -44,7 +31,7 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 11)}`;
           src={image.src.src}
           alt={image.alt}
           class={`
-          absolute inset-0 w-full h-full object-cover
+          absolute inset-0 w-full h-full object-cover object-top
           transition-opacity duration-500 ease-in-out
           ${i === 0 ? "opacity-100" : "opacity-0"}
           carousel-slide
@@ -67,19 +54,7 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 11)}`;
     aria-label="Previous slide"
     data-dir="prev"
   >
-    <!-- Heroicon: chevron‑left -->
-    <svg
-      class="h-5 w-5"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"
-      ></path>
-    </svg>
+    <Icon name="mdi:chevron-left" class="h-5 w-5" />
     <span class="sr-only">Previous</span>
   </button>
 
@@ -94,19 +69,7 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 11)}`;
     aria-label="Next slide"
     data-dir="next"
   >
-    <!-- Heroicon: chevron‑right -->
-    <svg
-      class="h-5 w-5"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
-      ></path>
-    </svg>
+    <Icon name="mdi:chevron-right" class="h-5 w-5" />
     <span class="sr-only">Next</span>
   </button>
 
@@ -119,11 +82,6 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 11)}`;
   >
   </div>
 </section>
-
-<!-- ──────────────────────────────────────────────────────────────
-     Tailwind utilities are already available in the project.
-     No extra CSS is required – everything lives in the classes above.
-   ────────────────────────────────────────────────────────────── -->
 
 <script define:vars={{ carouselId }}>
   // -----------------------------------------------------------------
