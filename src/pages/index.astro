@@ -142,5 +142,17 @@ const skills = {
     <div slot="right"></div>
   </ThreeColumnSection>
 
-  <ProjectSection projects={projects.filter((project) => project.featured)} />
+  <section class="py-16 bg-mytheme-200/70 dark:bg-mytheme-700/50">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-slate-100"
+    >
+      Software I developed
+    </h2>
+
+    <div class="space-y-16">
+      <ProjectSection
+        projects={projects.filter((project) => project.featured)}
+      />
+    </div>
+  </section>
 </BaseLayout>

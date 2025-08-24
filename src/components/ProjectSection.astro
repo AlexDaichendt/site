@@ -11,102 +11,89 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<section class="py-16 bg-mytheme-200/70 dark:bg-mytheme-700/50">
-  <h2
-    class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-slate-100"
-  >
-    Software I developed
-  </h2>
+{
+  projects.map((project) => (
+    <ThreeColumnSection maxWidth="8xl" py="py-8">
+      {/* ---------- LEFT: Project details ---------- */}
+      <div slot="left" class="max-w-xs justify-self-center lg:justify-self-end">
+        <article class="space-y-4">
+          {/* Title + optional company */}
+          <h3 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+            {project.title}
 
-  <div class="space-y-16">
-    {
-      projects.map((project) => (
-        <ThreeColumnSection maxWidth="8xl" py="py-8">
-          {/* ---------- LEFT: Project details ---------- */}
-          <div
-            slot="left"
-            class="max-w-xs justify-self-center lg:justify-self-end"
-          >
-            <article class="space-y-4">
-              {/* Title + optional company */}
-              <h3 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">
-                {project.title}
+            {/* Duration */}
+            <p class="text-sm text-slate-500 dark:text-slate-400 flex items-center mt-1">
+              <Icon name="mdi:calendar" class="mr-2" />
+              {project.duration}
+            </p>
+          </h3>
 
-                {/* Duration */}
-                <p class="text-sm text-slate-500 dark:text-slate-400 flex items-center mt-1">
-                  <Icon name="mdi:calendar" class="mr-2" />
-                  {project.duration}
-                </p>
-              </h3>
+          {/* Description */}
+          <p class="text-base text-slate-800 dark:text-slate-200">
+            {project.description}
+          </p>
 
-              {/* Description */}
-              <p class="text-base text-slate-800 dark:text-slate-200">
-                {project.description}
-              </p>
+          {/* Tech stack */}
+          <div class="flex flex-wrap gap-2 mt-2">
+            {project.tech_stack.map((tech) => (
+              <span class="px-2 py-0.5 text-xs font-medium bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-slate-100 rounded">
+                {tech}
+              </span>
+            ))}
+          </div>
 
-              {/* Tech stack */}
-              <div class="flex flex-wrap gap-2 mt-2">
-                {project.tech_stack.map((tech) => (
-                  <span class="px-2 py-0.5 text-xs font-medium bg-slate-200 dark:bg-slate-600 text-slate-800 dark:text-slate-100 rounded">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+          {/* Deliverables (optional) */}
+          {project.deliverables?.length && (
+            <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 mt-3">
+              {project.deliverables.map((item) => (
+                <li class="mb-1">{item}</li>
+              ))}
+            </ul>
+          )}
 
-              {/* Deliverables (optional) */}
-              {project.deliverables?.length && (
-                <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 mt-3">
-                  {project.deliverables.map((item) => (
-                    <li class="mb-1">{item}</li>
-                  ))}
-                </ul>
-              )}
-
-              {/* Links */}
-              <div class="flex space-x-4 mt-4">
-                {project.live_url && (
-                  <a
-                    href={project.live_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-sm font-medium
+          {/* Links */}
+          <div class="flex space-x-4 mt-4">
+            {project.live_url && (
+              <a
+                href={project.live_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-sm font-medium
                            transition-colors duration-150
                            bg-slate-100 hover:bg-slate-200 focus-visible:outline focus-visible:outline-2
                            focus-visible:outline-offset-2 focus-visible:outline-slate-500
                            dark:bg-slate-800 dark:hover:bg-slate-700 dark:focus-visible:outline-slate-400"
-                  >
-                    <Icon name="mdi:aspect-ratio" /> Live
-                  </a>
-                )}
-                {project.repo_url && (
-                  <a
-                    href={project.repo_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-sm font-medium
+              >
+                <Icon name="mdi:aspect-ratio" /> Live
+              </a>
+            )}
+            {project.repo_url && (
+              <a
+                href={project.repo_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-sm font-medium
                            transition-colors duration-150
                            bg-slate-100 hover:bg-slate-200 focus-visible:outline focus-visible:outline-2
                            focus-visible:outline-offset-2 focus-visible:outline-slate-500
                            dark:bg-slate-800 dark:hover:bg-slate-700 dark:focus-visible:outline-slate-400"
-                  >
-                    <Icon name="mdi:github" /> Repo
-                  </a>
-                )}
-              </div>
-            </article>
+              >
+                <Icon name="mdi:github" /> Repo
+              </a>
+            )}
           </div>
+        </article>
+      </div>
 
-          {/* ---------- CENTER: Carousel ---------- */}
-          <div slot="center" class="w-full">
-            <div class="rounded-lg overflow-hidden shadow-lg">
-              <Carousel images={project.images} />
-            </div>
-          </div>
+      {/* ---------- CENTER: Carousel ---------- */}
+      <div slot="center" class="w-full">
+        <div class="rounded-lg overflow-hidden shadow-lg">
+          <Carousel images={project.images} />
+        </div>
+      </div>
 
-          {/* ---------- RIGHT: Empty for now ---------- */}
-          <div slot="right" class="hidden lg:block" />
-        </ThreeColumnSection>
-      ))
-    }
-  </div>
-</section>
+      {/* ---------- RIGHT: Empty for now ---------- */}
+      <div slot="right" class="hidden lg:block" />
+    </ThreeColumnSection>
+  ))
+}

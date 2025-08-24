@@ -1,6 +1,25 @@
 export const publications = [
   {
     authors: [
+      "Alexander Daichendt",
+      "Florian Wiedner",
+      "Jonas Andre",
+      "Georg Carle",
+    ],
+    title:
+      "Applicability of Hardware-Supported Containers in Low-Latency Networking",
+    conference:
+      "20th International Conference on Network and Service Management (CNSM 2024)",
+    location: "Prague, Czech Republic",
+    date: "Oct. 2024",
+    links: {
+      pdf: "http://www.net.in.tum.de/fileadmin/bibtex/publications/papers/wiedner_2024_cnsm.pdf",
+      homepage: "https://tumi8.github.io/applicability-hwsupported-containers",
+      bibtex: "https://www.net.in.tum.de/publications/bibtex/Wied24CNSM.bib",
+    },
+  },
+  {
+    authors: [
       "Florian Wiedner",
       "Max Helm",
       "Alexander Daichendt",
@@ -18,25 +37,6 @@ export const publications = [
       pdf: "http://www.net.in.tum.de/fileadmin/bibtex/publications/papers/wiedner-helm-2024-peva.pdf",
       homepage: "https://wiednerf.github.io/container-in-low-latency/",
       bibtex: "/publications/bibtex/WiedHelm24Container.bib",
-    },
-  },
-  {
-    authors: [
-      "Alexander Daichendt",
-      "Florian Wiedner",
-      "Jonas Andre",
-      "Georg Carle",
-    ],
-    title:
-      "Applicability of Hardware-Supported Containers in Low-Latency Networking",
-    conference:
-      "20th International Conference on Network and Service Management (CNSM 2024)",
-    location: "Prague, Czech Republic",
-    date: "Oct. 2024",
-    links: {
-      pdf: "http://www.net.in.tum.de/fileadmin/bibtex/publications/papers/wiedner_2024_cnsm.pdf",
-      homepage: "https://tumi8.github.io/applicability-hwsupported-containers",
-      bibtex: "https://www.net.in.tum.de/publications/bibtex/Wied24CNSM.bib",
     },
   },
   {

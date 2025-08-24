@@ -1,4 +1,7 @@
 import type { ImageMetadata } from "astro";
+import discretizeui_demo from "./assets/projects/discretizeui/demo.png";
+import discretizeui_languages from "./assets/projects/discretizeui/languages.png";
+import discretizeui_tooltip from "./assets/projects/discretizeui/tooltip.png";
 import optimizer1 from "./assets/projects/optimizer/Discretize-Gear-Optimizer-08-05-2025_11_52_AM.png";
 import optimizer2 from "./assets/projects/optimizer/Discretize-Gear-Optimizer-08-05-2025_11_53_AM.png";
 import optimizer3 from "./assets/projects/optimizer/Discretize-Gear-Optimizer-08-05-2025_11_54_AM.png";
@@ -113,17 +116,35 @@ export const projects: Project[] = [
       },
     ],
   },
-  // {
-  //   title: "Discretize -- UI Library",
-  //   repo_url: "https://github.com/discretize/discretize-ui",
-  //   description:
-  //     "A beautiful component library with tooltips for the popular MMORPG Guild Wars 2. Allows websites to look and feel like the game. Integral part of the Discretize ecosystem.",
-  //   live_url:
-  //     "https://discretize.github.io/discretize-ui/gw2-ui/?path=/story/components-attribute--boon-duration",
-  //   tech_stack: ["React", "TypeScript", "Storybook"],
-  //   duration: "2021 - Present",
-  //   complexity: 5,
-  // },
+  {
+    title: "@discretize/gw2-ui-new",
+    featured: false,
+    live_url: "https://discretize.github.io/discretize-ui/gw2-ui",
+    repo_url: "https://github.com/discretize/discretize-ui",
+    description: `A modern, lightweight React component library for Guild Wars 2 UI elements. Used by all Discretize applications.`,
+    tech_stack: ["React", "TypeScript", "CSS Modules", "Storybook"],
+    duration: "2023 – Present",
+    deliverables: [
+      "Refactored all components to TypeScript",
+      "Replaced CSS-in-JS with CSS Modules",
+      "Better performance by caching, batching",
+    ],
+    images: [
+      {
+        src: discretizeui_demo,
+        alt: "Production Demo of the component library",
+      },
+
+      {
+        src: discretizeui_tooltip,
+        alt: "Tooltip component",
+      },
+      {
+        src: discretizeui_languages,
+        alt: "Supports multiple languages",
+      },
+    ],
+  },
   // {
   //   title: "Discretize -- Rewritten Website",
   //   description:
