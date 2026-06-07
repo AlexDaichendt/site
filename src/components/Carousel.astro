@@ -105,129 +105,139 @@ const helpId = `${carouselId}-help`;
   </p>
 </section>
 
-<script define:vars={{ carouselId }}>
+<script>
   document.addEventListener("DOMContentLoaded", () => {
-    const carousel = document.getElementById(carouselId);
-    if (!carousel) return;
+    document
+      .querySelectorAll<HTMLElement>("[data-carousel-id]")
+      .forEach((carousel) => {
+        const slides = carousel.querySelectorAll<HTMLElement>(".carousel-slide");
+        if (slides.length === 0) return;
 
-    const slides = carousel.querySelectorAll(".carousel-slide");
-    const prevBtn = carousel.querySelector('[data-dir="prev"]');
-    const nextBtn = carousel.querySelector('[data-dir="next"]');
-    const liveAnnouncer = carousel.querySelector("[data-live-announcer]");
-    const theaterBtn = carousel.querySelector("[data-theater-toggle]");
+        const prevBtn = carousel.querySelector<HTMLElement>('[data-dir="prev"]');
+        const nextBtn = carousel.querySelector<HTMLElement>('[data-dir="next"]');
+        const liveAnnouncer = carousel.querySelector<HTMLElement>(
+          "[data-live-announcer]",
+        );
+        const theaterBtn = carousel.querySelector<HTMLElement>(
+          "[data-theater-toggle]",
+        );
 
-    let current = 0;
-    const total = slides.length;
-    let autoRotateTimer;
-    let theater = false;
+        let current = 0;
+        const total = slides.length;
+        let autoRotateTimer: number | undefined;
+        let theater = false;
 
-    const updateTheaterButton = () => {
-      if (!theaterBtn) return;
-      theaterBtn.setAttribute("aria-pressed", theater ? "true" : "false");
-      theaterBtn.setAttribute(
-        "aria-label",
-        theater ? "Exit wide mode" : "Enter wide mode",
-      );
-      const icon = theaterBtn.querySelector("svg");
-      if (icon) {
-        icon.setAttribute("data-icon-state", theater ? "collapse" : "expand");
-      }
-    };
+        const updateTheaterButton = () => {
+          if (!theaterBtn) return;
+          theaterBtn.setAttribute("aria-pressed", theater ? "true" : "false");
+          theaterBtn.setAttribute(
+            "aria-label",
+            theater ? "Exit wide mode" : "Enter wide mode",
+          );
+          const icon = theaterBtn.querySelector("svg");
+          if (icon) {
+            icon.setAttribute(
+              "data-icon-state",
+              theater ? "collapse" : "expand",
+            );
+          }
+        };
 
-    const applyTheaterState = () => {
-      const section = carousel.closest("[data-threecol]");
-      if (!section) return;
-      section.classList.toggle("theater-mode", theater);
-      updateTheaterButton();
-    };
+        const applyTheaterState = () => {
+          const section = carousel.closest("[data-threecol]");
+          if (!section) return;
+          section.classList.toggle("theater-mode", theater);
+          updateTheaterButton();
+        };
 
-    const toggleTheater = () => {
-      theater = !theater;
-      applyTheaterState();
-    };
+        const toggleTheater = () => {
+          theater = !theater;
+          applyTheaterState();
+        };
 
-    const exitTheater = () => {
-      if (!theater) return;
-      theater = false;
-      applyTheaterState();
-    };
+        const exitTheater = () => {
+          if (!theater) return;
+          theater = false;
+          applyTheaterState();
+        };
 
-    theaterBtn?.addEventListener("click", (e) => {
-      e.preventDefault();
-      toggleTheater();
-    });
+        theaterBtn?.addEventListener("click", (e) => {
+          e.preventDefault();
+          toggleTheater();
+        });
 
-    const showSlide = (index) => {
-      slides[current].classList.remove("opacity-100");
-      slides[current].classList.add("opacity-0");
+        const showSlide = (index: number) => {
+          slides[current].classList.remove("opacity-100");
+          slides[current].classList.add("opacity-0");
 
-      current = index;
+          current = index;
 
-      slides[current].classList.remove("opacity-0");
-      slides[current].classList.add("opacity-100");
+          slides[current].classList.remove("opacity-0");
+          slides[current].classList.add("opacity-100");
 
-      if (liveAnnouncer) {
-        liveAnnouncer.textContent = `Slide ${current + 1} of ${total}`;
-      }
-    };
+          if (liveAnnouncer) {
+            liveAnnouncer.textContent = `Slide ${current + 1} of ${total}`;
+          }
+        };
 
-    const goPrev = () => {
-      const prev = (current - 1 + total) % total;
-      showSlide(prev);
-    };
-    const goNext = () => {
-      const next = (current + 1) % total;
-      showSlide(next);
-    };
+        const goPrev = () => {
+          const prev = (current - 1 + total) % total;
+          showSlide(prev);
+        };
+        const goNext = () => {
+          const next = (current + 1) % total;
+          showSlide(next);
+        };
 
-    prevBtn?.addEventListener("click", goPrev);
-    nextBtn?.addEventListener("click", goNext);
+        prevBtn?.addEventListener("click", goPrev);
+        nextBtn?.addEventListener("click", goNext);
 
-    // Key handling (now works when the section itself is focused)
-    carousel.addEventListener("keydown", (e) => {
-      const target = e.target;
-      const isTyping =
-        target instanceof HTMLElement &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable);
-      if (isTyping) return;
+        // Key handling (now works when the section itself is focused)
+        carousel.addEventListener("keydown", (e) => {
+          const target = e.target;
+          const isTyping =
+            target instanceof HTMLElement &&
+            (target.tagName === "INPUT" ||
+              target.tagName === "TEXTAREA" ||
+              target.isContentEditable);
+          if (isTyping) return;
 
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        goPrev();
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        goNext();
-      } else if (
-        (e.key === "t" || e.key === "T") &&
-        !e.altKey &&
-        !e.metaKey &&
-        !e.ctrlKey
-      ) {
-        e.preventDefault();
-        toggleTheater();
-      } else if (e.key === "Escape") {
-        exitTheater();
-      }
-    });
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goPrev();
+          } else if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goNext();
+          } else if (
+            (e.key === "t" || e.key === "T") &&
+            !e.altKey &&
+            !e.metaKey &&
+            !e.ctrlKey
+          ) {
+            e.preventDefault();
+            toggleTheater();
+          } else if (e.key === "Escape") {
+            exitTheater();
+          }
+        });
 
-    const startAutoRotate = () => {
-      stopAutoRotate();
-      autoRotateTimer = window.setInterval(goNext, 5000);
-    };
-    const stopAutoRotate = () => {
-      if (autoRotateTimer) {
-        clearInterval(autoRotateTimer);
-        autoRotateTimer = undefined;
-      }
-    };
+        const startAutoRotate = () => {
+          stopAutoRotate();
+          autoRotateTimer = window.setInterval(goNext, 5000);
+        };
+        const stopAutoRotate = () => {
+          if (autoRotateTimer) {
+            clearInterval(autoRotateTimer);
+            autoRotateTimer = undefined;
+          }
+        };
 
-    startAutoRotate();
+        startAutoRotate();
 
-    carousel.addEventListener("mouseenter", stopAutoRotate);
-    carousel.addEventListener("mouseleave", startAutoRotate);
-    carousel.addEventListener("focusin", stopAutoRotate);
-    carousel.addEventListener("focusout", startAutoRotate);
+        carousel.addEventListener("mouseenter", stopAutoRotate);
+        carousel.addEventListener("mouseleave", startAutoRotate);
+        carousel.addEventListener("focusin", stopAutoRotate);
+        carousel.addEventListener("focusout", startAutoRotate);
+      });
   });
 </script>

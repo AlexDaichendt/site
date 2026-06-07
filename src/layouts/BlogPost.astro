@@ -12,7 +12,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } =
   Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} showHeadline={false}>
   <article class="max-w-3xl mx-auto">
     {
       heroImage && (

@@ -9,10 +9,7 @@
   const sliders = document.querySelectorAll(".slider");
 
   // Function to animate theme transition
-  function animateThemeTransition(
-    toggleButton: HTMLElement,
-    isDarkMode: boolean,
-  ) {
+  function animateThemeTransition(isDarkMode: boolean) {
     // Set animation to start from top right corner
     const centerX = window.innerWidth - 20; // 20px from right edge
     const centerY = 20; // 20px from top edge
@@ -101,11 +98,8 @@
         (toggleBtn) => (toggleBtn.checked = targetIsDark),
       );
 
-      // Find the closest switch element to get position
-      const switchElement = btn.closest(".switch") as HTMLElement;
-
       // Animate the transition
-      animateThemeTransition(switchElement, targetIsDark);
+      animateThemeTransition(targetIsDark);
     });
   });
 </script>

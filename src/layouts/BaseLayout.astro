@@ -13,6 +13,7 @@ interface Props {
   description?: string;
   subtitle?: string;
   className?: string;
+  showHeadline?: boolean;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   description = SITE_DESCRIPTION,
   subtitle,
   className = "max-w-2xl px-4 py-8",
+  showHeadline = true,
 } = Astro.props;
 ---
 
@@ -52,7 +54,7 @@ const {
 
     <main class="flex-1">
       <div class={`${className} mx-auto`}>
-        <PageHeadline title={title} subtitle={subtitle} />
+        {showHeadline && <PageHeadline title={title} subtitle={subtitle} />}
         <slot />
       </div>
     </main>
