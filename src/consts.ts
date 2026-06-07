@@ -90,7 +90,7 @@ export const projects: Project[] = [
     description:
       "A gear optimizer for the popular MMORPG Guild Wars 2. The optimizer is used by thousands of players daily to find the best gear combinations for their characters.",
     tech_stack: ["React", "Redux", "Rust", "Vite", "MaterialUI"],
-    duration: "2021 - Present",
+    duration: "2021 - 2026",
     deliverables: [
       "User-friendly interface",
       "Rust/WASM calculation core",
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     repo_url: "https://github.com/discretize/discretize-ui",
     description: `A modern, lightweight React component library for Guild Wars 2 UI elements. Used by all Discretize applications.`,
     tech_stack: ["React", "TypeScript", "CSS Modules", "Storybook"],
-    duration: "2023 – Present",
+    duration: "2023 – 2026",
     deliverables: [
       "Refactored all components to TypeScript",
       "Replaced CSS-in-JS with CSS Modules",

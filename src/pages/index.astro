@@ -1,6 +1,5 @@
 ---
 import me from "../assets/me.jpg";
-import Link from "../components/Link.astro";
 import Picture from "../components/Picture.astro";
 import ProjectSection from "../components/ProjectSection.astro";
 import ThreeColumnSection from "../components/ThreeColumnSection.astro";
@@ -30,8 +29,7 @@ const love = [
 ];
 
 const skills = {
-  "Core Stack": ["Rust", "TypeScript", "Node.js", "SQL", "HTML", "CSS"],
-  Frontend: ["Next.js", "SvelteKit", "Astro", "Tailwind"],
+  "Core Stack": ["Rust", "Node.js", "C++"],
   DevOps: [
     "Prometheus",
     "Docker",
@@ -49,13 +47,13 @@ const skills = {
     "Linux Sysadmin",
     "Vitest",
   ],
-  Languages: ["German (native)", "English"],
+  Languages: ["German (native)", "English", "Norsk"],
 };
 ---
 
 <BaseLayout
   title="Hi, my name is Alex!"
-  subtitle="Software Engineer, Linux Enthusiast, Lightweight Systems Advocate"
+  subtitle="Software Engineer in the broadcast industry at Appear in Oslo, Norway"
   className="w-full py-16 flex flex-col"
 >
   <ThreeColumnSection reverseOnMobile={true}>
@@ -63,19 +61,13 @@ const skills = {
 
     <div slot="center" class="max-w-2xl">
       <p class="mb-4">
-        I am a privacy-first software engineer passionate about building web
-        applications that are efficient, user-friendly, and respectful of your
-        data.
-      </p>
-      <p class="mb-4">
-        I help clients design and develop sleek, standards-compliant web
-        solutions, always prioritizing usability over visual clutter. With
-        hands-on experience in Rust, Node.js and many more, I believe in using
-        the best tools and technologies for each project, ensuring scalable and
-        long-term maintainable results.
+        I am a software engineer working in the broadcast industry at Appear in
+        Oslo, Norway. I care about efficient systems, clean interfaces, and
+        software that remains maintainable over time.
       </p>
       <p>
-        Ready to collaborate? <Link href="/contact">Get in touch here</Link>!
+        I specialize in video compression and NDI workflows, working primarily
+        with Rust and C++ on performance-sensitive software.
       </p>
     </div>
 
