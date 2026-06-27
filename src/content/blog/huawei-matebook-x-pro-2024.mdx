@@ -5,7 +5,12 @@ description: A guide on what is needed to get Linux running on the Huawei MateBo
 heroImage: ./images/matebook.jpg
 ---
 
-**UPDATE 24/08/2024**:
+**UPDATE 27/07/2026**:
+I managed to create a driver for the [camera](https://github.com/AlexDaichendt/gc2607-camera-linux) and [fingerprint sensor](https://github.com/AlexDaichendt/sil6250-linux).
+Battery life is still not that great. Averaging around 4 hours with my Rust-heavy workflows. Bluetooth has been a bit better.
+Overall, quite good experience now.
+
+**UPDATE 24/08/2025**:
 Having used this machine for a year soon, I can not recommend it. None of my issues have been resolved, some even gotten worse. The laptop's battery life is poor, often barely reaching 3 hours while having a text editor open. I pretty much depend on plugging the laptop into the wall, all the time to not degrade the battery more than necessary. The webcam, fingerprint, S3 and Xe drivers are still all pretty much broken. Bluetooth also behaves a bit strangely where it sometimes requires multiple attempts to connect.
 
 ---
@@ -26,8 +31,10 @@ Overall, the experience was okay, but not something I would recommend to an aver
 | Bluetooth   | 8087:0033                                   | :white_check_mark: |
 | iGPU        | 8086:7d55                                   | :neutral_face:     |
 | Audio       | 8086:7e28                                   | :ok:               |
-| Webcam      | 8086:7d19                                   | :x:                |
-| Fingerprint |                                             | :x:                |
+| Webcam      | 8086:7d19                                   | :white_check_mark: (*)               |
+| Fingerprint | SIL6250                                     | :white_check_mark: (*)               |
+
+(*) Requires out-of-tree driver installation 
 
 ## CPU
 
@@ -60,9 +67,17 @@ The audio works out of the box. But its not great. It seems like not all speaker
 
 The webcam is an ipu6-based camera. Support has been trickling in over the years, but it is unusable at the moment and the forseeable future.
 
+CORRECTION 27/06/26: It is a GalaxyCore GC2607, producing a 1920x1080@29.90 video stream. Due to the nature of the Intel stack, a user space feeder program must run in the background. The quality of the camera is, for a Webcam, excellent. As far as I've used this camera, I am very content with it. 
+
 ## Fingerprint
 
 The fingerprint sensor is not supported at the moment. It does not even show up anywhere. One of those ingenious Goodix sensors that are not supported by the fprintd library.
+
+CORRECTION 27/06/26: It was not Goodix. It is a Petaic Silead 6250 and thanks to the Clankers we got full driver support in Linux now.
+The fingerprint sensor is a Match-On-Host one, records a 66x80 image and uses a SIFT-class verification algorithm. My matcher implementation is a reimplementation of what the Windows driver is doing and performs better overall (lower FRR) and is even tunable now that we have the source code. 
+Having used the sensor for a few days, I'm quite happy with it. 
+
+
 
 ---
 
